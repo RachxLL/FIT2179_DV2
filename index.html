@@ -42,7 +42,7 @@
             font-family: 'Crimson Text', serif;
             font-size: 3em;
             font-weight: 700;
-            color: #8b0000;
+            color: #5a3825;
             margin-bottom: 10px;
             line-height: 1.2;
         }
@@ -74,7 +74,7 @@
             font-family: 'Crimson Text', serif;
             font-size: 1.6em;
             font-weight: 600;
-            color: #2c2c2c;
+            color: #3f2a1d;
             margin-bottom: 25px;
             padding-bottom: 12px;
             border-bottom: 2px solid #e0e0e0;
@@ -99,13 +99,13 @@
         .insight-card {
             padding: 20px;
             background: #f9f7f4;
-            border-left: 4px solid #c41e3a;
+            border-left: 4px solid #7a4a2a;
         }
 
         .insight-label {
             font-size: 0.85em;
             font-weight: 700;
-            color: #8b0000;
+            color: #5a3825;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
@@ -130,7 +130,7 @@
             font-family: 'Crimson Text', serif;
             font-size: 1.3em;
             font-weight: 600;
-            color: #2c2c2c;
+            color: #3f2a1d;
             margin-bottom: 15px;
         }
 
@@ -246,12 +246,12 @@
     <!-- JavaScript to load the Vega-Lite visualization -->
     <script type="text/javascript">
         var vg_1 = "smoking_map.vg.json";
+
         vegaEmbed("#vis", vg_1)
-        .then(function(result) {
-            // Chart loaded successfully
-            console.log("Visualization loaded");
-        })
-        .catch(console.error);
+            .then(function(result) {
+                console.log("Visualization loaded");
+            })
+            .catch(console.error);
     </script>
 </body>
 </html>
