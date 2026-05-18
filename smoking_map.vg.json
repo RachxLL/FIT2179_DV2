@@ -16,9 +16,10 @@
     "subtitleFont": "Arial",
     "subtitleFontSize": 12,
     "subtitleFontWeight": 400,
+    "subtitlePadding" : 15,
     "subtitleColor": "#666666",
     "anchor": "start",
-    "offset": 4
+    "offset": 45
   },
   "width": 900,
   "height": 500,

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smoking Prevalence in Malaysia</title>
-    
+
     <!-- Vega, Vega-Lite, and Vega-Embed libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             margin: 0;
@@ -28,12 +28,13 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1120px;
             margin: 0 auto;
             padding: 60px 40px;
         }
 
         .title-section {
+            width: 100%;
             margin-bottom: 48px;
         }
 
@@ -47,6 +48,7 @@
         }
 
         .subtitle {
+            width: 100%;
             font-size: 1.1em;
             color: #666666;
             font-weight: 400;
@@ -54,10 +56,11 @@
         }
 
         .intro-text {
+            width: 100%;
             font-size: 0.98em;
-            line-height: 1.7;
+            line-height: 1.75;
             color: #555555;
-            max-width: 880px;
+            text-align: justify;
         }
 
         .viz-section {
@@ -68,21 +71,20 @@
             margin-bottom: 48px;
         }
 
+        .section-text {
+            width: 100%;
+            margin-left: 0;
+            margin-right: auto;
+            margin-bottom: 18px;
+        }
+
         .viz-title {
             font-family: 'Crimson Text', Georgia, serif;
             font-size: 1.65em;
             font-weight: 700;
             color: #3f2a1d;
-            margin-bottom: 8px;
+            margin-bottom: 0;
             line-height: 1.25;
-        }
-
-        .viz-description {
-            font-size: 0.96em;
-            color: #555555;
-            max-width: 850px;
-            margin-bottom: 26px;
-            line-height: 1.65;
         }
 
         .vis-holder {
@@ -90,6 +92,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
+            margin-top: 10px;
         }
 
         .insights-section {
@@ -124,7 +127,7 @@
         }
 
         footer {
-            max-width: 1100px;
+            max-width: 1120px;
             margin: 0 auto 50px auto;
             background: #ffffff;
             padding: 38px 40px;
@@ -146,7 +149,8 @@
             line-height: 1.7;
             color: #666666;
             margin-bottom: 10px;
-            max-width: 950px;
+            max-width: 100%;
+            text-align: justify;
         }
 
         .footer-text strong {
@@ -169,6 +173,11 @@
 
             h1 {
                 font-size: 2.25em;
+            }
+
+            .intro-text,
+            .footer-text {
+                text-align: left;
             }
 
             .viz-section {
@@ -199,22 +208,17 @@
             <h1>Smoking Prevalence in Malaysia</h1>
             <p class="subtitle">Where smoking remains common, and how the national picture has changed</p>
             <p class="intro-text">
-                Smoking is still a major public health issue in Malaysia, even though national prevalence has declined over time.
-                The pattern is not equal across the country. Some states recorded much higher smoking rates in 2023,
-                while the national trend shows that progress has been gradual rather than sudden.
+                Smoking remains a major public health issue in Malaysia, although national prevalence has declined over time. The pattern is not equal across the country: some states recorded much higher smoking rates in 2023, men continued to smoke at far higher rates than women, and the national trend shows that progress has been gradual rather than sudden. These patterns show that Malaysia’s smoking problem is improving, but it remains uneven across places and groups.
             </p>
         </section>
 
-        <!-- Idiom 1: Map -->
+        <!-- Visualisation 1: Map -->
         <section class="viz-section">
-            <h2 class="viz-title">Smoking Rates Are Uneven Across States</h2>
-            <p class="viz-description">
-                In 2023, Sarawak recorded the highest smoking prevalence among Malaysian states, while Putrajaya recorded the lowest.
-                The difference between states shows that smoking behaviour is not evenly spread across Malaysia.
-                This suggests that public health attention may need to be more targeted in higher-prevalence areas.
-            </p>
+            <div class="section-text">
+                <h2 class="viz-title">Smoking Rates Are Uneven Across States</h2>
+            </div>
 
-            <div id="vis" class="vis-holder"></div>
+            <div id="vis-map" class="vis-holder"></div>
 
             <div class="insights-section">
                 <div class="insight-card">
@@ -234,16 +238,22 @@
             </div>
         </section>
 
-        <!-- Idiom 2: Time Series -->
+        <!-- Visualisation 2: Time Series -->
         <section class="viz-section">
-            <h2 class="viz-title">Smoking Has Declined, But Slowly</h2>
-            <p class="viz-description">
-                Malaysia’s smoking prevalence has fallen compared with earlier survey years.
-                The 2011 rate is an important comparison point because it shows where the country stood more than a decade ago.
-                By 2023, the rate had dropped to 19.0%, but this still means smoking remained common among adults.
-            </p>
+            <div class="section-text">
+                <h2 class="viz-title">Smoking Has Declined, But Slowly</h2>
+            </div>
 
-            <div id="vis2" class="vis-holder"></div>
+            <div id="vis-timeseries" class="vis-holder"></div>
+        </section>
+
+        <!-- Visualisation 3: Gender -->
+        <section class="viz-section">
+            <div class="section-text">
+                <h2 class="viz-title">Smoking Is Much More Common Among Men</h2>
+            </div>
+
+            <div id="vis-gender" class="vis-holder"></div>
         </section>
     </div>
 
@@ -252,18 +262,15 @@
         <div class="footer-title">Data and Sources</div>
 
         <p class="footer-text">
-            <strong>Smoking data:</strong> This page uses Malaysian smoking prevalence data from national tobacco and health survey materials.
-            The figures describe current smoking among adults aged 15 years and above.
+            <strong>Smoking data:</strong> This page uses Malaysian smoking prevalence data from national tobacco and health survey materials. The figures describe current smoking among adults aged 15 years and above.
         </p>
 
         <p class="footer-text">
-            <strong>Map data:</strong> Malaysia state boundary data was adapted from a public GitHub TopoJSON source for educational use.
-            State names were matched with smoking prevalence values to show the geographic pattern.
+            <strong>Map data:</strong> Malaysia state boundary data was adapted from a public GitHub TopoJSON source for educational use. State names were matched with smoking prevalence values to show the geographic pattern.
         </p>
 
         <p class="footer-text">
-            <strong>Reading the page:</strong> The results show differences in smoking prevalence across states and over time.
-            They describe population-level patterns and should not be read as proving that location alone causes smoking behaviour.
+            <strong>Reading the page:</strong> The results show differences in smoking prevalence across states, gender groups, and time. They describe population-level patterns and should not be read as proving that one factor alone causes smoking behaviour.
         </p>
 
         <div class="metadata">
@@ -273,18 +280,25 @@
 
     <!-- JavaScript to load Vega-Lite visualisations -->
     <script type="text/javascript">
-        var smokingMap = "smoking_map.vg.json";
-        var smokingTimeSeries = "smoking_timeseries.vg.json";
+        const smokingMap = "smoking_map.vg.json";
+        const smokingTimeSeries = "smoking_timeseries.vg.json";
+        const smokingGender = "smoking_gender.vg.json";
 
-        vegaEmbed("#vis", smokingMap, { actions: false })
+        vegaEmbed("#vis-map", smokingMap, { actions: false })
             .then(function(result) {
                 console.log("Smoking map loaded");
             })
             .catch(console.error);
 
-        vegaEmbed("#vis2", smokingTimeSeries, { actions: false })
+        vegaEmbed("#vis-timeseries", smokingTimeSeries, { actions: false })
             .then(function(result) {
                 console.log("Smoking time series loaded");
+            })
+            .catch(console.error);
+
+        vegaEmbed("#vis-gender", smokingGender, { actions: false })
+            .then(function(result) {
+                console.log("Smoking gender chart loaded");
             })
             .catch(console.error);
     </script>
