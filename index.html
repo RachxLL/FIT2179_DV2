@@ -33,77 +33,83 @@
             padding: 60px 40px;
         }
 
-        /* Title Section */
         .title-section {
-            margin-bottom: 45px;
+            margin-bottom: 48px;
         }
 
         h1 {
-            font-family: 'Crimson Text', serif;
+            font-family: 'Crimson Text', Georgia, serif;
             font-size: 3em;
             font-weight: 700;
             color: #5a3825;
             margin-bottom: 10px;
-            line-height: 1.2;
+            line-height: 1.15;
         }
 
         .subtitle {
             font-size: 1.1em;
-            color: #666;
+            color: #666666;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .intro-text {
-            font-size: 0.95em;
+            font-size: 0.98em;
             line-height: 1.7;
-            color: #555;
-            max-width: 900px;
+            color: #555555;
+            max-width: 880px;
         }
 
-        /* Visualization Section */
         .viz-section {
-            background: white;
-            padding: 40px;
+            background: #ffffff;
+            padding: 38px 40px 42px 40px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            margin-bottom: 45px;
+            margin-bottom: 48px;
         }
 
         .viz-title {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.6em;
-            font-weight: 600;
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 1.65em;
+            font-weight: 700;
             color: #3f2a1d;
-            margin-bottom: 25px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 8px;
+            line-height: 1.25;
         }
 
-        #vis {
+        .viz-description {
+            font-size: 0.96em;
+            color: #555555;
+            max-width: 850px;
+            margin-bottom: 26px;
+            line-height: 1.65;
+        }
+
+        .vis-holder {
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
         }
 
-        /* Key Insights Grid */
         .insights-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-            padding-top: 35px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 38px;
+            padding-top: 32px;
             border-top: 1px solid #e8e8e8;
         }
 
         .insight-card {
-            padding: 20px;
+            padding: 18px 20px;
             background: #f9f7f4;
             border-left: 4px solid #7a4a2a;
+            min-height: 120px;
         }
 
         .insight-label {
-            font-size: 0.85em;
+            font-size: 0.82em;
             font-weight: 700;
             color: #5a3825;
             text-transform: uppercase;
@@ -112,33 +118,35 @@
         }
 
         .insight-value {
-            font-size: 1.3em;
+            font-size: 1.25em;
             font-weight: 600;
             color: #2c2c2c;
         }
 
-        /* Footer */
         footer {
-            background: white;
-            padding: 40px;
+            max-width: 1100px;
+            margin: 0 auto 50px auto;
+            background: #ffffff;
+            padding: 38px 40px;
             border-top: 1px solid #e8e8e8;
-            border-radius: 0 0 8px 8px;
-            margin: 0 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .footer-title {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.3em;
-            font-weight: 600;
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 1.35em;
+            font-weight: 700;
             color: #3f2a1d;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
         }
 
         .footer-text {
             font-size: 0.9em;
             line-height: 1.7;
-            color: #666;
+            color: #666666;
             margin-bottom: 10px;
+            max-width: 950px;
         }
 
         .footer-text strong {
@@ -148,56 +156,66 @@
 
         .metadata {
             font-size: 0.8em;
-            color: #999;
+            color: #999999;
             margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #e8e8e8;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 40px 20px;
             }
 
             h1 {
-                font-size: 2.2em;
+                font-size: 2.25em;
             }
 
             .viz-section {
-                padding: 20px;
+                padding: 24px 20px 28px 20px;
             }
 
-            #vis {
-                min-height: 500px;
+            .vis-holder {
+                overflow-x: auto;
+                justify-content: flex-start;
             }
 
             .insights-section {
                 grid-template-columns: 1fr;
             }
+
+            footer {
+                margin: 0 20px 40px 20px;
+                padding: 28px 24px;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <!-- Title Section -->
-        <div class="title-section">
+        <!-- Page Title -->
+        <section class="title-section">
             <h1>Smoking Prevalence in Malaysia</h1>
-            <p class="subtitle">Geographic distribution by state, 2023</p>
+            <p class="subtitle">Where smoking remains common, and how the national picture has changed</p>
             <p class="intro-text">
-                This visualization shows current smoking prevalence among adults aged 15 years and above 
-                across Malaysian states and federal territories. The darker the color intensity, the higher 
-                the smoking rate in that region. Understanding geographic variation is essential for 
-                targeted public health interventions and tobacco control policies.
+                Smoking is still a major public health issue in Malaysia, even though national prevalence has declined over time.
+                The pattern is not equal across the country. Some states recorded much higher smoking rates in 2023,
+                while the national trend shows that progress has been gradual rather than sudden.
             </p>
-        </div>
+        </section>
 
-        <!-- Visualization -->
-        <div class="viz-section">
-            <h2 class="viz-title">Current Smoking Prevalence by State</h2>
-            <div id="vis"></div>
+        <!-- Idiom 1: Map -->
+        <section class="viz-section">
+            <h2 class="viz-title">Smoking Rates Are Uneven Across States</h2>
+            <p class="viz-description">
+                In 2023, Sarawak recorded the highest smoking prevalence among Malaysian states, while Putrajaya recorded the lowest.
+                The difference between states shows that smoking behaviour is not evenly spread across Malaysia.
+                This suggests that public health attention may need to be more targeted in higher-prevalence areas.
+            </p>
 
-            <!-- Key Insights -->
+            <div id="vis" class="vis-holder"></div>
+
             <div class="insights-section">
                 <div class="insight-card">
                     <div class="insight-label">Highest Prevalence</div>
@@ -210,46 +228,63 @@
                 </div>
 
                 <div class="insight-card">
-                    <div class="insight-label">National Average</div>
+                    <div class="insight-label">National Prevalence</div>
                     <div class="insight-value">19.0%</div>
                 </div>
-
-                <div class="insight-card">
-                    <div class="insight-label">Range</div>
-                    <div class="insight-value">14.6 percentage points</div>
-                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Idiom 2: Time Series -->
+        <section class="viz-section">
+            <h2 class="viz-title">Smoking Has Declined, But Slowly</h2>
+            <p class="viz-description">
+                Malaysia’s smoking prevalence has fallen compared with earlier survey years.
+                The 2011 rate is an important comparison point because it shows where the country stood more than a decade ago.
+                By 2023, the rate had dropped to 19.0%, but this still means smoking remained common among adults.
+            </p>
+
+            <div id="vis2" class="vis-holder"></div>
+        </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-title">Data and Methods</div>
+        <div class="footer-title">Data and Sources</div>
+
         <p class="footer-text">
-            <strong>Source:</strong> Global Adult Tobacco Survey (GATS) Malaysia 2023, 
-            conducted by the Institute for Public Health in collaboration with the Disease Control 
-            Division, Ministry of Health Malaysia.
+            <strong>Smoking data:</strong> This page uses Malaysian smoking prevalence data from national tobacco and health survey materials.
+            The figures describe current smoking among adults aged 15 years and above.
         </p>
+
         <p class="footer-text">
-            <strong>Definition:</strong> Current smokers are persons aged 15 years and above who 
-            report smoking tobacco daily or less than daily. Percentages represent the prevalence 
-            of current smoking among the total adult population in each state.
+            <strong>Map data:</strong> Malaysia state boundary data was adapted from a public GitHub TopoJSON source for educational use.
+            State names were matched with smoking prevalence values to show the geographic pattern.
         </p>
+
         <p class="footer-text">
-            <strong>Interpretation:</strong> Geographic variation in smoking rates reflects 
-            differences in socioeconomic conditions, implementation of tobacco control policies, 
-            and cultural factors across regions.
+            <strong>Reading the page:</strong> The results show differences in smoking prevalence across states and over time.
+            They describe population-level patterns and should not be read as proving that location alone causes smoking behaviour.
         </p>
-        <div class="metadata">FIT2179 Data Visualisation | Smoking in Malaysia | 2026</div>
+
+        <div class="metadata">
+            FIT2179 Data Visualisation 2 | Smoking in Malaysia | 2026
+        </div>
     </footer>
 
-    <!-- JavaScript to load the Vega-Lite visualization -->
+    <!-- JavaScript to load Vega-Lite visualisations -->
     <script type="text/javascript">
-        var vg_1 = "smoking_map.vg.json";
+        var smokingMap = "smoking_map.vg.json";
+        var smokingTimeSeries = "smoking_timeseries.vg.json";
 
-        vegaEmbed("#vis", vg_1)
+        vegaEmbed("#vis", smokingMap, { actions: false })
             .then(function(result) {
-                console.log("Visualization loaded");
+                console.log("Smoking map loaded");
+            })
+            .catch(console.error);
+
+        vegaEmbed("#vis2", smokingTimeSeries, { actions: false })
+            .then(function(result) {
+                console.log("Smoking time series loaded");
             })
             .catch(console.error);
     </script>

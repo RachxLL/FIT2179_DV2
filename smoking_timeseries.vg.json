@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "padding": {
-    "left": 28,
-    "right": 36,
+    "left": 32,
+    "right": 42,
     "top": 8,
-    "bottom": 20
+    "bottom": 24
   },
   "title": {
     "text": "Smoking prevalence has declined over time",
@@ -17,20 +17,21 @@
     "subtitleFontSize": 12,
     "subtitleFontWeight": 400,
     "subtitleColor": "#666666",
+    "subtitlePadding": 15,
     "anchor": "start",
-    "offset": 6
+    "offset": 45
   },
   "width": 840,
   "height": 380,
   "data": {
-    "url": "smoking_timeseries.csv"
+    "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_timeseries.csv"
   },
   "layer": [
     {
       "mark": {
         "type": "line",
         "strokeWidth": 3.5,
-        "color": "#2f6f73",
+        "color": "#2f5f9e",
         "opacity": 1
       },
       "encoding": {
@@ -44,9 +45,27 @@
           },
           "axis": {
             "values": [
-              2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
-              2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018,
-              2019, 2020, 2021, 2022, 2023
+              2003,
+              2004,
+              2005,
+              2006,
+              2007,
+              2008,
+              2009,
+              2010,
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
             ],
             "format": "d",
             "labelFont": "Arial",
@@ -76,7 +95,7 @@
             "titleFontSize": 11,
             "titleFontWeight": 600,
             "titleColor": "#555555",
-            "titlePadding": 18,
+            "titlePadding": 20,
             "labelFont": "Arial",
             "labelFontSize": 10,
             "labelColor": "#666666",
@@ -118,7 +137,7 @@
             "test": "datum.Focus === 'Focus'",
             "value": "#5a3825"
           },
-          "value": "#2f6f73"
+          "value": "#2f5f9e"
         },
         "tooltip": [
           {
@@ -137,9 +156,12 @@
       }
     },
     {
+      "data": {
+        "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_timeseries.csv"
+      },
       "transform": [
         {
-          "filter": "datum.Year === 2011 || datum.Year === 2023"
+          "filter": "datum.Year === 2011"
         }
       ],
       "mark": {
@@ -148,9 +170,51 @@
         "fontSize": 11,
         "fontWeight": 700,
         "color": "#5a3825",
-        "align": "center",
+        "align": "left",
         "baseline": "bottom",
-        "dy": -10
+        "dx": 12,
+        "dy": -12
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [2003, 2023],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "Smoking_Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [15, 30]
+          }
+        },
+        "text": {
+          "field": "Label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_timeseries.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.Year === 2023"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#5a3825",
+        "align": "right",
+        "baseline": "bottom",
+        "dx": -18,
+        "dy": -14
       },
       "encoding": {
         "x": {
@@ -177,91 +241,9 @@
       "data": {
         "values": [
           {
-            "Year": 2004.8,
+            "Year": 2004.7,
             "Smoking_Prevalence": 29.0,
-            "Text": "Rates were above 26% before 2011."
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "font": "Arial",
-        "fontSize": 11,
-        "fontWeight": 400,
-        "color": "#666666",
-        "align": "left",
-        "baseline": "top",
-        "limit": 230
-      },
-      "encoding": {
-        "x": {
-          "field": "Year",
-          "type": "quantitative",
-          "scale": {
-            "domain": [2003, 2023],
-            "nice": false
-          }
-        },
-        "y": {
-          "field": "Smoking_Prevalence",
-          "type": "quantitative",
-          "scale": {
-            "domain": [15, 30]
-          }
-        },
-        "text": {
-          "field": "Text"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Year": 2009.7,
-            "Smoking_Prevalence": 24.9,
-            "Text": "2011 serves as the main comparison year."
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "font": "Arial",
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#5a3825",
-        "align": "right",
-        "baseline": "middle",
-        "limit": 240
-      },
-      "encoding": {
-        "x": {
-          "field": "Year",
-          "type": "quantitative",
-          "scale": {
-            "domain": [2003, 2023],
-            "nice": false
-          }
-        },
-        "y": {
-          "field": "Smoking_Prevalence",
-          "type": "quantitative",
-          "scale": {
-            "domain": [15, 30]
-          }
-        },
-        "text": {
-          "field": "Text"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Year": 2014.0,
-            "Smoking_Prevalence": 16.1,
-            "Text": "Later survey years provide additional trend context."
+            "Text": "Before 2011, measured rates were above 26%."
           }
         ]
       },
@@ -271,6 +253,47 @@
         "fontSize": 10,
         "fontWeight": 400,
         "color": "#666666",
+        "align": "left",
+        "baseline": "top",
+        "limit": 310
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [2003, 2023],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "Smoking_Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [15, 30]
+          }
+        },
+        "text": {
+          "field": "Text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2008.6,
+            "Smoking_Prevalence": 22.1,
+            "Text": "2011 is the main comparison year."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#5a3825",
         "align": "left",
         "baseline": "middle",
         "limit": 280
@@ -300,9 +323,50 @@
       "data": {
         "values": [
           {
-            "Year": 2022.6,
-            "Smoking_Prevalence": 17.3,
-            "Text": "By 2023, prevalence fell to 19.0%."
+            "Year": 2013.5,
+            "Smoking_Prevalence": 15.8,
+            "Text": "Other years provide trend context."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 10,
+        "fontWeight": 400,
+        "color": "#666666",
+        "align": "left",
+        "baseline": "middle",
+        "limit": 300
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [2003, 2023],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "Smoking_Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [15, 30]
+          }
+        },
+        "text": {
+          "field": "Text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2022.35,
+            "Smoking_Prevalence": 18.35,
+            "Text": "Latest available data."
           }
         ]
       },
@@ -313,8 +377,8 @@
         "fontWeight": 600,
         "color": "#5a3825",
         "align": "right",
-        "baseline": "top",
-        "limit": 220
+        "baseline": "middle",
+        "limit": 240
       },
       "encoding": {
         "x": {

@@ -1,0 +1,5 @@
+Year,Gender,Smoking_Prevalence,Signed_Prevalence,Label
+2011,Men,43.9,-43.9,43.9%
+2011,Women,1.0,1.0,1.0%
+2023,Men,35.7,-35.7,35.7%
+2023,Women,1.5,1.5,1.5%
