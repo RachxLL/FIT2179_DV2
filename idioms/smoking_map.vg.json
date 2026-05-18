@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Smoking Prevalence in Malaysian States (2023)",
+    "font": "Crimson Text",
+    "fontSize": 18,
+    "fontWeight": 600,
+    "anchor": "start"
+  },
+  "width": 900,
+  "height": 600,
+  "projection": {
+    "type": "mercator",
+    "fit": true
+  },
+  "data": {
+    "url": "malaysia-states.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "states"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.Name",
+      "from": {
+        "data": {
+          "url": "smoking_by_state.csv"
+        },
+        "key": "State",
+        "fields": [
+          "Smoking_Rate"
+        ]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#ffffff",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "color": {
+      "field": "Smoking_Rate",
+      "type": "quantitative",
+      "title": "Smoking Rate (%)",
+      "scale": {
+        "scheme": "reds",
+        "domain": [
+          10,
+          30
+        ]
+      },
+      "legend": {
+        "title": "Smoking Rate (%)",
+        "titleFont": "Crimson Text",
+        "titleFontSize": 12,
+        "labelFont": "Source Sans Pro"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "properties.Name",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "Smoking_Rate",
+        "type": "quantitative",
+        "title": "Smoking Prevalence (%)",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

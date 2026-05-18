@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Current Smoking Prevalence by Malaysian State (2023)",
+    "font": "Crimson Text",
+    "fontSize": 20,
+    "fontWeight": 600,
+    "anchor": "start"
+  },
+  "description": "Horizontal bar chart showing smoking prevalence rates across Malaysian states and federal territories",
+  "data": {
+    "url": "https://raw.githubusercontent.com/RachXL/FIT2179/main/smoking_by_state.csv"
+  },
+  "mark": "bar",
+  "width": 700,
+  "height": 500,
+  "encoding": {
+    "y": {
+      "field": "State",
+      "type": "nominal",
+      "sort": "-x",
+      "axis": {
+        "title": "Malaysian State / Federal Territory",
+        "titleFont": "Crimson Text",
+        "titleFontSize": 13,
+        "titleFontWeight": 600,
+        "labelFont": "Source Sans Pro",
+        "labelFontSize": 11,
+        "offset": 10
+      }
+    },
+    "x": {
+      "field": "Smoking_Rate",
+      "type": "quantitative",
+      "title": "Smoking Prevalence (%)",
+      "scale": {
+        "domain": [10, 30]
+      },
+      "axis": {
+        "titleFont": "Crimson Text",
+        "titleFontSize": 13,
+        "titleFontWeight": 600,
+        "labelFont": "Source Sans Pro",
+        "labelFontSize": 11,
+        "format": ".1f"
+      }
+    },
+    "color": {
+      "field": "Smoking_Rate",
+      "type": "quantitative",
+      "title": "Smoking Rate (%)",
+      "scale": {
+        "scheme": "reds",
+        "domain": [10, 30]
+      },
+      "legend": {
+        "title": "Smoking Rate (%)",
+        "titleFont": "Crimson Text",
+        "titleFontSize": 12,
+        "labelFont": "Source Sans Pro"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "State",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "Smoking_Rate",
+        "type": "quantitative",
+        "title": "Smoking Prevalence (%)",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "bar": {
+      "cornerRadius": 2,
+      "width": 18
+    },
+    "axis": {
+      "grid": false,
+      "domain": false,
+      "ticks": false
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

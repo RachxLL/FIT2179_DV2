@@ -3,9 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Smoking Prevalence in Malaysia</title>
+    
+    <!-- Vega, Vega-Lite, and Vega-Embed libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: #fafaf8;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Title Section */
+        .title-section {
+            margin-bottom: 45px;
+        }
+
+        h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3em;
+            font-weight: 700;
+            color: #8b0000;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #555;
+            max-width: 900px;
+        }
+
+        /* Visualization Section */
+        .viz-section {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            margin-bottom: 45px;
+        }
+
+        .viz-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6em;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        #vis {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Key Insights Grid */
+        .insights-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            padding-top: 35px;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .insight-card {
+            padding: 20px;
+            background: #f9f7f4;
+            border-left: 4px solid #c41e3a;
+        }
+
+        .insight-label {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #8b0000;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .insight-value {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            padding: 40px;
+            border-top: 1px solid #e8e8e8;
+            border-radius: 0 0 8px 8px;
+            margin: 0 40px;
+        }
+
+        .footer-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 0.9em;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .footer-text strong {
+            color: #2c2c2c;
+            font-weight: 600;
+        }
+
+        .metadata {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .viz-section {
+                padding: 20px;
+            }
+
+            #vis {
+                min-height: 500px;
+            }
+
+            .insights-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <!-- Title Section -->
+        <div class="title-section">
+            <h1>Smoking Prevalence in Malaysia</h1>
+            <p class="subtitle">Geographic distribution by state, 2023</p>
+            <p class="intro-text">
+                This visualization shows current smoking prevalence among adults aged 15 years and above 
+                across Malaysian states and federal territories. The darker the color intensity, the higher 
+                the smoking rate in that region. Understanding geographic variation is essential for 
+                targeted public health interventions and tobacco control policies.
+            </p>
+        </div>
+
+        <!-- Visualization -->
+        <div class="viz-section">
+            <h2 class="viz-title">Current Smoking Prevalence by State</h2>
+            <div id="vis"></div>
+
+            <!-- Key Insights -->
+            <div class="insights-section">
+                <div class="insight-card">
+                    <div class="insight-label">Highest Prevalence</div>
+                    <div class="insight-value">Sarawak: 28.5%</div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-label">Lowest Prevalence</div>
+                    <div class="insight-value">WP Putrajaya: 13.9%</div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-label">National Average</div>
+                    <div class="insight-value">19.0%</div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-label">Range</div>
+                    <div class="insight-value">14.6 percentage points</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-title">Data and Methods</div>
+        <p class="footer-text">
+            <strong>Source:</strong> Global Adult Tobacco Survey (GATS) Malaysia 2023, 
+            conducted by the Institute for Public Health in collaboration with the Disease Control 
+            Division, Ministry of Health Malaysia.
+        </p>
+        <p class="footer-text">
+            <strong>Definition:</strong> Current smokers are persons aged 15 years and above who 
+            report smoking tobacco daily or less than daily. Percentages represent the prevalence 
+            of current smoking among the total adult population in each state.
+        </p>
+        <p class="footer-text">
+            <strong>Interpretation:</strong> Geographic variation in smoking rates reflects 
+            differences in socioeconomic conditions, implementation of tobacco control policies, 
+            and cultural factors across regions.
+        </p>
+        <div class="metadata">FIT2179 Data Visualisation | Smoking in Malaysia | 2026</div>
+    </footer>
+
+    <!-- JavaScript to load the Vega-Lite visualization -->
+    <script type="text/javascript">
+        var vg_1 = "smoking_map.vg.json";
+        vegaEmbed("#vis", vg_1)
+        .then(function(result) {
+            // Chart loaded successfully
+            console.log("Visualization loaded");
+        })
+        .catch(console.error);
+    </script>
 </body>
 </html>
