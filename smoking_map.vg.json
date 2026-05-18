@@ -14,7 +14,7 @@
     "fit": true
   },
   "data": {
-    "url": "https://github.com/RachxLL/FIT2179_DV2/blob/main/malaysia-states.topojson",
+    "url": "malaysia-states.topojson",
     "format": {
       "type": "topojson",
       "feature": "states"
@@ -28,9 +28,7 @@
           "url": "smoking_by_state.csv"
         },
         "key": "State",
-        "fields": [
-          "Smoking_Rate"
-        ]
+        "fields": ["Smoking_Rate"]
       }
     }
   ],
@@ -46,10 +44,7 @@
       "title": "Smoking Rate (%)",
       "scale": {
         "scheme": "reds",
-        "domain": [
-          10,
-          30
-        ]
+        "domain": [10, 30]
       },
       "legend": {
         "title": "Smoking Rate (%)",
