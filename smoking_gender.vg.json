@@ -1,28 +1,23 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "padding": {
-    "left": 36,
-    "right": 36,
-    "top": 10,
-    "bottom": 28
-  },
+  "padding": { "left": 42, "right": 42, "top": 10, "bottom": 30 },
   "title": {
     "text": "Men Still Smoke at Much Higher Rates",
     "subtitle": "Smoking prevalence remained far higher among men in both 2011 and 2023.",
     "font": "Georgia",
-    "fontSize": 22,
+    "fontSize": 30,
     "fontWeight": 700,
     "color": "#5a3825",
     "subtitleFont": "Arial",
-    "subtitleFontSize": 12,
+    "subtitleFontSize": 16,
     "subtitleFontWeight": 400,
     "subtitleColor": "#666666",
     "subtitlePadding": 15,
     "anchor": "start",
     "offset": 45
   },
-  "width": 840,
-  "height": 350,
+  "width": 760,
+  "height": 550,
   "data": {
     "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_gender.csv"
   },
@@ -44,12 +39,12 @@
           "sort": ["2011", "2023"],
           "axis": {
             "labelFont": "Arial",
-            "labelFontSize": 12,
+            "labelFontSize": 14,
             "labelFontWeight": 700,
             "labelColor": "#5a3825",
             "domain": false,
             "ticks": false,
-            "labelPadding": 12
+            "labelPadding": 14
           }
         },
         "xOffset": {
@@ -61,17 +56,16 @@
           "field": "Smoking_Prevalence",
           "type": "quantitative",
           "title": "Smoking prevalence (%)",
-          "scale": {
-            "domain": [0, 55]
-          },
+          "scale": { "domain": [0, 50], "nice": false },
           "axis": {
+            "values": [0, 10, 20, 30, 40, 50],
             "titleFont": "Arial",
-            "titleFontSize": 11,
-            "titleFontWeight": 600,
+            "titleFontSize": 15,
+            "titleFontWeight": 700,
             "titleColor": "#555555",
-            "titlePadding": 16,
+            "titlePadding": 18,
             "labelFont": "Arial",
-            "labelFontSize": 10,
+            "labelFontSize": 14,
             "labelColor": "#666666",
             "grid": true,
             "gridColor": "#eeeeee",
@@ -86,25 +80,22 @@
             "domain": ["Men", "Women"],
             "range": ["#c66a1f", "#f3d98b"]
           },
-          "legend": null
+          "legend": {
+            "title": null,
+            "orient": "top-right",
+            "direction": "horizontal",
+            "labelFont": "Arial",
+            "labelFontSize": 14,
+            "labelColor": "#555555",
+            "symbolType": "square",
+            "symbolSize": 140,
+            "offset": 10
+          }
         },
         "tooltip": [
-          {
-            "field": "Year",
-            "type": "ordinal",
-            "title": "Year"
-          },
-          {
-            "field": "Gender",
-            "type": "nominal",
-            "title": "Gender"
-          },
-          {
-            "field": "Smoking_Prevalence",
-            "type": "quantitative",
-            "title": "Smoking prevalence (%)",
-            "format": ".1f"
-          }
+          { "field": "Year", "type": "ordinal", "title": "Year" },
+          { "field": "Gender", "type": "nominal", "title": "Gender" },
+          { "field": "Smoking_Prevalence", "type": "quantitative", "title": "Smoking prevalence (%)", "format": ".1f" }
         ]
       }
     },
@@ -112,37 +103,22 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 11,
+        "fontSize": 15,
         "fontWeight": 700,
         "baseline": "bottom",
-        "dy": -6
+        "dy": -8
       },
       "encoding": {
-        "x": {
-          "field": "Year",
-          "type": "ordinal",
-          "sort": ["2011", "2023"]
-        },
-        "xOffset": {
-          "field": "Gender",
-          "type": "nominal",
-          "sort": ["Men", "Women"]
-        },
+        "x": { "field": "Year", "type": "ordinal", "sort": ["2011", "2023"] },
+        "xOffset": { "field": "Gender", "type": "nominal", "sort": ["Men", "Women"] },
         "y": {
           "field": "Smoking_Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [0, 55]
-          }
+          "scale": { "domain": [0, 50], "nice": false }
         },
-        "text": {
-          "field": "Label"
-        },
+        "text": { "field": "Label" },
         "color": {
-          "condition": {
-            "test": "datum.Gender === 'Men'",
-            "value": "#9a4a12"
-          },
+          "condition": { "test": "datum.Gender === 'Men'", "value": "#9a4a12" },
           "value": "#8a6a19"
         }
       }
@@ -152,7 +128,7 @@
         "values": [
           {
             "Year": "2023",
-            "Smoking_Prevalence": 53.0,
+            "Smoking_Prevalence": 47.0,
             "Text": "Male smoking declined, but the gender gap remained very large."
           }
         ]
@@ -160,117 +136,27 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 11,
-        "fontWeight": 600,
+        "fontSize": 13,
+        "fontWeight": 400,
         "color": "#5a3825",
-        "align": "right",
+        "align": "center",
         "baseline": "top",
-        "limit": 430
+        "limit": 500
       },
       "encoding": {
-        "x": {
-          "field": "Year",
-          "type": "ordinal",
-          "sort": ["2011", "2023"]
-        },
+        "x": { "field": "Year", "type": "ordinal", "sort": ["2011", "2023"] },
         "y": {
           "field": "Smoking_Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [0, 55]
-          }
+          "scale": { "domain": [0, 50], "nice": false }
         },
-        "text": {
-          "field": "Text"
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "point",
-        "shape": "square",
-        "filled": true,
-        "size": 140,
-        "color": "#c66a1f"
-      },
-      "encoding": {
-        "x": {
-          "value": 640
-        },
-        "y": {
-          "value": 56
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "font": "Arial",
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#555555",
-        "align": "left",
-        "baseline": "middle"
-      },
-      "encoding": {
-        "x": {
-          "value": 654
-        },
-        "y": {
-          "value": 56
-        },
-        "text": {
-          "value": "Men"
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "point",
-        "shape": "square",
-        "filled": true,
-        "size": 140,
-        "color": "#f3d98b"
-      },
-      "encoding": {
-        "x": {
-          "value": 710
-        },
-        "y": {
-          "value": 56
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "font": "Arial",
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#555555",
-        "align": "left",
-        "baseline": "middle"
-      },
-      "encoding": {
-        "x": {
-          "value": 724
-        },
-        "y": {
-          "value": 56
-        },
-        "text": {
-          "value": "Women"
-        }
+        "text": { "field": "Text" }
       }
     }
   ],
   "config": {
     "background": "#ffffff",
-    "view": {
-      "stroke": null
-    },
-    "bar": {
-      "discreteBandSize": 30
-    }
+    "view": { "stroke": null },
+    "bar": { "discreteBandSize": 42 }
   }
 }

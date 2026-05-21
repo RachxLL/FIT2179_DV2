@@ -8,13 +8,13 @@
   },
   "title": {
     "text": "Smoking and Vaping Differ by Income",
-    "subtitle": "Smoking was higher among lower-income adults, while vaping was higher among the top income group.",
+    "subtitle": "Smoking was higher in the Bottom 40%, while vaping was higher in the Top 20%.",
     "font": "Georgia",
-    "fontSize": 22,
+    "fontSize": 30,
     "fontWeight": 700,
     "color": "#5a3825",
     "subtitleFont": "Arial",
-    "subtitleFontSize": 12,
+    "subtitleFontSize": 16,
     "subtitleFontWeight": 400,
     "subtitleColor": "#666666",
     "subtitlePadding": 15,
@@ -22,7 +22,7 @@
     "offset": 45
   },
   "width": 700,
-  "height": 340,
+  "height": 550,
   "data": {
     "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_income.csv"
   },
@@ -30,7 +30,7 @@
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 3,
+        "strokeWidth": 3.2,
         "point": false,
         "opacity": 1
       },
@@ -91,8 +91,8 @@
               "E-cigarette or vape users"
             ],
             "range": [
-              "#9a4a12",
-              "#2f5f9e"
+              "#4B0082",
+              "#CEA2FD"
             ]
           },
           "legend": {
@@ -134,7 +134,7 @@
       "mark": {
         "type": "point",
         "filled": true,
-        "size": 90,
+        "size": 95,
         "stroke": "#ffffff",
         "strokeWidth": 1.4,
         "opacity": 1
@@ -166,8 +166,8 @@
               "E-cigarette or vape users"
             ],
             "range": [
-              "#9a4a12",
-              "#2f5f9e"
+              "#2D6A9F",
+              "#8A5FBF"
             ]
           },
           "legend": null
@@ -232,8 +232,8 @@
               "E-cigarette or vape users"
             ],
             "range": [
-              "#9a4a12",
-              "#2f5f9e"
+              "#2D6A9F",
+              "#8A5FBF"
             ]
           },
           "legend": null

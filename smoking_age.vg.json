@@ -1,63 +1,41 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "padding": {
-    "left": 24,
-    "right": 24,
-    "top": 10,
-    "bottom": 28
-  },
+  "padding": { "left": 42, "right": 28, "top": 2, "bottom": 12 },
   "title": {
     "text": "Smoking Is Highest Among Middle-Aged Adults",
     "subtitle": "Adults aged 35–44 recorded the highest smoking prevalence in 2023.",
     "font": "Georgia",
-    "fontSize": 22,
+    "fontSize": 32,
     "fontWeight": 700,
     "color": "#5a3825",
     "subtitleFont": "Arial",
-    "subtitleFontSize": 12,
+    "subtitleFontSize": 18,
     "subtitleFontWeight": 400,
     "subtitleColor": "#666666",
     "subtitlePadding": 15,
     "anchor": "start",
     "offset": 45
   },
-  "width": 680,
-  "height": 300,
+  "width": 760,
+  "height": 620,
   "data": {
     "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_age.csv"
   },
-  "transform": [
-    {
-      "calculate": "0",
-      "as": "Zero"
-    }
-  ],
+  "transform": [{ "calculate": "0", "as": "Zero" }],
   "layer": [
     {
-      "mark": {
-        "type": "rule",
-        "strokeWidth": 2,
-        "opacity": 1
-      },
+      "mark": { "type": "rule", "strokeWidth": 3.2, "opacity": 1 },
       "encoding": {
         "y": {
           "field": "Age_Group",
           "type": "ordinal",
           "title": null,
-          "sort": [
-            "15-24",
-            "25-34",
-            "35-44",
-            "45-54",
-            "55-64",
-            "65-74",
-            "75 and above"
-          ],
+          "sort": ["15-24","25-34","35-44","45-54","55-64","65-74","75 and above"],
           "axis": {
             "labelFont": "Arial",
-            "labelFontSize": 11,
+            "labelFontSize": 16,
             "labelColor": "#555555",
-            "labelPadding": 10,
+            "labelPadding": 12,
             "domain": false,
             "ticks": false
           }
@@ -66,19 +44,16 @@
           "field": "Zero",
           "type": "quantitative",
           "title": "Smoking prevalence (%)",
-          "scale": {
-            "domain": [0, 30],
-            "nice": false
-          },
+          "scale": { "domain": [0, 30], "nice": false },
           "axis": {
             "values": [0, 5, 10, 15, 20, 25, 30],
             "titleFont": "Arial",
-            "titleFontSize": 11,
-            "titleFontWeight": 600,
+            "titleFontSize": 16,
+            "titleFontWeight": 700,
             "titleColor": "#555555",
-            "titlePadding": 14,
+            "titlePadding": 18,
             "labelFont": "Arial",
-            "labelFontSize": 10,
+            "labelFontSize": 16,
             "labelColor": "#666666",
             "grid": true,
             "gridColor": "#eeeeee",
@@ -86,28 +61,14 @@
             "ticks": false
           }
         },
-        "x2": {
-          "field": "Smoking_Prevalence"
-        },
+        "x2": { "field": "Smoking_Prevalence" },
         "color": {
-          "condition": {
-            "test": "datum.Focus === 'Focus'",
-            "value": "#7a4e8f"
-          },
+          "condition": { "test": "datum.Focus === 'Focus'", "value": "#E75480" },
           "value": "#d0d0d0"
         },
         "tooltip": [
-          {
-            "field": "Age_Group",
-            "type": "ordinal",
-            "title": "Age group"
-          },
-          {
-            "field": "Smoking_Prevalence",
-            "type": "quantitative",
-            "title": "Smoking prevalence (%)",
-            "format": ".1f"
-          }
+          { "field": "Age_Group", "type": "ordinal", "title": "Age group" },
+          { "field": "Smoking_Prevalence", "type": "quantitative", "title": "Smoking prevalence (%)", "format": ".1f" }
         ]
       }
     },
@@ -115,139 +76,82 @@
       "mark": {
         "type": "point",
         "filled": true,
-        "size": 115,
+        "size": 160,
         "stroke": "#ffffff",
-        "strokeWidth": 1.4,
+        "strokeWidth": 1.5,
         "opacity": 1
       },
       "encoding": {
         "y": {
           "field": "Age_Group",
           "type": "ordinal",
-          "sort": [
-            "15-24",
-            "25-34",
-            "35-44",
-            "45-54",
-            "55-64",
-            "65-74",
-            "75 and above"
-          ]
+          "sort": ["15-24","25-34","35-44","45-54","55-64","65-74","75 and above"]
         },
         "x": {
           "field": "Smoking_Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [0, 30],
-            "nice": false
-          }
+          "scale": { "domain": [0, 30], "nice": false }
         },
         "color": {
-          "condition": {
-            "test": "datum.Focus === 'Focus'",
-            "value": "#7a4e8f"
-          },
+          "condition": { "test": "datum.Focus === 'Focus'", "value": "#E75480" },
           "value": "#8f8f8f"
         },
         "tooltip": [
-          {
-            "field": "Age_Group",
-            "type": "ordinal",
-            "title": "Age group"
-          },
-          {
-            "field": "Smoking_Prevalence",
-            "type": "quantitative",
-            "title": "Smoking prevalence (%)",
-            "format": ".1f"
-          }
+          { "field": "Age_Group", "type": "ordinal", "title": "Age group" },
+          { "field": "Smoking_Prevalence", "type": "quantitative", "title": "Smoking prevalence (%)", "format": ".1f" }
         ]
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.Focus === 'Focus'"
-        }
-      ],
+      "transform": [{ "filter": "datum.Focus === 'Focus'" }],
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 11,
+        "fontSize": 16,
         "fontWeight": 700,
-        "color": "#7a4e8f",
+        "color": "#E75480",
         "align": "left",
         "baseline": "middle",
-        "dx": 8
+        "dx": 10
       },
       "encoding": {
         "y": {
           "field": "Age_Group",
           "type": "ordinal",
-          "sort": [
-            "15-24",
-            "25-34",
-            "35-44",
-            "45-54",
-            "55-64",
-            "65-74",
-            "75 and above"
-          ]
+          "sort": ["15-24","25-34","35-44","45-54","55-64","65-74","75 and above"]
         },
         "x": {
           "field": "Smoking_Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [0, 30],
-            "nice": false
-          }
+          "scale": { "domain": [0, 30], "nice": false }
         },
-        "text": {
-          "field": "Label"
-        }
+        "text": { "field": "Label" }
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.Focus !== 'Focus'"
-        }
-      ],
+      "transform": [{ "filter": "datum.Focus !== 'Focus'" }],
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 10,
+        "fontSize": 13,
         "fontWeight": 400,
         "color": "#666666",
         "align": "left",
         "baseline": "middle",
-        "dx": 8
+        "dx": 10
       },
       "encoding": {
         "y": {
           "field": "Age_Group",
           "type": "ordinal",
-          "sort": [
-            "15-24",
-            "25-34",
-            "35-44",
-            "45-54",
-            "55-64",
-            "65-74",
-            "75 and above"
-          ]
+          "sort": ["15-24","25-34","35-44","45-54","55-64","65-74","75 and above"]
         },
         "x": {
           "field": "Smoking_Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [0, 30],
-            "nice": false
-          }
+          "scale": { "domain": [0, 30], "nice": false }
         },
-        "text": {
-          "field": "Label"
-        }
+        "text": { "field": "Label" }
       }
     },
     {
@@ -255,7 +159,7 @@
         "values": [
           {
             "Age_Group": "35-44",
-            "Smoking_Prevalence": 27.0,
+            "Smoking_Prevalence": 28,
             "Text": "Highest prevalence:\n25.0% among adults\naged 35–44."
           }
         ]
@@ -263,50 +167,33 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#5a3825",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "color": "#E75480",
         "align": "left",
         "baseline": "middle",
         "lineBreak": "\n",
-        "lineHeight": 14,
-        "limit": 150
+        "lineHeight": 17,
+        "limit": 210
       },
       "encoding": {
         "y": {
           "field": "Age_Group",
           "type": "ordinal",
-          "sort": [
-            "15-24",
-            "25-34",
-            "35-44",
-            "45-54",
-            "55-64",
-            "65-74",
-            "75 and above"
-          ]
+          "sort": ["15-24","25-34","35-44","45-54","55-64","65-74","75 and above"]
         },
         "x": {
           "field": "Smoking_Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [0, 30],
-            "nice": false
-          }
+          "scale": { "domain": [0, 30], "nice": false }
         },
-        "text": {
-          "field": "Text"
-        }
+        "text": { "field": "Text" }
       }
     }
   ],
   "config": {
     "background": "#ffffff",
-    "view": {
-      "stroke": null
-    },
-    "legend": {
-      "disable": true
-    }
+    "view": { "stroke": null },
+    "legend": { "disable": true }
   }
 }
