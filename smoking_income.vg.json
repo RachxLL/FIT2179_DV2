@@ -1,0 +1,336 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": {
+    "left": 30,
+    "right": 36,
+    "top": 10,
+    "bottom": 30
+  },
+  "title": {
+    "text": "Smoking and Vaping Differ by Income",
+    "subtitle": "Smoking was higher among lower-income adults, while vaping was higher among the top income group.",
+    "font": "Georgia",
+    "fontSize": 22,
+    "fontWeight": 700,
+    "color": "#5a3825",
+    "subtitleFont": "Arial",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#666666",
+    "subtitlePadding": 15,
+    "anchor": "start",
+    "offset": 45
+  },
+  "width": 700,
+  "height": 340,
+  "data": {
+    "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_income.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "point": false,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "Income_Category",
+          "type": "ordinal",
+          "title": "Household income category",
+          "sort": [
+            "Bottom 40%",
+            "Middle 40%",
+            "Top 20%"
+          ],
+          "axis": {
+            "labelFont": "Arial",
+            "labelFontSize": 11,
+            "labelColor": "#555555",
+            "labelPadding": 10,
+            "titleFont": "Arial",
+            "titleFontSize": 11,
+            "titleFontWeight": 600,
+            "titleColor": "#555555",
+            "titlePadding": 14,
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "y": {
+          "field": "Prevalence",
+          "type": "quantitative",
+          "title": "Prevalence (%)",
+          "scale": {
+            "domain": [0, 25],
+            "nice": false
+          },
+          "axis": {
+            "values": [0, 5, 10, 15, 20, 25],
+            "titleFont": "Arial",
+            "titleFontSize": 11,
+            "titleFontWeight": 600,
+            "titleColor": "#555555",
+            "titlePadding": 18,
+            "labelFont": "Arial",
+            "labelFontSize": 10,
+            "labelColor": "#666666",
+            "grid": true,
+            "gridColor": "#eeeeee",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "color": {
+          "field": "Product",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Current smokers",
+              "E-cigarette or vape users"
+            ],
+            "range": [
+              "#9a4a12",
+              "#2f5f9e"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top-right",
+            "direction": "vertical",
+            "labelFont": "Arial",
+            "labelFontSize": 11,
+            "labelColor": "#555555",
+            "symbolType": "stroke",
+            "symbolSize": 180,
+            "offset": 10
+          }
+        },
+        "detail": {
+          "field": "Product"
+        },
+        "tooltip": [
+          {
+            "field": "Income_Category",
+            "type": "ordinal",
+            "title": "Income category"
+          },
+          {
+            "field": "Product",
+            "type": "nominal",
+            "title": "Product type"
+          },
+          {
+            "field": "Prevalence",
+            "type": "quantitative",
+            "title": "Prevalence (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 90,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.4,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "Income_Category",
+          "type": "ordinal",
+          "sort": [
+            "Bottom 40%",
+            "Middle 40%",
+            "Top 20%"
+          ]
+        },
+        "y": {
+          "field": "Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 25],
+            "nice": false
+          }
+        },
+        "color": {
+          "field": "Product",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Current smokers",
+              "E-cigarette or vape users"
+            ],
+            "range": [
+              "#9a4a12",
+              "#2f5f9e"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "Income_Category",
+            "type": "ordinal",
+            "title": "Income category"
+          },
+          {
+            "field": "Product",
+            "type": "nominal",
+            "title": "Product type"
+          },
+          {
+            "field": "Prevalence",
+            "type": "quantitative",
+            "title": "Prevalence (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 10,
+        "fontWeight": 600,
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -8
+      },
+      "encoding": {
+        "x": {
+          "field": "Income_Category",
+          "type": "ordinal",
+          "sort": [
+            "Bottom 40%",
+            "Middle 40%",
+            "Top 20%"
+          ]
+        },
+        "y": {
+          "field": "Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 25],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Label"
+        },
+        "color": {
+          "field": "Product",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Current smokers",
+              "E-cigarette or vape users"
+            ],
+            "range": [
+              "#9a4a12",
+              "#2f5f9e"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Income_Category": "Bottom 40%",
+            "Prevalence": 22.4,
+            "Text": "Current smoking was highest among the Bottom 40%."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#5a3825",
+        "align": "left",
+        "baseline": "middle",
+        "limit": 300
+      },
+      "encoding": {
+        "x": {
+          "field": "Income_Category",
+          "type": "ordinal",
+          "sort": [
+            "Bottom 40%",
+            "Middle 40%",
+            "Top 20%"
+          ]
+        },
+        "y": {
+          "field": "Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 25],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Income_Category": "Top 20%",
+            "Prevalence": 10.2,
+            "Text": "Vaping was highest among the Top 20%."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#5a3825",
+        "align": "right",
+        "baseline": "middle",
+        "limit": 280
+      },
+      "encoding": {
+        "x": {
+          "field": "Income_Category",
+          "type": "ordinal",
+          "sort": [
+            "Bottom 40%",
+            "Middle 40%",
+            "Top 20%"
+          ]
+        },
+        "y": {
+          "field": "Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 25],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Text"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "#ffffff",
+    "view": {
+      "stroke": null
+    }
+  }
+}

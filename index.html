@@ -21,38 +21,41 @@
         }
 
         body {
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', Arial, sans-serif;
             background: #fafaf8;
             color: #2c2c2c;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 1120px;
+            max-width: 1060px;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: 56px 36px;
         }
 
         .title-section {
             width: 100%;
-            margin-bottom: 48px;
+            margin-bottom: 42px;
         }
 
         h1 {
             font-family: 'Crimson Text', Georgia, serif;
-            font-size: 3em;
+            font-size: 2.85em;
             font-weight: 700;
             color: #5a3825;
-            margin-bottom: 10px;
-            line-height: 1.15;
+            margin-bottom: 8px;
+            line-height: 1.12;
         }
 
         .subtitle {
             width: 100%;
-            font-size: 1.1em;
-            color: #666666;
-            font-weight: 400;
-            margin-bottom: 18px;
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            font-size: 1.18em;
+            font-weight: 600;
+            color: #7a6253;
+            letter-spacing: 0.2px;
+            line-height: 1.35;
+            margin-bottom: 24px;
         }
 
         .intro-text {
@@ -60,31 +63,15 @@
             font-size: 0.98em;
             line-height: 1.75;
             color: #555555;
-            text-align: justify;
+            text-align: left;
         }
 
         .viz-section {
             background: #ffffff;
-            padding: 38px 40px 42px 40px;
+            padding: 34px 36px 38px 36px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            margin-bottom: 48px;
-        }
-
-        .section-text {
-            width: 100%;
-            margin-left: 0;
-            margin-right: auto;
-            margin-bottom: 18px;
-        }
-
-        .viz-title {
-            font-family: 'Crimson Text', Georgia, serif;
-            font-size: 1.65em;
-            font-weight: 700;
-            color: #3f2a1d;
-            margin-bottom: 0;
-            line-height: 1.25;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.055);
+            margin-bottom: 42px;
         }
 
         .vis-holder {
@@ -92,15 +79,14 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin-top: 10px;
         }
 
         .insights-section {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 38px;
-            padding-top: 32px;
+            gap: 22px;
+            margin-top: 34px;
+            padding-top: 30px;
             border-top: 1px solid #e8e8e8;
         }
 
@@ -108,7 +94,7 @@
             padding: 18px 20px;
             background: #f9f7f4;
             border-left: 4px solid #7a4a2a;
-            min-height: 120px;
+            min-height: 112px;
         }
 
         .insight-label {
@@ -127,10 +113,10 @@
         }
 
         footer {
-            max-width: 1120px;
+            max-width: 1060px;
             margin: 0 auto 50px auto;
             background: #ffffff;
-            padding: 38px 40px;
+            padding: 34px 36px;
             border-top: 1px solid #e8e8e8;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -145,12 +131,12 @@
         }
 
         .footer-text {
+            width: 100%;
             font-size: 0.9em;
             line-height: 1.7;
             color: #666666;
-            margin-bottom: 10px;
-            max-width: 100%;
-            text-align: justify;
+            margin-bottom: 12px;
+            text-align: left;
         }
 
         .footer-text strong {
@@ -175,9 +161,14 @@
                 font-size: 2.25em;
             }
 
+            .subtitle {
+                font-size: 1.05em;
+            }
+
+            .subtitle,
             .intro-text,
             .footer-text {
-                text-align: left;
+                width: 100%;
             }
 
             .viz-section {
@@ -185,8 +176,8 @@
             }
 
             .vis-holder {
-                overflow-x: auto;
                 justify-content: flex-start;
+                overflow-x: auto;
             }
 
             .insights-section {
@@ -208,16 +199,12 @@
             <h1>Smoking Prevalence in Malaysia</h1>
             <p class="subtitle">Where smoking remains common, and how the national picture has changed</p>
             <p class="intro-text">
-                Smoking remains a major public health issue in Malaysia, although national prevalence has declined over time. The pattern is not equal across the country: some states recorded much higher smoking rates in 2023, men continued to smoke at far higher rates than women, and the national trend shows that progress has been gradual rather than sudden. These patterns show that Malaysia’s smoking problem is improving, but it remains uneven across places and groups.
+                Smoking remains a major public health issue in Malaysia. National prevalence has declined, but the pattern is uneven. Some states recorded much higher smoking rates in 2023. Men continued to smoke at far higher rates than women. Smoking was also highest among middle-aged adults. Together, these patterns show gradual progress, but uneven impact.
             </p>
         </section>
 
         <!-- Visualisation 1: Map -->
         <section class="viz-section">
-            <div class="section-text">
-                <h2 class="viz-title">Smoking Rates Are Uneven Across States</h2>
-            </div>
-
             <div id="vis-map" class="vis-holder"></div>
 
             <div class="insights-section">
@@ -240,20 +227,17 @@
 
         <!-- Visualisation 2: Time Series -->
         <section class="viz-section">
-            <div class="section-text">
-                <h2 class="viz-title">Smoking Has Declined, But Slowly</h2>
-            </div>
-
             <div id="vis-timeseries" class="vis-holder"></div>
         </section>
 
         <!-- Visualisation 3: Gender -->
         <section class="viz-section">
-            <div class="section-text">
-                <h2 class="viz-title">Smoking Is Much More Common Among Men</h2>
-            </div>
-
             <div id="vis-gender" class="vis-holder"></div>
+        </section>
+
+        <!-- Visualisation 4: Age -->
+        <section class="viz-section">
+            <div id="vis-age" class="vis-holder"></div>
         </section>
     </div>
 
@@ -270,7 +254,7 @@
         </p>
 
         <p class="footer-text">
-            <strong>Reading the page:</strong> The results show differences in smoking prevalence across states, gender groups, and time. They describe population-level patterns and should not be read as proving that one factor alone causes smoking behaviour.
+            <strong>Reading the page:</strong> The results show differences in smoking prevalence across states, gender groups, age groups, and time. They describe population-level patterns and should not be read as proving that one factor alone causes smoking behaviour.
         </p>
 
         <div class="metadata">
@@ -283,6 +267,7 @@
         const smokingMap = "smoking_map.vg.json";
         const smokingTimeSeries = "smoking_timeseries.vg.json";
         const smokingGender = "smoking_gender.vg.json";
+        const smokingAge = "smoking_age.vg.json";
 
         vegaEmbed("#vis-map", smokingMap, { actions: false })
             .then(function(result) {
@@ -299,6 +284,12 @@
         vegaEmbed("#vis-gender", smokingGender, { actions: false })
             .then(function(result) {
                 console.log("Smoking gender chart loaded");
+            })
+            .catch(console.error);
+
+        vegaEmbed("#vis-age", smokingAge, { actions: false })
+            .then(function(result) {
+                console.log("Smoking age chart loaded");
             })
             .catch(console.error);
     </script>
