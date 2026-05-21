@@ -1,0 +1,5 @@
+Education_Level,Smoking_Prevalence,Label,Focus
+No formal education,20.4,20.4%,Context
+Primary education,25.4,25.4%,Focus
+Secondary education,20.4,20.4%,Context
+Tertiary education,6.1,6.1%,Context

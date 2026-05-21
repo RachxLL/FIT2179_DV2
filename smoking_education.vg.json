@@ -1,0 +1,297 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": {
+    "left": 24,
+    "right": 24,
+    "top": 10,
+    "bottom": 28
+  },
+  "title": {
+    "text": "Smoking Is Higher Among Lower Education Groups",
+    "subtitle": "Adults with primary education recorded the highest smoking prevalence in 2023.",
+    "font": "Georgia",
+    "fontSize": 22,
+    "fontWeight": 700,
+    "color": "#5a3825",
+    "subtitleFont": "Arial",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#666666",
+    "subtitlePadding": 15,
+    "anchor": "start",
+    "offset": 45
+  },
+  "width": 680,
+  "height": 240,
+  "data": {
+    "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_education.csv"
+  },
+  "transform": [
+    {
+      "calculate": "0",
+      "as": "Zero"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "Education_Level",
+          "type": "ordinal",
+          "title": null,
+          "sort": [
+            "No formal education",
+            "Primary education",
+            "Secondary education",
+            "Tertiary education"
+          ],
+          "axis": {
+            "labelFont": "Arial",
+            "labelFontSize": 11,
+            "labelColor": "#555555",
+            "labelPadding": 10,
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "x": {
+          "field": "Zero",
+          "type": "quantitative",
+          "title": "Smoking prevalence (%)",
+          "scale": {
+            "domain": [0, 30],
+            "nice": false
+          },
+          "axis": {
+            "values": [0, 5, 10, 15, 20, 25, 30],
+            "titleFont": "Arial",
+            "titleFontSize": 11,
+            "titleFontWeight": 600,
+            "titleColor": "#555555",
+            "titlePadding": 14,
+            "labelFont": "Arial",
+            "labelFontSize": 10,
+            "labelColor": "#666666",
+            "grid": true,
+            "gridColor": "#eeeeee",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "x2": {
+          "field": "Smoking_Prevalence"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Focus === 'Focus'",
+            "value": "#8a3d62"
+          },
+          "value": "#d0d0d0"
+        },
+        "tooltip": [
+          {
+            "field": "Education_Level",
+            "type": "ordinal",
+            "title": "Education level"
+          },
+          {
+            "field": "Smoking_Prevalence",
+            "type": "quantitative",
+            "title": "Smoking prevalence (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 115,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.4,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "Education_Level",
+          "type": "ordinal",
+          "sort": [
+            "No formal education",
+            "Primary education",
+            "Secondary education",
+            "Tertiary education"
+          ]
+        },
+        "x": {
+          "field": "Smoking_Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 30],
+            "nice": false
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Focus === 'Focus'",
+            "value": "#8a3d62"
+          },
+          "value": "#8f8f8f"
+        },
+        "tooltip": [
+          {
+            "field": "Education_Level",
+            "type": "ordinal",
+            "title": "Education level"
+          },
+          {
+            "field": "Smoking_Prevalence",
+            "type": "quantitative",
+            "title": "Smoking prevalence (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Focus === 'Focus'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#8a3d62",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8
+      },
+      "encoding": {
+        "y": {
+          "field": "Education_Level",
+          "type": "ordinal",
+          "sort": [
+            "No formal education",
+            "Primary education",
+            "Secondary education",
+            "Tertiary education"
+          ]
+        },
+        "x": {
+          "field": "Smoking_Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 30],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Focus !== 'Focus'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 10,
+        "fontWeight": 400,
+        "color": "#666666",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8
+      },
+      "encoding": {
+        "y": {
+          "field": "Education_Level",
+          "type": "ordinal",
+          "sort": [
+            "No formal education",
+            "Primary education",
+            "Secondary education",
+            "Tertiary education"
+          ]
+        },
+        "x": {
+          "field": "Smoking_Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 30],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Education_Level": "Primary education",
+            "Smoking_Prevalence": 27.0,
+            "Text": "Highest prevalence:\n25.4% among adults\nwith primary education."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#5a3825",
+        "align": "left",
+        "baseline": "middle",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "limit": 160
+      },
+      "encoding": {
+        "y": {
+          "field": "Education_Level",
+          "type": "ordinal",
+          "sort": [
+            "No formal education",
+            "Primary education",
+            "Secondary education",
+            "Tertiary education"
+          ]
+        },
+        "x": {
+          "field": "Smoking_Prevalence",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 30],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Text"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "#ffffff",
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "disable": true
+    }
+  }
+}
