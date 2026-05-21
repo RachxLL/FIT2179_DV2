@@ -1,0 +1,8 @@
+Age_Group,Smoking_Prevalence,Label,Focus
+15-24,12.0,12.0%,Context
+25-34,21.0,21.0%,Context
+35-44,25.0,25.0%,Focus
+45-54,24.0,24.0%,Context
+55-64,17.3,17.3%,Context
+65-74,11.3,11.3%,Context
+75 and above,6.4,6.4%,Context
