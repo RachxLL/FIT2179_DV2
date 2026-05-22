@@ -16,7 +16,7 @@
     "anchor": "start",
     "offset": 45
   },
-  "width": 760,
+  "width": 700,
   "height": 550,
   "data": {
     "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_gender.csv"
@@ -39,7 +39,7 @@
           "sort": ["2011", "2023"],
           "axis": {
             "labelFont": "Arial",
-            "labelFontSize": 14,
+            "labelFontSize": 16,
             "labelFontWeight": 700,
             "labelColor": "#5a3825",
             "domain": false,
@@ -60,12 +60,12 @@
           "axis": {
             "values": [0, 10, 20, 30, 40, 50],
             "titleFont": "Arial",
-            "titleFontSize": 15,
+            "titleFontSize": 16,
             "titleFontWeight": 700,
             "titleColor": "#555555",
             "titlePadding": 18,
             "labelFont": "Arial",
-            "labelFontSize": 14,
+            "labelFontSize": 16,
             "labelColor": "#666666",
             "grid": true,
             "gridColor": "#eeeeee",
@@ -85,7 +85,7 @@
             "orient": "top-right",
             "direction": "horizontal",
             "labelFont": "Arial",
-            "labelFontSize": 14,
+            "labelFontSize": 16,
             "labelColor": "#555555",
             "symbolType": "square",
             "symbolSize": 140,
@@ -103,7 +103,7 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 15,
+        "fontSize": 16,
         "fontWeight": 700,
         "baseline": "bottom",
         "dy": -8
@@ -128,7 +128,7 @@
         "values": [
           {
             "Year": "2023",
-            "Smoking_Prevalence": 47.0,
+            "Smoking_Prevalence": 42.0,
             "Text": "Male smoking declined, but the gender gap remained very large."
           }
         ]
@@ -136,7 +136,7 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 13,
+        "fontSize": 16,
         "fontWeight": 400,
         "color": "#5a3825",
         "align": "center",

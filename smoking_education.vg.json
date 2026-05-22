@@ -21,8 +21,8 @@
     "anchor": "start",
     "offset": 45
   },
-  "width": 550,
-  "height": 200,
+  "width": 700,
+  "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_education.csv"
   },
@@ -52,7 +52,7 @@
           ],
           "axis": {
             "labelFont": "Arial",
-            "labelFontSize": 11,
+            "labelFontSize": 16,
             "labelColor": "#555555",
             "labelPadding": 10,
             "domain": false,
@@ -70,12 +70,12 @@
           "axis": {
             "values": [0, 5, 10, 15, 20, 25, 30],
             "titleFont": "Arial",
-            "titleFontSize": 11,
+            "titleFontSize": 16,
             "titleFontWeight": 600,
             "titleColor": "#555555",
             "titlePadding": 14,
             "labelFont": "Arial",
-            "labelFontSize": 10,
+            "labelFontSize": 16,
             "labelColor": "#666666",
             "grid": true,
             "gridColor": "#eeeeee",
@@ -167,7 +167,7 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 11,
+        "fontSize": 16,
         "fontWeight": 700,
         "color": "#129247",
         "align": "left",
@@ -207,7 +207,7 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 10,
+        "fontSize": 16,
         "fontWeight": 400,
         "color": "#666666",
         "align": "left",
@@ -251,14 +251,14 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 11,
+        "fontSize": 16,
         "fontWeight": 700,
         "color": "#1DB954",
         "align": "left",
         "baseline": "middle",
         "lineBreak": "\n",
-        "lineHeight": 14,
-        "limit": 170
+        "lineHeight": 16,
+        "limit": 200
       },
       "encoding": {
         "y": {

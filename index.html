@@ -166,10 +166,6 @@
             overflow: hidden;
         }
 
-        .viz-card.full {
-            grid-column: 1 / -1;
-        }
-
         .visual-grid.equal-tiles .viz-card {
             min-height: 500px;
             display: flex;
@@ -184,6 +180,81 @@
         .visual-grid.equal-tiles .vega-embed {
             width: 100%;
             height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .education-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            align-items: stretch;
+            margin-top: 28px;
+        }
+
+        .education-row .viz-card {
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .education-row .vis-holder {
+            height: 100%;
+        }
+
+        .education-row .vega-embed {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .education-analysis {
+            min-height: 360px;
+            background: #f9f7f4;
+            border-left: 4px solid #7a4a2a;
+            border-radius: 6px;
+            padding: 26px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .analysis-kicker {
+            font-size: 0.78em;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #7a4a2a;
+            margin-bottom: 10px;
+        }
+
+        .analysis-title {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 1.45em;
+            font-weight: 700;
+            color: #3f2a1d;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .analysis-text {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #5f5f5f;
+            margin-bottom: 12px;
+        }
+
+        .analysis-highlight {
+            font-weight: 700;
+            color: #5a3825;
+        }
+
+        .heatmap-card {
+            min-height: 560px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -209,7 +280,8 @@
             display: block;
         }
 
-        .visual-grid.equal-tiles svg {
+        .visual-grid.equal-tiles svg,
+        .education-row svg {
             max-width: 100%;
             max-height: 100%;
             width: 100%;
@@ -294,12 +366,22 @@
 
             .visual-grid,
             .story-explanation,
-            .story-explanation.three {
+            .story-explanation.three,
+            .education-row {
                 grid-template-columns: 1fr;
             }
 
             .visual-grid.equal-tiles .viz-card {
                 min-height: 460px;
+            }
+
+            .education-row .viz-card,
+            .education-analysis {
+                min-height: 340px;
+            }
+
+            .heatmap-card {
+                min-height: 520px;
             }
         }
 
@@ -328,7 +410,10 @@
                 padding: 18px 14px 22px 14px;
             }
 
-            .visual-grid.equal-tiles .viz-card {
+            .visual-grid.equal-tiles .viz-card,
+            .education-row .viz-card,
+            .education-analysis,
+            .heatmap-card {
                 min-height: auto;
             }
 
@@ -338,7 +423,8 @@
             }
 
             .vis-holder svg,
-            .visual-grid.equal-tiles svg {
+            .visual-grid.equal-tiles svg,
+            .education-row svg {
                 width: auto;
                 max-width: none;
             }
@@ -461,10 +547,27 @@
                 <section class="viz-card">
                     <div id="vis-age" class="vis-holder"></div>
                 </section>
+            </div>
 
-                <section class="viz-card full">
+            <div class="education-row">
+                <section class="viz-card">
                     <div id="vis-education" class="vis-holder"></div>
                 </section>
+
+                <aside class="education-analysis">
+                    <div class="analysis-kicker">Education pattern</div>
+                    <div class="analysis-title">Primary education shows the highest smoking prevalence</div>
+                    <p class="analysis-text">
+                        The education-level pattern shows that smoking was not evenly distributed across educational groups.
+                    </p>
+                    <p class="analysis-text">
+                        Adults with <span class="analysis-highlight">primary education recorded the highest prevalence at 25.4%</span>,
+                        while adults with tertiary education recorded a much lower rate at 6.1%.
+                    </p>
+                    <p class="analysis-text">
+                        This suggests that education level is an important social pattern to consider when discussing smoking behaviour.
+                    </p>
+                </aside>
             </div>
 
             <div class="facts-row">
@@ -489,6 +592,56 @@
         <section class="story-block">
             <div class="story-heading">
                 <div class="story-kicker">Part 3</div>
+                <div class="story-title">Tobacco product use varies by age and education</div>
+                <p class="story-note">
+                    Smoking prevalence alone does not show which tobacco products are being used. This heatmap compares cigarette and tobacco product types across age groups and education levels.
+                </p>
+            </div>
+
+            <div class="story-explanation">
+                <div class="explain-card">
+                    <div class="explain-title">Age pattern</div>
+                    <p class="explain-text">
+                        The age panel compares tobacco product use across age groups. Darker cells show higher prevalence, making it easier to see which products are more common among younger, middle-aged, and older adults.
+                    </p>
+                </div>
+
+                <div class="explain-card">
+                    <div class="explain-title">Education pattern</div>
+                    <p class="explain-text">
+                        The education panel compares tobacco product use across education levels. This helps show whether manufactured cigarettes, hand-rolled cigarettes, or other tobacco products are more common among specific education groups.
+                    </p>
+                </div>
+            </div>
+
+            <div class="visual-grid single">
+                <section class="viz-card heatmap-card">
+                    <div id="vis-tobacco-type-heatmap" class="vis-holder"></div>
+                </section>
+            </div>
+
+            <div class="facts-row">
+                <div class="mini-fact">
+                    <div class="mini-label">Main product type</div>
+                    <div class="mini-value">Manufactured cigarettes</div>
+                </div>
+
+                <div class="mini-fact">
+                    <div class="mini-label">Highest age group</div>
+                    <div class="mini-value">25–44</div>
+                </div>
+
+                <div class="mini-fact">
+                    <div class="mini-label">Highest education group</div>
+                    <div class="mini-value">Primary education</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4 -->
+        <section class="story-block">
+            <div class="story-heading">
+                <div class="story-kicker">Part 4</div>
                 <div class="story-title">Smoking and vaping show different income patterns</div>
                 <p class="story-note">
                     Income gives another view of tobacco behaviour. Current smoking and e-cigarette or vape use do not follow the same income pattern.
@@ -548,7 +701,7 @@
             </p>
 
             <p class="footer-text">
-                <strong>Reading the page:</strong> The results show differences in smoking prevalence across states, gender groups, age groups, education groups, income groups, and time. They describe population-level patterns and should not be read as proving that one factor alone causes smoking behaviour.
+                <strong>Reading the page:</strong> The results show differences in smoking prevalence across states, gender groups, age groups, education groups, income groups, tobacco product types, and time. They describe population-level patterns and should not be read as proving that one factor alone causes smoking behaviour.
             </p>
 
             <div class="metadata">
@@ -564,6 +717,7 @@
         const smokingGender = "smoking_gender.vg.json";
         const smokingAge = "smoking_age.vg.json";
         const smokingEducation = "smoking_education.vg.json";
+        const smokingTobaccoTypeHeatmap = "smoking_tobacco_type_heatmap.vg.json";
         const smokingIncome = "smoking_income.vg.json";
 
         const embedOptions = {
@@ -598,6 +752,12 @@
         vegaEmbed("#vis-education", smokingEducation, embedOptions)
             .then(function(result) {
                 console.log("Smoking education loaded");
+            })
+            .catch(console.error);
+
+        vegaEmbed("#vis-tobacco-type-heatmap", smokingTobaccoTypeHeatmap, embedOptions)
+            .then(function(result) {
+                console.log("Smoking tobacco type heatmap loaded");
             })
             .catch(console.error);
 

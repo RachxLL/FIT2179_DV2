@@ -1,0 +1,517 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": {
+    "left": 28,
+    "right": 28,
+    "top": 8,
+    "bottom": 22
+  },
+  "title": {
+    "text": "Tobacco Product Use Differs by Age and Education",
+    "subtitle": "Manufactured cigarettes were most common, but product patterns varied across age and education groups.",
+    "font": "Georgia",
+    "fontSize": 30,
+    "fontWeight": 700,
+    "color": "#5a3825",
+    "subtitleFont": "Arial",
+    "subtitleFontSize": 16,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#666666",
+    "subtitlePadding": 15,
+    "anchor": "start",
+    "offset": 45
+  },
+  "data": {
+    "values": [
+      {
+        "Aspect": "Age group",
+        "Group": "15–24",
+        "Tobacco_Type": "Any cigarette",
+        "Prevalence": 12.4
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "15–24",
+        "Tobacco_Type": "Manufactured",
+        "Prevalence": 12.0
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "15–24",
+        "Tobacco_Type": "Hand-rolled",
+        "Prevalence": 1.1
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "15–24",
+        "Tobacco_Type": "Kretek",
+        "Prevalence": 1.0
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "15–24",
+        "Tobacco_Type": "Waterpipe",
+        "Prevalence": 1.7
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "15–24",
+        "Tobacco_Type": "Other smoked tobacco",
+        "Prevalence": 0.5
+      },
+
+      {
+        "Aspect": "Age group",
+        "Group": "25–44",
+        "Tobacco_Type": "Any cigarette",
+        "Prevalence": 22.0
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "25–44",
+        "Tobacco_Type": "Manufactured",
+        "Prevalence": 19.7
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "25–44",
+        "Tobacco_Type": "Hand-rolled",
+        "Prevalence": 2.7
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "25–44",
+        "Tobacco_Type": "Kretek",
+        "Prevalence": 2.0
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "25–44",
+        "Tobacco_Type": "Waterpipe",
+        "Prevalence": 0.7
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "25–44",
+        "Tobacco_Type": "Other smoked tobacco",
+        "Prevalence": 1.1
+      },
+
+      {
+        "Aspect": "Age group",
+        "Group": "45–64",
+        "Tobacco_Type": "Any cigarette",
+        "Prevalence": 15.3
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "45–64",
+        "Tobacco_Type": "Manufactured",
+        "Prevalence": 13.4
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "45–64",
+        "Tobacco_Type": "Hand-rolled",
+        "Prevalence": 2.4
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "45–64",
+        "Tobacco_Type": "Kretek",
+        "Prevalence": 1.3
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "45–64",
+        "Tobacco_Type": "Waterpipe",
+        "Prevalence": 0.2
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "45–64",
+        "Tobacco_Type": "Other smoked tobacco",
+        "Prevalence": 0.8
+      },
+
+      {
+        "Aspect": "Age group",
+        "Group": "65+",
+        "Tobacco_Type": "Any cigarette",
+        "Prevalence": 7.7
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "65+",
+        "Tobacco_Type": "Manufactured",
+        "Prevalence": 5.7
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "65+",
+        "Tobacco_Type": "Hand-rolled",
+        "Prevalence": 3.1
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "65+",
+        "Tobacco_Type": "Kretek",
+        "Prevalence": 1.4
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "65+",
+        "Tobacco_Type": "Waterpipe",
+        "Prevalence": 0.8
+      },
+      {
+        "Aspect": "Age group",
+        "Group": "65+",
+        "Tobacco_Type": "Other smoked tobacco",
+        "Prevalence": 1.0
+      },
+
+      {
+        "Aspect": "Education level",
+        "Group": "Less than primary",
+        "Tobacco_Type": "Any cigarette",
+        "Prevalence": 13.1
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Less than primary",
+        "Tobacco_Type": "Manufactured",
+        "Prevalence": 11.4
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Less than primary",
+        "Tobacco_Type": "Hand-rolled",
+        "Prevalence": 2.6
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Less than primary",
+        "Tobacco_Type": "Kretek",
+        "Prevalence": 0.5
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Less than primary",
+        "Tobacco_Type": "Waterpipe",
+        "Prevalence": 0.1
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Less than primary",
+        "Tobacco_Type": "Other smoked tobacco",
+        "Prevalence": 0.1
+      },
+
+      {
+        "Aspect": "Education level",
+        "Group": "Primary",
+        "Tobacco_Type": "Any cigarette",
+        "Prevalence": 22.4
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Primary",
+        "Tobacco_Type": "Manufactured",
+        "Prevalence": 19.3
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Primary",
+        "Tobacco_Type": "Hand-rolled",
+        "Prevalence": 3.2
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Primary",
+        "Tobacco_Type": "Kretek",
+        "Prevalence": 2.3
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Primary",
+        "Tobacco_Type": "Waterpipe",
+        "Prevalence": 0.3
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Primary",
+        "Tobacco_Type": "Other smoked tobacco",
+        "Prevalence": 1.2
+      },
+
+      {
+        "Aspect": "Education level",
+        "Group": "Secondary / High School",
+        "Tobacco_Type": "Any cigarette",
+        "Prevalence": 20.9
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Secondary / High School",
+        "Tobacco_Type": "Manufactured",
+        "Prevalence": 18.4
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Secondary / High School",
+        "Tobacco_Type": "Hand-rolled",
+        "Prevalence": 3.0
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Secondary / High School",
+        "Tobacco_Type": "Kretek",
+        "Prevalence": 2.4
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Secondary / High School",
+        "Tobacco_Type": "Waterpipe",
+        "Prevalence": 0.7
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "Secondary / High School",
+        "Tobacco_Type": "Other smoked tobacco",
+        "Prevalence": 1.3
+      },
+
+      {
+        "Aspect": "Education level",
+        "Group": "College or above",
+        "Tobacco_Type": "Any cigarette",
+        "Prevalence": 11.7
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "College or above",
+        "Tobacco_Type": "Manufactured",
+        "Prevalence": 10.8
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "College or above",
+        "Tobacco_Type": "Hand-rolled",
+        "Prevalence": 1.9
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "College or above",
+        "Tobacco_Type": "Kretek",
+        "Prevalence": 0.6
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "College or above",
+        "Tobacco_Type": "Waterpipe",
+        "Prevalence": 0.5
+      },
+      {
+        "Aspect": "Education level",
+        "Group": "College or above",
+        "Tobacco_Type": "Other smoked tobacco",
+        "Prevalence": 0.5
+      }
+    ]
+  },
+  "facet": {
+    "column": {
+      "field": "Aspect",
+      "type": "nominal",
+      "sort": [
+        "Age group",
+        "Education level"
+      ],
+      "header": {
+        "title": null,
+        "labelFont": "Georgia",
+        "labelFontSize": 22,
+        "labelFontWeight": 700,
+        "labelColor": "#5a3825",
+        "labelPadding": 14
+      }
+    }
+  },
+  "spec": {
+    "width": 430,
+    "height": 320,
+    "layer": [
+      {
+        "mark": {
+          "type": "rect",
+          "stroke": "#ffffff",
+          "strokeWidth": 1.5,
+          "cornerRadius": 3
+        },
+        "encoding": {
+          "x": {
+            "field": "Group",
+            "type": "nominal",
+            "title": null,
+            "sort": [
+              "15–24",
+              "25–44",
+              "45–64",
+              "65+",
+              "Less than primary",
+              "Primary",
+              "Secondary / High School",
+              "College or above"
+            ],
+            "axis": {
+              "labelFont": "Arial",
+              "labelFontSize": 12,
+              "labelColor": "#555555",
+              "labelAngle": -35,
+              "labelPadding": 8,
+              "domain": false,
+              "ticks": false
+            }
+          },
+          "y": {
+            "field": "Tobacco_Type",
+            "type": "nominal",
+            "title": null,
+            "sort": [
+              "Any cigarette",
+              "Manufactured",
+              "Hand-rolled",
+              "Kretek",
+              "Waterpipe",
+              "Other smoked tobacco"
+            ],
+            "axis": {
+              "labelFont": "Arial",
+              "labelFontSize": 13,
+              "labelColor": "#555555",
+              "labelPadding": 8,
+              "domain": false,
+              "ticks": false
+            }
+          },
+         "color": {
+            "field": "Prevalence",
+            "type": "quantitative",
+            "title": "Prevalence (%)",
+            "scale": {
+                "scheme": "bluepurple",
+                "domain": [0, 25]
+            },
+            "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "gradientLength": 260,
+                "titleFont": "Arial",
+                "titleFontSize": 15,
+                "titleFontWeight": 700,
+                "titleColor": "#555555",
+                "labelFont": "Arial",
+                "labelFontSize": 13,
+                "labelColor": "#666666",
+                "offset": 14
+            }
+          },
+          "tooltip": [
+            {
+              "field": "Aspect",
+              "type": "nominal",
+              "title": "Aspect"
+            },
+            {
+              "field": "Group",
+              "type": "nominal",
+              "title": "Group"
+            },
+            {
+              "field": "Tobacco_Type",
+              "type": "nominal",
+              "title": "Tobacco type"
+            },
+            {
+              "field": "Prevalence",
+              "type": "quantitative",
+              "title": "Prevalence (%)",
+              "format": ".1f"
+            }
+          ]
+        }
+      },
+      {
+        "transform": [
+          {
+            "calculate": "format(datum.Prevalence, '.1f') + '%'",
+            "as": "Label"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "font": "Arial",
+          "fontSize": 11,
+          "fontWeight": 700,
+          "align": "center",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "x": {
+            "field": "Group",
+            "type": "nominal",
+            "sort": [
+              "15–24",
+              "25–44",
+              "45–64",
+              "65+",
+              "Less than primary",
+              "Primary",
+              "Secondary / High School",
+              "College or above"
+            ]
+          },
+          "y": {
+            "field": "Tobacco_Type",
+            "type": "nominal",
+            "sort": [
+              "Any cigarette",
+              "Manufactured",
+              "Hand-rolled",
+              "Kretek",
+              "Waterpipe",
+              "Other smoked tobacco"
+            ]
+          },
+          "text": {
+            "field": "Label"
+          },
+          "color": {
+            "condition": {
+              "test": "datum.Prevalence >= 13",
+              "value": "#ffffff"
+            },
+            "value": "#5a3825"
+          }
+        }
+      }
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "color": "shared",
+      "x": "independent"
+    }
+  },
+  "config": {
+    "background": "#ffffff",
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "titleFont": "Arial",
+      "labelFont": "Arial"
+    }
+  }
+}
