@@ -22,7 +22,7 @@
     "offset": 45
   },
   "width": 700,
-  "height": 500,
+  "height": 600,
   "data": {
     "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_education.csv"
   },
@@ -251,14 +251,14 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 16,
+        "fontSize": 18,
         "fontWeight": 700,
         "color": "#1DB954",
         "align": "left",
         "baseline": "middle",
         "lineBreak": "\n",
-        "lineHeight": 16,
-        "limit": 200
+        "lineHeight": 20,
+        "limit": 300
       },
       "encoding": {
         "y": {

@@ -166,10 +166,33 @@
             overflow: hidden;
         }
 
+        .year-badge {
+            align-self: flex-end;
+            background: #f9f7f4;
+            border: 1px solid #e1d8cf;
+            border-left: 4px solid #7a4a2a;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 0.76em;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #5a3825;
+            line-height: 1.2;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .year-badge.compare {
+            background: #fff8ed;
+            border-left-color: #c66a1f;
+        }
+
         .visual-grid.equal-tiles .viz-card {
             min-height: 500px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: stretch;
             justify-content: center;
         }
 
@@ -196,7 +219,8 @@
         .education-row .viz-card {
             min-height: 360px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: stretch;
             justify-content: center;
         }
 
@@ -256,8 +280,25 @@
         .heatmap-card {
             min-height: 560px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: stretch;
             justify-content: center;
+        }
+
+        .income-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            width: 100%;
+        }
+
+        .income-card {
+            width: 100%;
+            min-height: 390px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: center;
+            padding: 22px 22px 24px 22px;
         }
 
         .vis-holder {
@@ -275,6 +316,23 @@
         }
 
         .vis-holder svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .income-card .vis-holder {
+            width: 100%;
+        }
+
+        .income-card .vega-embed {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .income-card svg {
             width: 100%;
             height: auto;
             display: block;
@@ -383,6 +441,10 @@
             .heatmap-card {
                 min-height: 520px;
             }
+
+            .income-card {
+                min-height: 380px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -413,8 +475,15 @@
             .visual-grid.equal-tiles .viz-card,
             .education-row .viz-card,
             .education-analysis,
-            .heatmap-card {
+            .heatmap-card,
+            .income-card {
                 min-height: auto;
+            }
+
+            .year-badge {
+                align-self: flex-start;
+                display: inline-block;
+                margin-bottom: 12px;
             }
 
             .vis-holder {
@@ -424,7 +493,8 @@
 
             .vis-holder svg,
             .visual-grid.equal-tiles svg,
-            .education-row svg {
+            .education-row svg,
+            .income-card svg {
                 width: auto;
                 max-width: none;
             }
@@ -458,7 +528,7 @@
                 <div class="story-kicker">Part 1</div>
                 <div class="story-title">Smoking is declining, but not evenly</div>
                 <p class="story-note">
-                    The national rate has fallen over time, but the 2023 state pattern shows that smoking remains much more common in some places than others.
+                    The national trend compares survey years over time, while the state map uses 2023 data to show the latest geographic pattern.
                 </p>
             </div>
 
@@ -480,10 +550,12 @@
 
             <div class="visual-grid equal-tiles">
                 <section class="viz-card">
+                    <div class="year-badge compare">Trend: 2005–2023<br>Focus: 2011 & 2023</div>
                     <div id="vis-timeseries" class="vis-holder"></div>
                 </section>
 
                 <section class="viz-card">
+                    <div class="year-badge">Data year: 2023</div>
                     <div id="vis-map" class="vis-holder"></div>
                 </section>
             </div>
@@ -512,7 +584,7 @@
                 <div class="story-kicker">Part 2</div>
                 <div class="story-title">Smoking differs strongly across groups</div>
                 <p class="story-note">
-                    Gender, age, and education reveal that smoking is not spread equally across the population. These charts focus on who is more affected.
+                    Gender is compared between 2011 and 2023, while age and education use 2023 data to show which groups were more affected in the latest survey year.
                 </p>
             </div>
 
@@ -541,16 +613,19 @@
 
             <div class="visual-grid equal-tiles">
                 <section class="viz-card">
+                    <div class="year-badge compare">Comparison:<br>2011 & 2023</div>
                     <div id="vis-gender" class="vis-holder"></div>
                 </section>
 
                 <section class="viz-card">
+                    <div class="year-badge">Data year: 2023</div>
                     <div id="vis-age" class="vis-holder"></div>
                 </section>
             </div>
 
             <div class="education-row">
                 <section class="viz-card">
+                    <div class="year-badge">Data year: 2023</div>
                     <div id="vis-education" class="vis-holder"></div>
                 </section>
 
@@ -594,7 +669,7 @@
                 <div class="story-kicker">Part 3</div>
                 <div class="story-title">Tobacco product use varies by age and education</div>
                 <p class="story-note">
-                    Smoking prevalence alone does not show which tobacco products are being used. This heatmap compares cigarette and tobacco product types across age groups and education levels.
+                    This 2023 heatmap compares cigarette and tobacco product types across age groups and education levels.
                 </p>
             </div>
 
@@ -616,6 +691,7 @@
 
             <div class="visual-grid single">
                 <section class="viz-card heatmap-card">
+                    <div class="year-badge">Data year: 2023</div>
                     <div id="vis-tobacco-type-heatmap" class="vis-holder"></div>
                 </section>
             </div>
@@ -644,7 +720,7 @@
                 <div class="story-kicker">Part 4</div>
                 <div class="story-title">Smoking and vaping show different income patterns</div>
                 <p class="story-note">
-                    Income gives another view of tobacco behaviour. Current smoking and e-cigarette or vape use do not follow the same income pattern.
+                    Income gives another view of tobacco behaviour. This 2023 comparison shows that current smoking and e-cigarette or vape use do not follow the same income pattern.
                 </p>
             </div>
 
@@ -664,8 +740,9 @@
                 </div>
             </div>
 
-            <div class="visual-grid single">
-                <section class="viz-card">
+            <div class="visual-grid single income-grid">
+                <section class="viz-card income-card">
+                    <div class="year-badge">Data year: 2023</div>
                     <div id="vis-income" class="vis-holder"></div>
                 </section>
             </div>
