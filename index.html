@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smoking Prevalence in Malaysia</title>
 
-    <!-- Vega, Vega-Lite, and Vega-Embed libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -30,94 +28,122 @@
         .page {
             max-width: 1450px;
             margin: 0 auto;
-            padding: 58px 44px 72px 44px;
+            padding: 0 44px 64px 44px;
         }
 
         .hero {
-            margin-bottom: 56px;
-            padding-left: 22px;
-            border-left: 6px solid #7a4a2a;
-            width: 100%;
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-bottom: 72px;
+            padding: 82px 44px 86px 44px;
+            background: #f6efe8;
+            border-radius: 0;
+            box-shadow: none;
+            border-left: none;
+        }
+
+        .hero-inner {
+            max-width: 1080px;
+            margin: 0 auto;
         }
 
         .hero-label {
-            font-size: 0.82em;
+            font-size: 1em;
             font-weight: 700;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
-            color: #7a4a2a;
-            margin-bottom: 10px;
+            color: #7a3f18;
+            margin-bottom: 16px;
+            text-align: center;
         }
 
         h1 {
             font-family: 'Crimson Text', Georgia, serif;
-            font-size: 3em;
+            font-size: 4.5em;
             font-weight: 700;
             color: #5a3825;
-            line-height: 1.08;
-            margin-bottom: 12px;
+            line-height: 1.02;
+            margin-bottom: 22px;
+            text-align: center;
         }
 
         .subtitle {
             width: 100%;
-            font-size: 1.2em;
+            max-width: 860px;
+            margin: 0 auto 34px auto;
+            font-size: 1.45em;
             font-weight: 600;
-            color: #7a6253;
-            line-height: 1.35;
-            margin-bottom: 22px;
+            color: #6b4b3a;
+            line-height: 1.45;
+            text-align: center;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 34px;
+            width: 100%;
+            margin-top: 36px;
         }
 
         .intro-text {
-            width: 100%;
-            max-width: none;
-            font-size: 0.98em;
+            font-size: 1.12em;
             line-height: 1.78;
-            color: #555555;
+            color: #3f4d52;
             text-align: left;
         }
 
         .story-block {
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.055);
-            padding: 36px 38px 42px 38px;
-            margin-bottom: 52px;
+            max-width: 1080px;
+            margin: 0 auto 56px auto;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        .story-block.wide-story {
+            max-width: 1080px;
         }
 
         .story-heading {
-            margin-bottom: 28px;
+            margin-bottom: 24px;
+            text-align: left;
         }
 
         .story-kicker {
-            font-size: 0.78em;
+            font-size: 0.95em;
             font-weight: 700;
             letter-spacing: 1.1px;
             text-transform: uppercase;
             color: #7a4a2a;
             margin-bottom: 5px;
+            text-align: left;
         }
 
         .story-title {
             font-family: 'Crimson Text', Georgia, serif;
-            font-size: 1.8em;
+            font-size: 2.15em;
             font-weight: 700;
             color: #3f2a1d;
             line-height: 1.2;
             margin-bottom: 8px;
+            text-align: left;
         }
 
         .story-note {
             width: 100%;
-            font-size: 0.94em;
+            font-size: 1.08em;
             line-height: 1.65;
             color: #666666;
+            text-align: left;
         }
 
         .story-explanation {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 26px;
-            margin-bottom: 30px;
+            gap: 24px;
+            margin-bottom: 26px;
         }
 
         .story-explanation.three {
@@ -127,28 +153,31 @@
         .explain-card {
             background: #f9f7f4;
             border-left: 4px solid #7a4a2a;
-            padding: 17px 20px;
+            padding: 18px 20px;
+            text-align: left;
         }
 
         .explain-title {
-            font-size: 0.78em;
+            font-size: 0.95em;
             font-weight: 700;
             letter-spacing: 0.8px;
             text-transform: uppercase;
             color: #7a4a2a;
-            margin-bottom: 7px;
+            margin-bottom: 8px;
+            text-align: left;
         }
 
         .explain-text {
-            font-size: 0.9em;
-            line-height: 1.65;
+            font-size: 1.05em;
+            line-height: 1.68;
             color: #5f5f5f;
+            text-align: left;
         }
 
         .visual-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 28px;
+            gap: 26px;
             align-items: stretch;
         }
 
@@ -156,31 +185,61 @@
             grid-template-columns: 1fr;
         }
 
+        .full-idiom-grid {
+            gap: 26px;
+        }
+
+        .demographic-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px;
+            align-items: stretch;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+
+        .demographic-row .viz-card {
+            min-height: 560px;
+            padding: 72px 20px 24px 20px;
+        }
+
+        .demographic-row .vis-holder {
+            flex: 1;
+            align-items: flex-start;
+        }
+
+        .demographic-stack {
+            margin-bottom: 28px;
+        }
+
         .viz-card {
+            position: relative;
             background: #ffffff;
             border: 1px solid #eeeeee;
-            border-radius: 6px;
-            padding: 22px 22px 24px 22px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.035);
+            border-radius: 8px;
+            padding: 72px 22px 24px 22px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.055);
             min-width: 0;
             overflow: hidden;
         }
 
         .year-badge {
-            align-self: flex-end;
+            position: absolute;
+            top: 22px;
+            right: 24px;
             background: #f9f7f4;
             border: 1px solid #e1d8cf;
             border-left: 4px solid #7a4a2a;
             border-radius: 4px;
-            padding: 6px 10px;
-            font-size: 0.76em;
+            padding: 7px 11px;
+            font-size: 0.9em;
             font-weight: 700;
             letter-spacing: 0.4px;
             text-transform: uppercase;
             color: #5a3825;
             line-height: 1.2;
             text-align: left;
-            margin-bottom: 10px;
+            z-index: 5;
         }
 
         .year-badge.compare {
@@ -188,123 +247,34 @@
             border-left-color: #c66a1f;
         }
 
-        .visual-grid.equal-tiles .viz-card {
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: center;
-        }
-
-        .visual-grid.equal-tiles .vis-holder {
-            height: 100%;
-        }
-
-        .visual-grid.equal-tiles .vega-embed {
+        .large-idiom-card,
+        .demographic-idiom-card,
+        .map-card,
+        .heatmap-card,
+        .income-card {
             width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .education-row {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 28px;
-            align-items: stretch;
-            margin-top: 28px;
-        }
-
-        .education-row .viz-card {
-            min-height: 360px;
+            max-width: 100%;
+            margin: 0 auto;
+            min-height: auto;
             display: flex;
             flex-direction: column;
             align-items: stretch;
-            justify-content: center;
-        }
-
-        .education-row .vis-holder {
-            height: 100%;
-        }
-
-        .education-row .vega-embed {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .education-analysis {
-            min-height: 360px;
-            background: #f9f7f4;
-            border-left: 4px solid #7a4a2a;
-            border-radius: 6px;
-            padding: 26px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .analysis-kicker {
-            font-size: 0.78em;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            color: #7a4a2a;
-            margin-bottom: 10px;
-        }
-
-        .analysis-title {
-            font-family: 'Crimson Text', Georgia, serif;
-            font-size: 1.45em;
-            font-weight: 700;
-            color: #3f2a1d;
-            line-height: 1.2;
-            margin-bottom: 14px;
-        }
-
-        .analysis-text {
-            font-size: 0.95em;
-            line-height: 1.7;
-            color: #5f5f5f;
-            margin-bottom: 12px;
-        }
-
-        .analysis-highlight {
-            font-weight: 700;
-            color: #5a3825;
-        }
-
-        .heatmap-card {
-            min-height: 560px;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: center;
-        }
-
-        .income-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            width: 100%;
+            justify-content: flex-start;
         }
 
         .income-card {
-            width: 100%;
-            min-height: 390px;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: center;
-            padding: 22px 22px 24px 22px;
+            padding: 72px 22px 24px 22px;
+        }
+
+        .map-section-heading {
+            margin-top: 44px;
+            margin-bottom: 20px;
         }
 
         .vis-holder {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             width: 100%;
             min-width: 0;
             overflow: hidden;
@@ -313,91 +283,106 @@
         .vis-holder .vega-embed {
             width: 100%;
             max-width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
         }
 
         .vis-holder svg {
             width: 100%;
+            max-width: 100%;
             height: auto;
             display: block;
         }
 
-        .income-card .vis-holder {
-            width: 100%;
+        .vis-holder svg text {
+            font-size: 17px !important;
         }
 
-        .income-card .vega-embed {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .demographic-row .vis-holder svg text {
+            font-size: 18px !important;
         }
 
+        .large-idiom-card svg,
+        .demographic-idiom-card svg,
+        .map-card svg,
+        .heatmap-card svg,
         .income-card svg {
             width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .visual-grid.equal-tiles svg,
-        .education-row svg {
             max-width: 100%;
-            max-height: 100%;
-            width: 100%;
             height: auto;
+            max-height: none;
             display: block;
         }
 
-        .facts-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-top: 28px;
-            padding-top: 28px;
-            border-top: 1px solid #e8e8e8;
-        }
-
-        .mini-fact {
+        .education-analysis {
+            width: 100%;
+            max-width: 100%;
+            margin: 26px auto 0 auto;
             background: #f9f7f4;
             border-left: 4px solid #7a4a2a;
-            padding: 16px 18px;
-            min-height: 100px;
+            border-radius: 6px;
+            padding: 26px 30px;
+            text-align: left;
         }
 
-        .mini-label {
-            font-size: 0.76em;
+        .analysis-kicker {
+            font-size: 0.95em;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #7a4a2a;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .analysis-title {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 1.75em;
+            font-weight: 700;
+            color: #3f2a1d;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .analysis-text {
+            font-size: 1.08em;
+            line-height: 1.7;
+            color: #5f5f5f;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .analysis-highlight {
             font-weight: 700;
             color: #5a3825;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
-        .mini-value {
-            font-size: 1.12em;
-            font-weight: 700;
-            color: #2c2c2c;
         }
 
         footer {
+            max-width: 1080px;
+            margin: 0 auto;
             background: #ffffff;
-            padding: 34px 36px;
+            padding: 36px 38px;
             border-top: 1px solid #e8e8e8;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            text-align: left;
         }
 
         .footer-title {
             font-family: 'Crimson Text', Georgia, serif;
-            font-size: 1.35em;
+            font-size: 1.65em;
             font-weight: 700;
             color: #3f2a1d;
             line-height: 1.25;
             margin-bottom: 14px;
+            text-align: left;
         }
 
         .footer-text {
             width: 100%;
-            font-size: 0.9em;
+            font-size: 1.05em;
             line-height: 1.7;
             color: #666666;
             margin-bottom: 12px;
@@ -410,11 +395,12 @@
         }
 
         .metadata {
-            font-size: 0.8em;
+            font-size: 0.95em;
             color: #999999;
             margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #e8e8e8;
+            text-align: left;
         }
 
         @media (max-width: 1200px) {
@@ -422,68 +408,68 @@
                 max-width: 1180px;
             }
 
+            .intro-grid,
             .visual-grid,
             .story-explanation,
             .story-explanation.three,
-            .education-row {
+            .demographic-row {
                 grid-template-columns: 1fr;
             }
 
-            .visual-grid.equal-tiles .viz-card {
-                min-height: 460px;
+            .hero-inner,
+            .story-block,
+            .story-block.wide-story,
+            footer {
+                max-width: 100%;
             }
 
-            .education-row .viz-card,
-            .education-analysis {
-                min-height: 340px;
-            }
-
-            .heatmap-card {
-                min-height: 520px;
-            }
-
-            .income-card {
-                min-height: 380px;
+            .demographic-row .viz-card {
+                min-height: auto;
             }
         }
 
         @media (max-width: 768px) {
             .page {
-                padding: 40px 20px 56px 20px;
+                padding: 0 20px 56px 20px;
+            }
+
+            .hero {
+                padding: 64px 24px 68px 24px;
+                margin-bottom: 56px;
             }
 
             h1 {
-                font-size: 2.35em;
+                font-size: 2.75em;
             }
 
             .subtitle {
-                font-size: 1.05em;
+                font-size: 1.1em;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
             }
 
             .story-title {
-                font-size: 1.45em;
+                font-size: 1.65em;
             }
 
             .story-block {
-                padding: 26px 22px 30px 22px;
+                margin-bottom: 46px;
             }
 
-            .viz-card {
-                padding: 18px 14px 22px 14px;
-            }
-
-            .visual-grid.equal-tiles .viz-card,
-            .education-row .viz-card,
-            .education-analysis,
-            .heatmap-card,
-            .income-card {
-                min-height: auto;
+            .viz-card,
+            .income-card,
+            .demographic-row .viz-card {
+                padding: 76px 14px 22px 14px;
             }
 
             .year-badge {
-                align-self: flex-start;
+                top: 18px;
+                left: 14px;
+                right: auto;
                 display: inline-block;
-                margin-bottom: 12px;
             }
 
             .vis-holder {
@@ -491,16 +477,14 @@
                 overflow-x: auto;
             }
 
-            .vis-holder svg,
-            .visual-grid.equal-tiles svg,
-            .education-row svg,
-            .income-card svg {
+            .vis-holder svg {
                 width: auto;
                 max-width: none;
             }
 
-            .facts-row {
-                grid-template-columns: 1fr;
+            .vis-holder svg text,
+            .demographic-row .vis-holder svg text {
+                font-size: 15px !important;
             }
 
             footer {
@@ -512,23 +496,41 @@
 
 <body>
     <main class="page">
-        <!-- Hero -->
         <section class="hero">
-            <div class="hero-label">Malaysia tobacco behaviour</div>
-            <h1>Smoking Prevalence in Malaysia</h1>
-            <p class="subtitle">Where smoking remains common, and how the national picture has changed</p>
-            <p class="intro-text">
-                Smoking remains a major public health issue in Malaysia. National prevalence has declined, but the pattern is uneven. Some states recorded much higher smoking rates in 2023. Men continued to smoke at far higher rates than women. Smoking was also highest among middle-aged adults, while education and income reveal further social differences. Together, these patterns show gradual progress, but uneven impact.
-            </p>
+            <div class="hero-inner">
+                <div class="hero-label">Malaysia tobacco behaviour</div>
+
+                <h1>Smoking Prevalence in Malaysia</h1>
+
+                <p class="subtitle">
+                    Where smoking remains common, and how the national picture has changed
+                </p>
+
+                <div class="intro-grid">
+                    <p class="intro-text">
+                        Smoking remains a major public health issue in Malaysia.<br>
+                        National prevalence has declined, but the pattern is uneven.<br>
+                        Some states recorded much higher smoking rates in 2023.
+                    </p>
+
+                    <p class="intro-text">
+                        Men continued to smoke at far higher rates than women.<br>
+                        Smoking was also highest among middle-aged adults.<br>
+                        Education and income reveal further social differences.<br>
+                        Together, these patterns show progress, but uneven impact.
+                    </p>
+                </div>
+            </div>
         </section>
 
-        <!-- Part 1 -->
         <section class="story-block">
             <div class="story-heading">
                 <div class="story-kicker">Part 1</div>
                 <div class="story-title">Smoking is declining, but not evenly</div>
                 <p class="story-note">
-                    The national trend compares survey years over time, while the state map uses 2023 data to show the latest geographic pattern.
+                    The national trend compares survey years over time.<br>
+                    The state map uses 2023 data.<br>
+                    It shows the latest geographic pattern.
                 </p>
             </div>
 
@@ -536,55 +538,58 @@
                 <div class="explain-card">
                     <div class="explain-title">National trend</div>
                     <p class="explain-text">
-                        The time trend shows long-term movement in smoking prevalence. It helps compare the latest data with earlier survey years, especially 2011 as the main comparison point.
+                        The time trend shows long-term movement.<br>
+                        It compares the latest data with earlier years.<br>
+                        The 2011 year acts as the comparison point.
                     </p>
                 </div>
 
                 <div class="explain-card">
                     <div class="explain-title">State pattern</div>
                     <p class="explain-text">
-                        The state map shows where smoking was more common in 2023. This makes the national pattern more specific by showing which places recorded higher or lower prevalence.
+                        The map shows where smoking was higher in 2023.<br>
+                        It makes the national pattern more specific.<br>
+                        Higher and lower states can be compared clearly.
                     </p>
                 </div>
             </div>
 
-            <div class="visual-grid equal-tiles">
-                <section class="viz-card">
-                    <div class="year-badge compare">Trend: 2005–2023<br>Focus: 2011 & 2023</div>
+            <div class="visual-grid single full-idiom-grid">
+                <section class="viz-card large-idiom-card">
+                    <div class="year-badge compare">
+                        Trend: 2005–2023<br>
+                        Focus: 2011 & 2023
+                    </div>
                     <div id="vis-timeseries" class="vis-holder"></div>
                 </section>
+            </div>
 
-                <section class="viz-card">
+            <div class="story-heading map-section-heading">
+                <div class="story-kicker">Geographic view</div>
+                <div class="story-title">Smoking prevalence across Malaysian states</div>
+                <p class="story-note">
+                    The map is shown as its own idiom.<br>
+                    This helps the state pattern read clearly.<br>
+                    It avoids compression beside the time-series chart.
+                </p>
+            </div>
+
+            <div class="visual-grid single full-idiom-grid">
+                <section class="viz-card large-idiom-card map-card">
                     <div class="year-badge">Data year: 2023</div>
                     <div id="vis-map" class="vis-holder"></div>
                 </section>
             </div>
-
-            <div class="facts-row">
-                <div class="mini-fact">
-                    <div class="mini-label">National prevalence</div>
-                    <div class="mini-value">19.0%</div>
-                </div>
-
-                <div class="mini-fact">
-                    <div class="mini-label">Highest state</div>
-                    <div class="mini-value">Sarawak: 28.5%</div>
-                </div>
-
-                <div class="mini-fact">
-                    <div class="mini-label">Lowest state</div>
-                    <div class="mini-value">WP Putrajaya: 13.9%</div>
-                </div>
-            </div>
         </section>
 
-        <!-- Part 2 -->
-        <section class="story-block">
+        <section class="story-block wide-story">
             <div class="story-heading">
                 <div class="story-kicker">Part 2</div>
                 <div class="story-title">Smoking differs strongly across groups</div>
                 <p class="story-note">
-                    Gender is compared between 2011 and 2023, while age and education use 2023 data to show which groups were more affected in the latest survey year.
+                    Gender is compared between 2011 and 2023.<br>
+                    Age and education use 2023 data.<br>
+                    They show which groups were more affected.
                 </p>
             </div>
 
@@ -592,84 +597,81 @@
                 <div class="explain-card">
                     <div class="explain-title">Gender gap</div>
                     <p class="explain-text">
-                        Men recorded far higher smoking prevalence than women in both 2011 and 2023. The gap remained large even after male smoking declined.
+                        Men recorded much higher smoking prevalence than women.<br>
+                        This happened in both 2011 and 2023.<br>
+                        The gender gap remained large after decline.
                     </p>
                 </div>
 
                 <div class="explain-card">
                     <div class="explain-title">Age pattern</div>
                     <p class="explain-text">
-                        Smoking was highest among adults aged 35–44 in 2023. This separates the middle-age pattern from the gender pattern.
+                        Smoking was highest among adults aged 35–44.<br>
+                        This uses the latest 2023 survey year.<br>
+                        It separates age from the gender pattern.
                     </p>
                 </div>
 
                 <div class="explain-card">
                     <div class="explain-title">Education level</div>
                     <p class="explain-text">
-                        Smoking was highest among adults with primary education. This adds another social pattern to the smoking story.
+                        Smoking was highest among adults with primary education.<br>
+                        This adds another social pattern.<br>
+                        Education helps explain uneven smoking behaviour.
                     </p>
                 </div>
             </div>
 
-            <div class="visual-grid equal-tiles">
-                <section class="viz-card">
-                    <div class="year-badge compare">Comparison:<br>2011 & 2023</div>
+            <div class="demographic-row">
+                <section class="viz-card demographic-idiom-card">
+                    <div class="year-badge compare">
+                        Comparison:<br>
+                        2011 & 2023
+                    </div>
                     <div id="vis-gender" class="vis-holder"></div>
                 </section>
 
-                <section class="viz-card">
+                <section class="viz-card demographic-idiom-card">
                     <div class="year-badge">Data year: 2023</div>
                     <div id="vis-age" class="vis-holder"></div>
                 </section>
             </div>
 
-            <div class="education-row">
-                <section class="viz-card">
+            <div class="visual-grid single full-idiom-grid">
+                <section class="viz-card demographic-idiom-card">
                     <div class="year-badge">Data year: 2023</div>
                     <div id="vis-education" class="vis-holder"></div>
                 </section>
-
-                <aside class="education-analysis">
-                    <div class="analysis-kicker">Education pattern</div>
-                    <div class="analysis-title">Primary education shows the highest smoking prevalence</div>
-                    <p class="analysis-text">
-                        The education-level pattern shows that smoking was not evenly distributed across educational groups.
-                    </p>
-                    <p class="analysis-text">
-                        Adults with <span class="analysis-highlight">primary education recorded the highest prevalence at 25.4%</span>,
-                        while adults with tertiary education recorded a much lower rate at 6.1%.
-                    </p>
-                    <p class="analysis-text">
-                        This suggests that education level is an important social pattern to consider when discussing smoking behaviour.
-                    </p>
-                </aside>
             </div>
 
-            <div class="facts-row">
-                <div class="mini-fact">
-                    <div class="mini-label">Men, 2023</div>
-                    <div class="mini-value">35.7%</div>
+            <aside class="education-analysis">
+                <div class="analysis-kicker">Education pattern</div>
+                <div class="analysis-title">
+                    Primary education shows the highest smoking prevalence
                 </div>
-
-                <div class="mini-fact">
-                    <div class="mini-label">Peak age group</div>
-                    <div class="mini-value">35–44</div>
-                </div>
-
-                <div class="mini-fact">
-                    <div class="mini-label">Peak education group</div>
-                    <div class="mini-value">Primary education</div>
-                </div>
-            </div>
+                <p class="analysis-text">
+                    Smoking was not evenly distributed.<br>
+                    The pattern changed across education groups.
+                </p>
+                <p class="analysis-text">
+                    Adults with primary education recorded 25.4%.<br>
+                    Adults with tertiary education recorded only 6.1%.
+                </p>
+                <p class="analysis-text">
+                    Education level is therefore important.<br>
+                    It helps explain smoking behaviour differences.
+                </p>
+            </aside>
         </section>
 
-        <!-- Part 3 -->
         <section class="story-block">
             <div class="story-heading">
                 <div class="story-kicker">Part 3</div>
                 <div class="story-title">Tobacco product use varies by age and education</div>
                 <p class="story-note">
-                    This 2023 heatmap compares cigarette and tobacco product types across age groups and education levels.
+                    This 2023 heatmap compares tobacco product types.<br>
+                    It compares them across age groups.<br>
+                    It also compares them across education levels.
                 </p>
             </div>
 
@@ -677,14 +679,18 @@
                 <div class="explain-card">
                     <div class="explain-title">Age pattern</div>
                     <p class="explain-text">
-                        The age panel compares tobacco product use across age groups. Darker cells show higher prevalence, making it easier to see which products are more common among younger, middle-aged, and older adults.
+                        The age panel compares tobacco products.<br>
+                        Darker cells show higher prevalence.<br>
+                        Product differences can be seen across ages.
                     </p>
                 </div>
 
                 <div class="explain-card">
                     <div class="explain-title">Education pattern</div>
                     <p class="explain-text">
-                        The education panel compares tobacco product use across education levels. This helps show whether manufactured cigarettes, hand-rolled cigarettes, or other tobacco products are more common among specific education groups.
+                        The education panel compares tobacco products.<br>
+                        It shows product use by education level.<br>
+                        Manufactured and hand-rolled patterns become clearer.
                     </p>
                 </div>
             </div>
@@ -695,32 +701,16 @@
                     <div id="vis-tobacco-type-heatmap" class="vis-holder"></div>
                 </section>
             </div>
-
-            <div class="facts-row">
-                <div class="mini-fact">
-                    <div class="mini-label">Main product type</div>
-                    <div class="mini-value">Manufactured cigarettes</div>
-                </div>
-
-                <div class="mini-fact">
-                    <div class="mini-label">Highest age group</div>
-                    <div class="mini-value">25–44</div>
-                </div>
-
-                <div class="mini-fact">
-                    <div class="mini-label">Highest education group</div>
-                    <div class="mini-value">Primary education</div>
-                </div>
-            </div>
         </section>
 
-        <!-- Part 4 -->
         <section class="story-block">
             <div class="story-heading">
                 <div class="story-kicker">Part 4</div>
                 <div class="story-title">Smoking and vaping show different income patterns</div>
                 <p class="story-note">
-                    Income gives another view of tobacco behaviour. This 2023 comparison shows that current smoking and e-cigarette or vape use do not follow the same income pattern.
+                    Income gives another view of tobacco behaviour.<br>
+                    This comparison uses 2023 data.<br>
+                    Smoking and vaping follow different income patterns.
                 </p>
             </div>
 
@@ -728,14 +718,18 @@
                 <div class="explain-card">
                     <div class="explain-title">Income pattern</div>
                     <p class="explain-text">
-                        Current smoking was higher among adults in the Bottom 40% household income category. In contrast, e-cigarette and vape use was higher among the Top 20% group.
+                        Current smoking was higher in the Bottom 40%.<br>
+                        Vaping was higher in the Top 20%.<br>
+                        The two behaviours move differently by income.
                     </p>
                 </div>
 
                 <div class="explain-card">
                     <div class="explain-title">Why this matters</div>
                     <p class="explain-text">
-                        This suggests that cigarette smoking and newer nicotine products may affect different income groups. They should not be explained as one identical behaviour.
+                        Cigarette smoking and vaping affect groups differently.<br>
+                        They should not be treated identically.<br>
+                        Income helps separate these tobacco behaviours.
                     </p>
                 </div>
             </div>
@@ -746,39 +740,30 @@
                     <div id="vis-income" class="vis-holder"></div>
                 </section>
             </div>
-
-            <div class="facts-row">
-                <div class="mini-fact">
-                    <div class="mini-label">Smoking, Bottom 40%</div>
-                    <div class="mini-value">20.3%</div>
-                </div>
-
-                <div class="mini-fact">
-                    <div class="mini-label">Vaping, Top 20%</div>
-                    <div class="mini-value">7.8%</div>
-                </div>
-
-                <div class="mini-fact">
-                    <div class="mini-label">Pattern</div>
-                    <div class="mini-value">Different income groups</div>
-                </div>
-            </div>
         </section>
 
-        <!-- Footer -->
         <footer>
             <div class="footer-title">Data and Sources</div>
 
             <p class="footer-text">
-                <strong>Smoking data:</strong> This page uses Malaysian smoking prevalence and e-cigarette or vape use data from national tobacco and health survey materials. The figures describe adults aged 15 years and above.
+                <strong>Smoking data:</strong><br>
+                This page uses Malaysian smoking prevalence data.<br>
+                It also uses e-cigarette and vape data.<br>
+                The figures describe adults aged 15 and above.
             </p>
 
             <p class="footer-text">
-                <strong>Map data:</strong> Malaysia state boundary data was adapted from a public GitHub TopoJSON source for educational use. State names were matched with smoking prevalence values to show the geographic pattern.
+                <strong>Map data:</strong><br>
+                Malaysia state boundary data came from public TopoJSON.<br>
+                State names were matched with smoking values.<br>
+                This was done for educational visualisation use.
             </p>
 
             <p class="footer-text">
-                <strong>Reading the page:</strong> The results show differences in smoking prevalence across states, gender groups, age groups, education groups, income groups, tobacco product types, and time. They describe population-level patterns and should not be read as proving that one factor alone causes smoking behaviour.
+                <strong>Reading the page:</strong><br>
+                The results show population-level smoking patterns.<br>
+                They compare states, groups, products, and time.<br>
+                They should not be read as single-factor causes.
             </p>
 
             <div class="metadata">
@@ -787,7 +772,6 @@
         </footer>
     </main>
 
-    <!-- JavaScript to load Vega-Lite visualisations -->
     <script type="text/javascript">
         const smokingMap = "smoking_map.vg.json";
         const smokingTimeSeries = "smoking_timeseries.vg.json";
@@ -799,50 +783,46 @@
 
         const embedOptions = {
             actions: false,
-            renderer: "svg"
+            renderer: "svg",
+            config: {
+                title: {
+                    font: "Crimson Text",
+                    fontSize: 24,
+                    subtitleFont: "Source Sans Pro",
+                    subtitleFontSize: 16,
+                    anchor: "start",
+                    align: "left"
+                },
+                axis: {
+                    labelFont: "Source Sans Pro",
+                    titleFont: "Source Sans Pro",
+                    labelFontSize: 15,
+                    titleFontSize: 17
+                },
+                legend: {
+                    labelFont: "Source Sans Pro",
+                    titleFont: "Source Sans Pro",
+                    labelFontSize: 15,
+                    titleFontSize: 17
+                },
+                text: {
+                    font: "Source Sans Pro",
+                    fontSize: 16,
+                    align: "left"
+                },
+                view: {
+                    stroke: null
+                }
+            }
         };
 
-        vegaEmbed("#vis-timeseries", smokingTimeSeries, embedOptions)
-            .then(function(result) {
-                console.log("Smoking time series loaded");
-            })
-            .catch(console.error);
-
-        vegaEmbed("#vis-map", smokingMap, embedOptions)
-            .then(function(result) {
-                console.log("Smoking map loaded");
-            })
-            .catch(console.error);
-
-        vegaEmbed("#vis-gender", smokingGender, embedOptions)
-            .then(function(result) {
-                console.log("Smoking gender loaded");
-            })
-            .catch(console.error);
-
-        vegaEmbed("#vis-age", smokingAge, embedOptions)
-            .then(function(result) {
-                console.log("Smoking age loaded");
-            })
-            .catch(console.error);
-
-        vegaEmbed("#vis-education", smokingEducation, embedOptions)
-            .then(function(result) {
-                console.log("Smoking education loaded");
-            })
-            .catch(console.error);
-
-        vegaEmbed("#vis-tobacco-type-heatmap", smokingTobaccoTypeHeatmap, embedOptions)
-            .then(function(result) {
-                console.log("Smoking tobacco type heatmap loaded");
-            })
-            .catch(console.error);
-
-        vegaEmbed("#vis-income", smokingIncome, embedOptions)
-            .then(function(result) {
-                console.log("Smoking income loaded");
-            })
-            .catch(console.error);
+        vegaEmbed("#vis-timeseries", smokingTimeSeries, embedOptions).catch(console.error);
+        vegaEmbed("#vis-map", smokingMap, embedOptions).catch(console.error);
+        vegaEmbed("#vis-gender", smokingGender, embedOptions).catch(console.error);
+        vegaEmbed("#vis-age", smokingAge, embedOptions).catch(console.error);
+        vegaEmbed("#vis-education", smokingEducation, embedOptions).catch(console.error);
+        vegaEmbed("#vis-tobacco-type-heatmap", smokingTobaccoTypeHeatmap, embedOptions).catch(console.error);
+        vegaEmbed("#vis-income", smokingIncome, embedOptions).catch(console.error);
     </script>
 </body>
 </html>
