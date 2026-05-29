@@ -1,23 +1,23 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "padding": { "left": 42, "right": 28, "top": 2, "bottom": 12 },
+  "padding": { "left": 4, "right": 4, "top": 2, "bottom": 12 },
   "title": {
     "text": "Smoking Is Highest Among Middle-Aged Adults",
     "subtitle": "Adults aged 35–44 recorded the highest smoking prevalence in 2023.",
     "font": "Georgia",
-    "fontSize": 35,
+    "fontSize": 40,
     "fontWeight": 700,
     "color": "#5a3825",
     "subtitleFont": "Arial",
-    "subtitleFontSize": 19,
+    "subtitleFontSize": 38,
     "subtitleFontWeight": 400,
     "subtitleColor": "#666666",
     "subtitlePadding": 19,
     "anchor": "start",
     "offset": 45
   },
-  "width": 700,
-  "height": 700,
+  "width": 800,
+  "height": 800,
   "data": {
     "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_age.csv"
   },
@@ -33,7 +33,7 @@
           "sort": ["15-24","25-34","35-44","45-54","55-64","65-74","75 and above"],
           "axis": {
             "labelFont": "Arial",
-            "labelFontSize": 16,
+            "labelFontSize": 25,
             "labelColor": "#555555",
             "labelPadding": 12,
             "domain": false,
@@ -48,12 +48,12 @@
           "axis": {
             "values": [0, 5, 10, 15, 20, 25, 30],
             "titleFont": "Arial",
-            "titleFontSize": 16,
+            "titleFontSize": 18,
             "titleFontWeight": 700,
             "titleColor": "#555555",
             "titlePadding": 18,
             "labelFont": "Arial",
-            "labelFontSize": 16,
+            "labelFontSize": 25,
             "labelColor": "#666666",
             "grid": true,
             "gridColor": "#eeeeee",
@@ -133,7 +133,7 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 13,
+        "fontSize": 25,
         "fontWeight": 400,
         "color": "#666666",
         "align": "left",
@@ -167,14 +167,14 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 18,
+        "fontSize": 25,
         "fontWeight": 700,
         "color": "#E75480",
         "align": "left",
         "baseline": "middle",
         "lineBreak": "\n",
-        "lineHeight": 20,
-        "limit": 210
+        "lineHeight": 40,
+        "limit": 1000
       },
       "encoding": {
         "y": {

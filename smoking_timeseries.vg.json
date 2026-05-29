@@ -5,11 +5,11 @@
     "text": "Smoking prevalence has declined over time",
     "subtitle": "2011 is the key comparison point; 2023 is the latest data.",
     "font": "Georgia",
-    "fontSize": 30,
+    "fontSize": 37,
     "fontWeight": 700,
     "color": "#5a3825",
     "subtitleFont": "Arial",
-    "subtitleFontSize": 16,
+    "subtitleFontSize": 18,
     "subtitleFontWeight": 400,
     "subtitleColor": "#666666",
     "subtitlePadding": 15,
@@ -17,7 +17,7 @@
     "offset": 45
   },
   "width": 1200,
-  "height": 300,
+  "height": 800,
   "data": {
     "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_timeseries.csv"
   },
@@ -34,7 +34,7 @@
             "values": [2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023],
             "format": "d",
             "labelFont": "Arial",
-            "labelFontSize": 14,
+            "labelFontSize": 20,
             "labelFontWeight": { "expr": "datum.value == 2011 || datum.value == 2023 ? 700 : 400" },
             "labelColor": { "expr": "datum.value == 2011 || datum.value == 2023 ? '#5a3825' : '#8a8a8a'" },
             "labelAngle": 0,
@@ -56,7 +56,7 @@
             "titleColor": "#555555",
             "titlePadding": 22,
             "labelFont": "Arial",
-            "labelFontSize": 14,
+            "labelFontSize": 20,
             "labelColor": "#666666",
             "grid": true,
             "gridColor": "#eeeeee",
@@ -143,12 +143,12 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 13,
-        "fontWeight": 400,
+        "fontSize": 25,
+        "fontWeight": 600,
         "color": "#666666",
         "align": "left",
         "baseline": "top",
-        "limit": 380
+        "limit": 1000
       },
       "encoding": {
         "x": { "field": "Year", "type": "quantitative", "scale": { "domain": [2003, 2023], "nice": false } },
@@ -163,12 +163,12 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 13,
-        "fontWeight": 700,
+        "fontSize": 25,
+        "fontWeight": 600,
         "color": "#5a3825",
         "align": "left",
         "baseline": "middle",
-        "limit": 340
+        "limit": 1000
       },
       "encoding": {
         "x": { "field": "Year", "type": "quantitative", "scale": { "domain": [2003, 2023], "nice": false } },
@@ -183,12 +183,12 @@
       "mark": {
         "type": "text",
         "font": "Arial",
-        "fontSize": 13,
-        "fontWeight": 700,
+        "fontSize": 25,
+        "fontWeight": 600,
         "color": "#5a3825",
         "align": "right",
         "baseline": "middle",
-        "limit": 300
+        "limit": 1000
       },
       "encoding": {
         "x": { "field": "Year", "type": "quantitative", "scale": { "domain": [2003, 2023], "nice": false } },
