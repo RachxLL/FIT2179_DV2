@@ -1,23 +1,135 @@
 {
-  "name": "bridge_edges",
-  "values": [
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Tree-like relationship diagram showing smoking-related disease pathway and health care cost structure.",
+  "width": 1040,
+  "height": 560,
+  "padding": {"top": 10, "left": 10, "right": 10, "bottom": 10},
+  "background": "white",
+  "title": {
+    "text": "How smoking leads to disease and health care cost",
+    "subtitle": "Smoking is linked to major diseases, which create costs for patients and providers.",
+    "anchor": "start",
+    "font": "Crimson Text",
+    "fontSize": 28,
+    "fontWeight": "bold",
+    "color": "#3f2a1d",
+    "subtitleFont": "Source Sans Pro",
+    "subtitleFontSize": 17,
+    "subtitleColor": "#4f5f66",
+    "offset": 35,
+    "subtitlePadding": 12
+  },
+  "data": [
     {
-      "x1": 485,
-      "y1": 185,
-      "x2": 610,
-      "y2": 282
+      "name": "section_titles",
+      "values": [
+        {"label": "Smoking-related disease pathway", "x": 30, "y": 90},
+        {"label": "Health care cost structure", "x": 430, "y": 90}
+      ]
     },
     {
-      "x1": 485,
-      "y1": 280,
-      "x2": 610,
-      "y2": 282
+      "name": "disease_nodes",
+      "values": [
+        {"id": "smoking", "label": "Smoking", "x": 30, "y": 250, "w": 130, "h": 54, "fill": "#6f4e37", "stroke": "#6f4e37", "textColor": "#ffffff", "fontSize": 17, "fontWeight": "bold"},
+        {"id": "copd", "label": "COPD", "x": 215, "y": 155, "w": 160, "h": 50, "fill": "#eed8c5", "stroke": "#b78752", "textColor": "#3f2a1d", "fontSize": 15, "fontWeight": "bold"},
+        {"id": "lung", "label": "Lung cancer", "x": 215, "y": 250, "w": 160, "h": 50, "fill": "#eed8c5", "stroke": "#b78752", "textColor": "#3f2a1d", "fontSize": 15, "fontWeight": "bold"},
+        {"id": "ihd", "label": "Ischaemic heart disease", "x": 215, "y": 345, "w": 160, "h": 50, "fill": "#eed8c5", "stroke": "#b78752", "textColor": "#3f2a1d", "fontSize": 13, "fontWeight": "bold"}
+      ]
     },
     {
-      "x1": 485,
-      "y1": 375,
-      "x2": 610,
-      "y2": 282
+      "name": "cost_nodes",
+      "values": [
+        {"id": "health", "label": "Health care cost", "x": 430, "y": 250, "w": 150, "h": 54, "fill": "#355c61", "stroke": "#355c61", "textColor": "#ffffff", "fontSize": 15, "fontWeight": "bold"},
+        {"id": "patient", "label": "Patient cost", "x": 635, "y": 170, "w": 145, "h": 50, "fill": "#dbeaed", "stroke": "#5d8287", "textColor": "#284247", "fontSize": 15, "fontWeight": "bold"},
+        {"id": "provider", "label": "Provider cost", "x": 635, "y": 335, "w": 145, "h": 50, "fill": "#dbeaed", "stroke": "#5d8287", "textColor": "#284247", "fontSize": 15, "fontWeight": "bold"},
+        {"id": "patient_direct", "label": "Direct cost", "x": 835, "y": 115, "w": 150, "h": 44, "fill": "#edf5f6", "stroke": "#8ca9ad", "textColor": "#284247", "fontSize": 13, "fontWeight": "bold"},
+        {"id": "patient_indirect", "label": "Indirect cost", "x": 835, "y": 225, "w": 150, "h": 44, "fill": "#edf5f6", "stroke": "#8ca9ad", "textColor": "#284247", "fontSize": 13, "fontWeight": "bold"},
+        {"id": "provider_direct", "label": "Direct cost", "x": 835, "y": 335, "w": 150, "h": 44, "fill": "#edf5f6", "stroke": "#8ca9ad", "textColor": "#284247", "fontSize": 13, "fontWeight": "bold"}
+      ]
+    },
+    {
+      "name": "component_nodes",
+      "values": [
+        {"label": "Out-patient fees", "x": 835, "y": 68, "w": 150, "h": 34, "fill": "#f7efe8", "stroke": "#cfbba8", "textColor": "#3f2a1d", "fontSize": 11},
+        {"label": "Travelling cost", "x": 835, "y": 168, "w": 150, "h": 34, "fill": "#f7efe8", "stroke": "#cfbba8", "textColor": "#3f2a1d", "fontSize": 11},
+        {"label": "Loss of productivity", "x": 835, "y": 280, "w": 150, "h": 34, "fill": "#f7efe8", "stroke": "#cfbba8", "textColor": "#3f2a1d", "fontSize": 11},
+        {"label": "Hospital stay", "x": 835, "y": 390, "w": 150, "h": 30, "fill": "#f7efe8", "stroke": "#cfbba8", "textColor": "#3f2a1d", "fontSize": 11},
+        {"label": "ICU", "x": 835, "y": 428, "w": 150, "h": 30, "fill": "#f7efe8", "stroke": "#cfbba8", "textColor": "#3f2a1d", "fontSize": 11},
+        {"label": "Investigations", "x": 835, "y": 466, "w": 150, "h": 30, "fill": "#f7efe8", "stroke": "#cfbba8", "textColor": "#3f2a1d", "fontSize": 11}
+      ]
+    },
+    {
+      "name": "disease_edges",
+      "values": [
+        {"x1": 160, "y1": 277, "x2": 215, "y2": 180},
+        {"x1": 160, "y1": 277, "x2": 215, "y2": 275},
+        {"x1": 160, "y1": 277, "x2": 215, "y2": 370}
+      ],
+      "transform": [
+        {"type": "formula", "as": "mx", "expr": "(datum.x1 + datum.x2) / 2"},
+        {"type": "formula", "as": "path", "expr": "'M' + datum.x1 + ',' + datum.y1 + ' C' + datum.mx + ',' + datum.y1 + ' ' + datum.mx + ',' + datum.y2 + ' ' + datum.x2 + ',' + datum.y2"}
+      ]
+    },
+    {
+      "name": "bridge_edges",
+      "values": [
+        {"x1": 375, "y1": 180, "x2": 430, "y2": 277},
+        {"x1": 375, "y1": 275, "x2": 430, "y2": 277},
+        {"x1": 375, "y1": 370, "x2": 430, "y2": 277}
+      ],
+      "transform": [
+        {"type": "formula", "as": "mx", "expr": "(datum.x1 + datum.x2) / 2"},
+        {"type": "formula", "as": "path", "expr": "'M' + datum.x1 + ',' + datum.y1 + ' C' + datum.mx + ',' + datum.y1 + ' ' + datum.mx + ',' + datum.y2 + ' ' + datum.x2 + ',' + datum.y2"}
+      ]
+    },
+    {
+      "name": "cost_edges",
+      "values": [
+        {"x1": 580, "y1": 277, "x2": 635, "y2": 195},
+        {"x1": 580, "y1": 277, "x2": 635, "y2": 360},
+        {"x1": 780, "y1": 195, "x2": 835, "y2": 137},
+        {"x1": 780, "y1": 195, "x2": 835, "y2": 247},
+        {"x1": 780, "y1": 360, "x2": 835, "y2": 357}
+      ],
+      "transform": [
+        {"type": "formula", "as": "mx", "expr": "(datum.x1 + datum.x2) / 2"},
+        {"type": "formula", "as": "path", "expr": "'M' + datum.x1 + ',' + datum.y1 + ' C' + datum.mx + ',' + datum.y1 + ' ' + datum.mx + ',' + datum.y2 + ' ' + datum.x2 + ',' + datum.y2"}
+      ]
+    },
+    {
+      "name": "component_edges",
+      "values": [
+        {"x1": 910, "y1": 115, "x2": 910, "y2": 102},
+        {"x1": 910, "y1": 159, "x2": 910, "y2": 168},
+        {"x1": 910, "y1": 269, "x2": 910, "y2": 280},
+        {"x1": 910, "y1": 379, "x2": 910, "y2": 390},
+        {"x1": 910, "y1": 379, "x2": 910, "y2": 428},
+        {"x1": 910, "y1": 379, "x2": 910, "y2": 466}
+      ],
+      "transform": [
+        {"type": "formula", "as": "mx", "expr": "(datum.x1 + datum.x2) / 2"},
+        {"type": "formula", "as": "path", "expr": "'M' + datum.x1 + ',' + datum.y1 + ' C' + datum.mx + ',' + datum.y1 + ' ' + datum.mx + ',' + datum.y2 + ' ' + datum.x2 + ',' + datum.y2"}
+      ]
+    },
+    {
+      "name": "footnotes",
+      "values": [
+        {"text": "Note: This is a conceptual relationship diagram, not a quantitative chart.", "x": 30, "y": 530}
+      ]
     }
+  ],
+  "marks": [
+    {"type": "text", "from": {"data": "section_titles"}, "encode": {"enter": {"x": {"field": "x"}, "y": {"field": "y"}, "text": {"field": "label"}, "font": {"value": "Crimson Text"}, "fontSize": {"value": 19}, "fontWeight": {"value": "bold"}, "fill": {"value": "#5a3825"}, "align": {"value": "left"}, "baseline": {"value": "middle"}}}},
+    {"type": "path", "from": {"data": "disease_edges"}, "encode": {"enter": {"path": {"field": "path"}, "stroke": {"value": "#b8b1aa"}, "strokeWidth": {"value": 2}, "fill": {"value": null}, "strokeCap": {"value": "round"}}}},
+    {"type": "path", "from": {"data": "bridge_edges"}, "encode": {"enter": {"path": {"field": "path"}, "stroke": {"value": "#9a9188"}, "strokeWidth": {"value": 2.4}, "fill": {"value": null}, "strokeCap": {"value": "round"}}}},
+    {"type": "path", "from": {"data": "cost_edges"}, "encode": {"enter": {"path": {"field": "path"}, "stroke": {"value": "#b8b1aa"}, "strokeWidth": {"value": 2}, "fill": {"value": null}, "strokeCap": {"value": "round"}}}},
+    {"type": "path", "from": {"data": "component_edges"}, "encode": {"enter": {"path": {"field": "path"}, "stroke": {"value": "#c7bfb6"}, "strokeWidth": {"value": 1.5}, "fill": {"value": null}, "strokeCap": {"value": "round"}}}},
+    {"type": "rect", "from": {"data": "disease_nodes"}, "encode": {"enter": {"x": {"field": "x"}, "y": {"field": "y"}, "width": {"field": "w"}, "height": {"field": "h"}, "cornerRadius": {"value": 10}, "fill": {"field": "fill"}, "stroke": {"field": "stroke"}, "strokeWidth": {"value": 1.8}}}},
+    {"type": "rect", "from": {"data": "cost_nodes"}, "encode": {"enter": {"x": {"field": "x"}, "y": {"field": "y"}, "width": {"field": "w"}, "height": {"field": "h"}, "cornerRadius": {"value": 10}, "fill": {"field": "fill"}, "stroke": {"field": "stroke"}, "strokeWidth": {"value": 1.8}}}},
+    {"type": "rect", "from": {"data": "component_nodes"}, "encode": {"enter": {"x": {"field": "x"}, "y": {"field": "y"}, "width": {"field": "w"}, "height": {"field": "h"}, "cornerRadius": {"value": 8}, "fill": {"field": "fill"}, "stroke": {"field": "stroke"}, "strokeWidth": {"value": 1.2}}}},
+    {"type": "text", "from": {"data": "disease_nodes"}, "encode": {"enter": {"x": {"signal": "datum.x + datum.w / 2"}, "y": {"signal": "datum.y + datum.h / 2"}, "text": {"field": "label"}, "font": {"value": "Source Sans Pro"}, "fontSize": {"field": "fontSize"}, "fontWeight": {"field": "fontWeight"}, "fill": {"field": "textColor"}, "align": {"value": "center"}, "baseline": {"value": "middle"}}}},
+    {"type": "text", "from": {"data": "cost_nodes"}, "encode": {"enter": {"x": {"signal": "datum.x + datum.w / 2"}, "y": {"signal": "datum.y + datum.h / 2"}, "text": {"field": "label"}, "font": {"value": "Source Sans Pro"}, "fontSize": {"field": "fontSize"}, "fontWeight": {"field": "fontWeight"}, "fill": {"field": "textColor"}, "align": {"value": "center"}, "baseline": {"value": "middle"}}}},
+    {"type": "text", "from": {"data": "component_nodes"}, "encode": {"enter": {"x": {"signal": "datum.x + datum.w / 2"}, "y": {"signal": "datum.y + datum.h / 2"}, "text": {"field": "label"}, "font": {"value": "Source Sans Pro"}, "fontSize": {"field": "fontSize"}, "fill": {"field": "textColor"}, "align": {"value": "center"}, "baseline": {"value": "middle"}}}},
+    {"type": "text", "from": {"data": "footnotes"}, "encode": {"enter": {"x": {"field": "x"}, "y": {"field": "y"}, "text": {"field": "text"}, "font": {"value": "Source Sans Pro"}, "fontSize": {"value": 12}, "fill": {"value": "#6b7280"}, "align": {"value": "left"}, "baseline": {"value": "middle"}}}}
   ]
 }

@@ -34,7 +34,7 @@
             margin-right: calc(50% - 50vw);
             margin-top: -58px;
             margin-bottom: 56px;
-            padding: 100px max(44px, calc((100vw - 1450px) / 2 + 44px)) 92px;
+            padding-top: 100px; padding-bottom: 92px; padding-left: max(44px, calc((100vw - 1100px) / 2 + 44px)); padding-right: max(44px, calc((100vw - 1100px) / 2 + 44px));
             background: #f4eee7;
             border-left: none;
             width: auto;
@@ -76,8 +76,8 @@
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 40px;
-            max-width: 760px;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0;
         }
 
         .intro-col {
@@ -91,7 +91,6 @@
             line-height: 1.75;
             color: #555555;
             text-align: left;
-            max-width: 30em;
         }
 
         .story-block {
@@ -126,9 +125,17 @@
 
         .story-note {
             width: 100%;
-            font-size: 0.94em;
-            line-height: 1.65;
+            font-size: 1.12em;
+            line-height: 1.7;
             color: #666666;
+        }
+
+        .story-note.two-column-note {
+            max-width: 1000px;
+            column-count: 2;
+            column-gap: 52px;
+            column-fill: balance;
+            text-align: left;
         }
 
         .story-explanation {
@@ -172,6 +179,7 @@
 
         .visual-grid.single {
             grid-template-columns: 1fr;
+            margin-top: 28px;
         }
 
         .viz-card {
@@ -228,10 +236,16 @@
 
         .idiom-subtitle {
             font-family: 'Source Sans Pro', Arial, sans-serif;
-            font-size: 1.02em;
+            font-size: 1.15em;
             font-weight: 400;
             color: #4f5f66;
-            line-height: 1.35;
+            line-height: 1.5;
+        }
+
+        .idiom-subtitle.two-column-subtitle {
+            column-count: 2;
+            column-gap: 36px;
+            max-width: 100%;
         }
 
         .visual-grid.equal-tiles .idiom-title {
@@ -239,7 +253,7 @@
         }
 
         .visual-grid.equal-tiles .idiom-subtitle {
-            font-size: 0.96em;
+            font-size: 1.15em;
         }
 
         .visual-grid.equal-tiles .viz-card {
@@ -566,12 +580,53 @@
             footer {
                 padding: 28px 24px;
             }
+
+            .story-note.two-column-note {
+                column-count: 1;
+            }
+
+            .idiom-subtitle.two-column-subtitle {
+                column-count: 1;
+            }
+        }
+
+        .idiom-title,
+        .idiom-subtitle,
+        .story-note,
+        .explain-text,
+        .footer-text {
+            text-align: left;
         }
 
         .stacked-pair {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 28px;
+        }
+
+        .impact-card {
+            min-height: 430px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        .impact-card .vis-holder {
+            width: 100%;
+        }
+
+        .impact-card .vega-embed {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .impact-card svg {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
     </style>
@@ -704,6 +759,36 @@
 </div>
 
 </section>
+
+<section class="story-block">
+<div class="story-heading">
+<div class="story-kicker">Part 5</div>
+<div class="story-title">Smoking connects to disease and cost burden</div>
+<p class="story-note two-column-note">
+                    The earlier charts show who smokes more, and where smoking remains higher. This section explains why those patterns matter: smoking is linked to major diseases, and those diseases create treatment costs for both patients and healthcare providers.
+                </p>
+</div>
+
+<div class="stacked-pair">
+<section class="viz-card impact-card">
+<div class="idiom-heading" data-title-for="vis-disease-cost-tree">
+<div class="idiom-title"></div>
+<div class="idiom-subtitle"></div>
+</div>
+<div class="vis-holder" id="vis-disease-cost-tree"></div>
+</section>
+
+<section class="viz-card impact-card">
+<div class="idiom-heading" data-title-for="vis-cost-burden">
+<div class="idiom-title"></div>
+<div class="idiom-subtitle"></div>
+</div>
+<div class="vis-holder" id="vis-cost-burden"></div>
+</section>
+</div>
+
+</section>
+
 <footer>
 <div class="footer-title">Data and Sources</div>
 <p class="footer-text">
@@ -711,6 +796,10 @@
             </p>
 <p class="footer-text">
 <strong>Map data:</strong> Malaysia state boundary data was adapted from a public GitHub TopoJSON source for educational use. State names were matched with smoking prevalence values to show the geographic pattern.
+            </p>
+<p class="footer-text">
+<strong>Healthcare cost data:</strong> The cost idioms use Malaysian smoking-related
+healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
             </p>
 <p class="footer-text">
 <strong>Reading the page:</strong> The results show differences in smoking prevalence across states, gender groups, age groups, education groups, income groups, tobacco product types, and time. They describe population-level patterns and should not be read as proving that one factor alone causes smoking behaviour.
@@ -729,33 +818,716 @@
         const smokingTobaccoTypeHeatmap = "smoking_tobacco_type_heatmap.vg.json";
         const smokingIncome = "smoking_income.vg.json";
 
+        const smokingDiseaseCostTreeSpec = {
+        "$schema": "https://vega.github.io/schema/vega/v5.json",
+        "description": "Tree-like relationship diagram showing smoking-related disease pathway and health care cost structure.",
+        "width": 900,
+        "height": 420,
+        "padding": {
+                "top": 10,
+                "left": 10,
+                "right": 10,
+                "bottom": 10
+        },
+        "background": "white",
+        "title": {
+                "text": "Smoking connects to disease and cost pathways",
+                "subtitle": [
+                        "Smoking links to COPD, lung cancer, and heart disease.",
+                        "These diseases create healthcare costs for patients and providers."
+                ],
+                "font": "Crimson Text",
+                "fontSize": 30,
+                "fontWeight": "bold",
+                "color": "#3f2a1d",
+                "subtitleFont": "Source Sans Pro",
+                "subtitleFontSize": 16,
+                "subtitleColor": "#4f5f66",
+                "anchor": "start",
+                "offset": 45,
+                "subtitlePadding": 15
+        },
+        "data": [
+                {
+                        "name": "nodes",
+                        "values": [
+                                {
+                                        "id": "smoking",
+                                        "label": "Smoking",
+                                        "x": 30,
+                                        "y": 180,
+                                        "w": 125,
+                                        "h": 50,
+                                        "fill": "#6f4e37",
+                                        "stroke": "#6f4e37",
+                                        "textColor": "#ffffff",
+                                        "fontSize": 16,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "copd",
+                                        "label": "COPD",
+                                        "x": 220,
+                                        "y": 75,
+                                        "w": 155,
+                                        "h": 46,
+                                        "fill": "#eed8c5",
+                                        "stroke": "#b78752",
+                                        "textColor": "#3f2a1d",
+                                        "fontSize": 15,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "lung",
+                                        "label": "Lung cancer",
+                                        "x": 220,
+                                        "y": 180,
+                                        "w": 155,
+                                        "h": 46,
+                                        "fill": "#eed8c5",
+                                        "stroke": "#b78752",
+                                        "textColor": "#3f2a1d",
+                                        "fontSize": 15,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "ihd",
+                                        "label": "Ischaemic heart disease",
+                                        "x": 220,
+                                        "y": 285,
+                                        "w": 155,
+                                        "h": 46,
+                                        "fill": "#eed8c5",
+                                        "stroke": "#b78752",
+                                        "textColor": "#3f2a1d",
+                                        "fontSize": 13,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "health",
+                                        "label": "Health care cost",
+                                        "x": 440,
+                                        "y": 180,
+                                        "w": 155,
+                                        "h": 50,
+                                        "fill": "#355c61",
+                                        "stroke": "#355c61",
+                                        "textColor": "#ffffff",
+                                        "fontSize": 15,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "patient",
+                                        "label": "Patient cost",
+                                        "x": 650,
+                                        "y": 125,
+                                        "w": 145,
+                                        "h": 46,
+                                        "fill": "#dbeaed",
+                                        "stroke": "#5d8287",
+                                        "textColor": "#284247",
+                                        "fontSize": 14,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "provider",
+                                        "label": "Provider cost",
+                                        "x": 650,
+                                        "y": 235,
+                                        "w": 145,
+                                        "h": 46,
+                                        "fill": "#dbeaed",
+                                        "stroke": "#5d8287",
+                                        "textColor": "#284247",
+                                        "fontSize": 14,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "pdirect",
+                                        "label": "Direct cost",
+                                        "x": 805,
+                                        "y": 80,
+                                        "w": 120,
+                                        "h": 40,
+                                        "fill": "#edf5f6",
+                                        "stroke": "#8ca9ad",
+                                        "textColor": "#284247",
+                                        "fontSize": 13,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "pindirect",
+                                        "label": "Indirect cost",
+                                        "x": 805,
+                                        "y": 170,
+                                        "w": 120,
+                                        "h": 40,
+                                        "fill": "#edf5f6",
+                                        "stroke": "#8ca9ad",
+                                        "textColor": "#284247",
+                                        "fontSize": 13,
+                                        "fontWeight": "bold"
+                                },
+                                {
+                                        "id": "vdirect",
+                                        "label": "Direct cost",
+                                        "x": 805,
+                                        "y": 260,
+                                        "w": 120,
+                                        "h": 40,
+                                        "fill": "#edf5f6",
+                                        "stroke": "#8ca9ad",
+                                        "textColor": "#284247",
+                                        "fontSize": 13,
+                                        "fontWeight": "bold"
+                                }
+                        ]
+                },
+                {
+                        "name": "edges",
+                        "values": [
+                                {
+                                        "x1": 155,
+                                        "y1": 205,
+                                        "x2": 220,
+                                        "y2": 98
+                                },
+                                {
+                                        "x1": 155,
+                                        "y1": 205,
+                                        "x2": 220,
+                                        "y2": 203
+                                },
+                                {
+                                        "x1": 155,
+                                        "y1": 205,
+                                        "x2": 220,
+                                        "y2": 308
+                                },
+                                {
+                                        "x1": 375,
+                                        "y1": 98,
+                                        "x2": 440,
+                                        "y2": 205
+                                },
+                                {
+                                        "x1": 375,
+                                        "y1": 203,
+                                        "x2": 440,
+                                        "y2": 205
+                                },
+                                {
+                                        "x1": 375,
+                                        "y1": 308,
+                                        "x2": 440,
+                                        "y2": 205
+                                },
+                                {
+                                        "x1": 595,
+                                        "y1": 205,
+                                        "x2": 650,
+                                        "y2": 148
+                                },
+                                {
+                                        "x1": 595,
+                                        "y1": 205,
+                                        "x2": 650,
+                                        "y2": 258
+                                },
+                                {
+                                        "x1": 795,
+                                        "y1": 148,
+                                        "x2": 805,
+                                        "y2": 100
+                                },
+                                {
+                                        "x1": 795,
+                                        "y1": 148,
+                                        "x2": 805,
+                                        "y2": 190
+                                },
+                                {
+                                        "x1": 795,
+                                        "y1": 258,
+                                        "x2": 805,
+                                        "y2": 280
+                                }
+                        ],
+                        "transform": [
+                                {
+                                        "type": "formula",
+                                        "as": "mx",
+                                        "expr": "(datum.x1 + datum.x2) / 2"
+                                },
+                                {
+                                        "type": "formula",
+                                        "as": "path",
+                                        "expr": "'M' + datum.x1 + ',' + datum.y1 + ' C' + datum.mx + ',' + datum.y1 + ' ' + datum.mx + ',' + datum.y2 + ' ' + datum.x2 + ',' + datum.y2"
+                                }
+                        ]
+                },
+                {
+                        "name": "footnotes",
+                        "values": [
+                                {
+                                        "text": "Conceptual pathway only; link widths do not represent quantities.",
+                                        "x": 30,
+                                        "y": 390
+                                }
+                        ]
+                }
+        ],
+        "marks": [
+                {
+                        "type": "path",
+                        "from": {
+                                "data": "edges"
+                        },
+                        "encode": {
+                                "enter": {
+                                        "path": {
+                                                "field": "path"
+                                        },
+                                        "stroke": {
+                                                "value": "#b8b1aa"
+                                        },
+                                        "strokeWidth": {
+                                                "value": 2
+                                        },
+                                        "fill": {
+                                                "value": null
+                                        },
+                                        "strokeCap": {
+                                                "value": "round"
+                                        }
+                                }
+                        }
+                },
+                {
+                        "type": "rect",
+                        "from": {
+                                "data": "nodes"
+                        },
+                        "encode": {
+                                "enter": {
+                                        "x": {
+                                                "field": "x"
+                                        },
+                                        "y": {
+                                                "field": "y"
+                                        },
+                                        "width": {
+                                                "field": "w"
+                                        },
+                                        "height": {
+                                                "field": "h"
+                                        },
+                                        "cornerRadius": {
+                                                "value": 9
+                                        },
+                                        "fill": {
+                                                "field": "fill"
+                                        },
+                                        "stroke": {
+                                                "field": "stroke"
+                                        },
+                                        "strokeWidth": {
+                                                "value": 1.6
+                                        }
+                                }
+                        }
+                },
+                {
+                        "type": "text",
+                        "from": {
+                                "data": "nodes"
+                        },
+                        "encode": {
+                                "enter": {
+                                        "x": {
+                                                "signal": "datum.x + datum.w / 2"
+                                        },
+                                        "y": {
+                                                "signal": "datum.y + datum.h / 2"
+                                        },
+                                        "text": {
+                                                "field": "label"
+                                        },
+                                        "font": {
+                                                "value": "Source Sans Pro"
+                                        },
+                                        "fontSize": {
+                                                "field": "fontSize"
+                                        },
+                                        "fontWeight": {
+                                                "field": "fontWeight"
+                                        },
+                                        "fill": {
+                                                "field": "textColor"
+                                        },
+                                        "align": {
+                                                "value": "center"
+                                        },
+                                        "baseline": {
+                                                "value": "middle"
+                                        }
+                                }
+                        }
+                },
+                {
+                        "type": "text",
+                        "from": {
+                                "data": "footnotes"
+                        },
+                        "encode": {
+                                "enter": {
+                                        "x": {
+                                                "field": "x"
+                                        },
+                                        "y": {
+                                                "field": "y"
+                                        },
+                                        "text": {
+                                                "field": "text"
+                                        },
+                                        "font": {
+                                                "value": "Source Sans Pro"
+                                        },
+                                        "fontSize": {
+                                                "value": 12
+                                        },
+                                        "fill": {
+                                                "value": "#6b7280"
+                                        },
+                                        "align": {
+                                                "value": "left"
+                                        },
+                                        "baseline": {
+                                                "value": "middle"
+                                        }
+                                }
+                        }
+                }
+        ]
+};
+
+        const smokingCostBurdenSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": "Smoking-attributable healthcare cost burden by disease in Malaysia.",
+        "width": 880,
+        "height": 360,
+        "background": "white",
+        "title": {
+                "text": "COPD creates the largest smoking-related healthcare cost",
+                "subtitle": [
+                        "After the pathway diagram, this chart shows where cost concentrates.",
+                        "COPD dominates smoking-attributable treatment cost among three diseases."
+                ],
+                "font": "Crimson Text",
+                "fontSize": 30,
+                "fontWeight": "bold",
+                "color": "#3f2a1d",
+                "subtitleFont": "Source Sans Pro",
+                "subtitleFontSize": 16,
+                "subtitleColor": "#4f5f66",
+                "anchor": "start",
+                "offset": 45,
+                "subtitlePadding": 15
+        },
+        "data": {
+                "values": [
+                        {
+                                "Disease": "COPD",
+                                "CostMillion": 2247.6,
+                                "CostLabel": "RM 2,247.6m",
+                                "Category": "Highest cost"
+                        },
+                        {
+                                "Disease": "Ischaemic heart disease",
+                                "CostMillion": 544.5,
+                                "CostLabel": "RM 544.5m",
+                                "Category": "Lower cost"
+                        },
+                        {
+                                "Disease": "Lung cancer",
+                                "CostMillion": 132.7,
+                                "CostLabel": "RM 132.7m",
+                                "Category": "Lower cost"
+                        }
+                ]
+        },
+        "layer": [
+                {
+                        "mark": {
+                                "type": "bar",
+                                "cornerRadiusEnd": 4,
+                                "height": 38
+                        },
+                        "encoding": {
+                                "y": {
+                                        "field": "Disease",
+                                        "type": "nominal",
+                                        "sort": "-x",
+                                        "axis": {
+                                                "title": null,
+                                                "labelFont": "Source Sans Pro",
+                                                "labelFontSize": 15,
+                                                "labelColor": "#3f4d52",
+                                                "labelLimit": 220,
+                                                "domain": false,
+                                                "tickColor": "#ffffff"
+                                        }
+                                },
+                                "x": {
+                                        "field": "CostMillion",
+                                        "type": "quantitative",
+                                        "scale": {
+                                                "domain": [
+                                                        0,
+                                                        2500
+                                                ]
+                                        },
+                                        "axis": {
+                                                "title": "Smoking-attributable treatment cost (RM million)",
+                                                "titleFont": "Source Sans Pro",
+                                                "titleFontSize": 15,
+                                                "titleFontWeight": "bold",
+                                                "titleColor": "#4f5f66",
+                                                "labelFont": "Source Sans Pro",
+                                                "labelFontSize": 13,
+                                                "labelColor": "#5f6f77",
+                                                "grid": true,
+                                                "gridColor": "#eeeeee",
+                                                "domain": false,
+                                                "tickColor": "#ffffff"
+                                        }
+                                },
+                                "color": {
+                                        "condition": {
+                                                "test": "datum.Disease === 'COPD'",
+                                                "value": "#6f4e37"
+                                        },
+                                        "value": "#c48642"
+                                },
+                                "tooltip": [
+                                        {
+                                                "field": "Disease",
+                                                "type": "nominal",
+                                                "title": "Disease"
+                                        },
+                                        {
+                                                "field": "CostMillion",
+                                                "type": "quantitative",
+                                                "title": "Cost (RM million)",
+                                                "format": ",.1f"
+                                        }
+                                ]
+                        }
+                },
+                {
+                        "mark": {
+                                "type": "text",
+                                "align": "left",
+                                "baseline": "middle",
+                                "dx": 8,
+                                "font": "Source Sans Pro",
+                                "fontSize": 15,
+                                "fontWeight": "bold",
+                                "color": "#5a3825"
+                        },
+                        "encoding": {
+                                "y": {
+                                        "field": "Disease",
+                                        "type": "nominal",
+                                        "sort": "-x"
+                                },
+                                "x": {
+                                        "field": "CostMillion",
+                                        "type": "quantitative"
+                                },
+                                "text": {
+                                        "field": "CostLabel"
+                                }
+                        }
+                },
+                {
+                        "data": {
+                                "values": [
+                                        {
+                                                "x": 1000,
+                                                "y": "COPD",
+                                                "Text": "COPD accounts for most of the selected cost burden."
+                                        }
+                                ]
+                        },
+                        "mark": {
+                                "type": "text",
+                                "align": "left",
+                                "baseline": "bottom",
+                                "font": "Source Sans Pro",
+                                "fontSize": 14,
+                                "fontWeight": "bold",
+                                "color": "#6f4e37",
+                                "dx": 8,
+                                "dy": -28
+                        },
+                        "encoding": {
+                                "x": {
+                                        "field": "x",
+                                        "type": "quantitative"
+                                },
+                                "y": {
+                                        "field": "y",
+                                        "type": "nominal"
+                                },
+                                "text": {
+                                        "field": "Text"
+                                }
+                        }
+                },
+                {
+                        "data": {
+                                "values": [
+                                        {
+                                                "x": 2100,
+                                                "y": "Lung cancer",
+                                                "Text": "Total: RM 2.92 billion"
+                                        }
+                                ]
+                        },
+                        "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "baseline": "middle",
+                                "font": "Crimson Text",
+                                "fontSize": 23,
+                                "fontWeight": "bold",
+                                "color": "#5a3825"
+                        },
+                        "encoding": {
+                                "x": {
+                                        "field": "x",
+                                        "type": "quantitative"
+                                },
+                                "y": {
+                                        "field": "y",
+                                        "type": "nominal"
+                                },
+                                "text": {
+                                        "field": "Text"
+                                }
+                        }
+                },
+                {
+                        "data": {
+                                "values": [
+                                        {
+                                                "x": 2100,
+                                                "y": "Lung cancer",
+                                                "Text": "for three selected diseases"
+                                        }
+                                ]
+                        },
+                        "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "baseline": "top",
+                                "font": "Source Sans Pro",
+                                "fontSize": 13,
+                                "color": "#4f5f66",
+                                "dy": 20
+                        },
+                        "encoding": {
+                                "x": {
+                                        "field": "x",
+                                        "type": "quantitative"
+                                },
+                                "y": {
+                                        "field": "y",
+                                        "type": "nominal"
+                                },
+                                "text": {
+                                        "field": "Text"
+                                }
+                        }
+                }
+        ],
+        "config": {
+                "view": {
+                        "stroke": null
+                },
+                "axis": {
+                        "labelFont": "Source Sans Pro",
+                        "titleFont": "Source Sans Pro"
+                }
+        }
+};
+
         const embedOptions = {
             actions: false,
             renderer: "svg"
         };
 
-        function normaliseTitleLine(value) {
-            if (Array.isArray(value)) {
-                return value.join("<br>");
+        function applyWrap(el, rawText) {
+            var words = rawText.split(/\s+/).filter(Boolean);
+
+            // Always enforce max 11 words per line
+            var lines = [];
+            for (var i = 0; i < words.length; i += 11) {
+                lines.push(words.slice(i, i + 11).join(" "));
             }
-            if (value === undefined || value === null) {
-                return "";
+
+            if (lines.length <= 2) {
+                // Single column
+                el.style.display = "";
+                el.style.columnCount = "";
+                el.innerHTML = lines.map(function(l) {
+                    return '<span style="display:block;">' + l + '</span>';
+                }).join("");
+            } else {
+                // Two columns: split words at midpoint, let browser wrap each naturally
+                var half = Math.ceil(words.length / 2);
+                var col1 = words.slice(0, half).join(" ");
+                var col2 = words.slice(half).join(" ");
+                el.style.display = "grid";
+                el.style.gridTemplateColumns = "1fr 1fr";
+                el.style.gap = "52px";
+                el.style.columnCount = "";
+                el.innerHTML =
+                    '<div>' + col1 + '</div>' +
+                    '<div>' + col2 + '</div>';
             }
-            return String(value);
+        }
+
+        function measureAndColumn(el) {
+            // No-op
+        }
+
+        function applyWrapToStoryNotes() {
+            var els = [];
+            document.querySelectorAll(".story-note, .idiom-subtitle").forEach(function(el) {
+                var rawText = el.textContent.replace(/\s+/g, " ").trim();
+                if (!rawText) return;
+                if (el.dataset.wrapped) return;
+                el.dataset.wrapped = "1";
+                applyWrap(el, rawText);
+                els.push(el);
+            });
+            // Measure after browser has laid out the text
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    els.forEach(function(el) { measureAndColumn(el); });
+                });
+            });
         }
 
         function extractTitleInfo(spec) {
             const title = spec && spec.title ? spec.title : null;
-            if (!title) {
-                return { titleText: "", subtitleText: "" };
-            }
-            if (typeof title === "string") {
-                return { titleText: title, subtitleText: "" };
-            }
-            return {
-                titleText: normaliseTitleLine(title.text),
-                subtitleText: normaliseTitleLine(title.subtitle)
-            };
+            if (!title) return { titleText: "", subtitleLines: [] };
+            if (typeof title === "string") return { titleText: title, subtitleLines: [] };
+            const t = Array.isArray(title.text) ? title.text.join(" ") : (title.text || "");
+            const s = Array.isArray(title.subtitle) ? title.subtitle : (title.subtitle ? [title.subtitle] : []);
+            return { titleText: t, subtitleLines: s };
         }
 
         function removeVegaTitle(spec) {
@@ -766,22 +1538,33 @@
         }
 
         function setExternalTitle(selector, titleInfo) {
-            const holder = document.querySelector(selector);
-            if (!holder) return;
             const chartId = selector.replace("#", "");
             const heading = document.querySelector('[data-title-for="' + chartId + '"]');
             if (!heading) return;
-            const titleElement = heading.querySelector(".idiom-title");
-            const subtitleElement = heading.querySelector(".idiom-subtitle");
-            if (titleElement) {
-                titleElement.innerHTML = titleInfo.titleText || "";
-                titleElement.style.display = titleInfo.titleText ? "block" : "none";
+            const titleEl = heading.querySelector(".idiom-title");
+            const subtitleEl = heading.querySelector(".idiom-subtitle");
+            if (titleEl) {
+                titleEl.textContent = titleInfo.titleText;
+                titleEl.style.display = titleInfo.titleText ? "block" : "none";
             }
-            if (subtitleElement) {
-                subtitleElement.innerHTML = titleInfo.subtitleText || "";
-                subtitleElement.style.display = titleInfo.subtitleText ? "block" : "none";
+            if (subtitleEl) {
+                if (titleInfo.subtitleLines && titleInfo.subtitleLines.length) {
+                    var allText = titleInfo.subtitleLines.join(" ");
+                    applyWrap(subtitleEl, allText);
+                    subtitleEl.style.display = "block";
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            measureAndColumn(subtitleEl);
+                        });
+                    });
+                } else {
+                    subtitleEl.textContent = "";
+                    subtitleEl.style.display = "none";
+                }
             }
         }
+
+        applyWrapToStoryNotes();
 
         async function embedChartWithoutInternalTitle(selector, specUrl) {
             try {
@@ -790,9 +1573,19 @@
                 const titleInfo = extractTitleInfo(spec);
                 removeVegaTitle(spec);
                 setExternalTitle(selector, titleInfo);
-                const result = await vegaEmbed(selector, spec, embedOptions);
-                console.log(specUrl + " loaded without internal Vega title");
-                return result;
+                await vegaEmbed(selector, spec, embedOptions);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function embedInlineChartWithoutInternalTitle(selector, originalSpec) {
+            try {
+                const spec = JSON.parse(JSON.stringify(originalSpec));
+                const titleInfo = extractTitleInfo(spec);
+                removeVegaTitle(spec);
+                setExternalTitle(selector, titleInfo);
+                await vegaEmbed(selector, spec, embedOptions);
             } catch (error) {
                 console.error(error);
             }
@@ -805,6 +1598,8 @@
         embedChartWithoutInternalTitle("#vis-education", smokingEducation);
         embedChartWithoutInternalTitle("#vis-tobacco-type-heatmap", smokingTobaccoTypeHeatmap);
         embedChartWithoutInternalTitle("#vis-income", smokingIncome);
+        embedInlineChartWithoutInternalTitle("#vis-disease-cost-tree", smokingDiseaseCostTreeSpec);
+        embedInlineChartWithoutInternalTitle("#vis-cost-burden", smokingCostBurdenSpec);
     </script>
 </body>
 </html>

@@ -1,0 +1,213 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Smoking-attributable healthcare cost burden by disease in Malaysia.",
+  "width": 880,
+  "height": 360,
+  "background": "white",
+  "title": {
+    "text": "COPD creates the largest smoking-related healthcare cost",
+    "subtitle": [
+      "After the relationship diagram, this chart shows where cost concentrates.",
+      "COPD dominates the smoking-attributable treatment cost among three diseases."
+    ],
+    "font": "Crimson Text",
+    "fontSize": 30,
+    "fontWeight": "bold",
+    "color": "#3f2a1d",
+    "subtitleFont": "Source Sans Pro",
+    "subtitleFontSize": 16,
+    "subtitleColor": "#4f5f66",
+    "anchor": "start",
+    "offset": 45,
+    "subtitlePadding": 15
+  },
+  "data": {
+    "values": [
+      {
+        "Disease": "COPD",
+        "CostMillion": 2247.6,
+        "CostLabel": "RM 2,247.6m",
+        "Category": "Highest cost"
+      },
+      {
+        "Disease": "Ischaemic heart disease",
+        "CostMillion": 544.5,
+        "CostLabel": "RM 544.5m",
+        "Category": "Lower cost"
+      },
+      {
+        "Disease": "Lung cancer",
+        "CostMillion": 132.7,
+        "CostLabel": "RM 132.7m",
+        "Category": "Lower cost"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4,
+        "height": 38
+      },
+      "encoding": {
+        "y": {
+          "field": "Disease",
+          "type": "nominal",
+          "sort": "-x",
+          "axis": {
+            "title": null,
+            "labelFont": "Source Sans Pro",
+            "labelFontSize": 15,
+            "labelColor": "#3f4d52",
+            "labelLimit": 220,
+            "domain": false,
+            "tickColor": "#ffffff"
+          }
+        },
+        "x": {
+          "field": "CostMillion",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 2500]
+          },
+          "axis": {
+            "title": "Smoking-attributable treatment cost (RM million)",
+            "titleFont": "Source Sans Pro",
+            "titleFontSize": 15,
+            "titleFontWeight": "bold",
+            "titleColor": "#4f5f66",
+            "labelFont": "Source Sans Pro",
+            "labelFontSize": 13,
+            "labelColor": "#5f6f77",
+            "grid": true,
+            "gridColor": "#eeeeee",
+            "domain": false,
+            "tickColor": "#ffffff"
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Disease === 'COPD'",
+            "value": "#6f4e37"
+          },
+          "value": "#c48642"
+        },
+        "tooltip": [
+          { "field": "Disease", "type": "nominal", "title": "Disease" },
+          { "field": "CostMillion", "type": "quantitative", "title": "Cost (RM million)", "format": ",.1f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "font": "Source Sans Pro",
+        "fontSize": 15,
+        "fontWeight": "bold",
+        "color": "#5a3825"
+      },
+      "encoding": {
+        "y": {
+          "field": "Disease",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "CostMillion",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "CostLabel"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1000,
+            "y": "COPD",
+            "Text": "COPD alone accounts for most of the selected cost burden."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "font": "Source Sans Pro",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "#6f4e37",
+        "dx": 8,
+        "dy": -28
+      },
+      "encoding": {
+        "x": { "field": "x", "type": "quantitative" },
+        "y": { "field": "y", "type": "nominal" },
+        "text": { "field": "Text" }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2100,
+            "y": "Lung cancer",
+            "Text": "Total: RM 2.92 billion"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "font": "Crimson Text",
+        "fontSize": 23,
+        "fontWeight": "bold",
+        "color": "#5a3825"
+      },
+      "encoding": {
+        "x": { "field": "x", "type": "quantitative" },
+        "y": { "field": "y", "type": "nominal" },
+        "text": { "field": "Text" }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2100,
+            "y": "Lung cancer",
+            "Text": "for three selected diseases"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "top",
+        "font": "Source Sans Pro",
+        "fontSize": 13,
+        "color": "#4f5f66",
+        "dy": 20
+      },
+      "encoding": {
+        "x": { "field": "x", "type": "quantitative" },
+        "y": { "field": "y", "type": "nominal" },
+        "text": { "field": "Text" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
+    }
+  }
+}
