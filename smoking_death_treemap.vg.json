@@ -26,22 +26,96 @@
     {
       "name": "tree",
       "values": [
-        { "id": "ncd", "parent": null, "name": "Selected chronic disease deaths", "group": "Root" },
-
-        { "id": "cancer", "parent": "ncd", "name": "All cancers", "group": "Cancer" },
-        { "id": "digestive", "parent": "cancer", "name": "Digestive organ cancers", "group": "Cancer", "value": 4.4, "label": "Digestive cancers\n4.4%" },
-        { "id": "lungcancer", "parent": "cancer", "name": "Respiratory and lung cancers", "group": "Cancer", "value": 2.2, "label": "Respiratory / lung\ncancers 2.2%" },
-        { "id": "breast", "parent": "cancer", "name": "Breast cancer", "group": "Cancer", "value": 1.6, "label": "Breast cancer\n1.6%" },
-        { "id": "othercancer", "parent": "cancer", "name": "Other cancers", "group": "Cancer", "value": 6.1, "label": "Other cancers\n6.1%" },
-
-        { "id": "ihd", "parent": "ncd", "name": "Ischaemic heart disease", "group": "Heart disease", "value": 13.0, "label": "Ischaemic heart\ndisease 13.0%" },
-
-        { "id": "stroke", "parent": "ncd", "name": "Stroke", "group": "Stroke" },
-        { "id": "nonspecified", "parent": "stroke", "name": "Non-specified stroke", "group": "Stroke", "value": 2.9, "label": "Non-specified\nstroke 2.9%" },
-        { "id": "haemorrhage", "parent": "stroke", "name": "Intracranial haemorrhage", "group": "Stroke", "value": 2.6, "label": "Intracranial\nhaemorrhage 2.6%" },
-
-        { "id": "diabetes", "parent": "ncd", "name": "Diabetes mellitus", "group": "Diabetes", "value": 5.2, "label": "Diabetes\nmellitus 5.2%" },
-        { "id": "kidney", "parent": "ncd", "name": "Kidney failure", "group": "Kidney failure", "value": 2.1, "label": "Kidney failure\n2.1%" }
+        {
+          "id": "ncd",
+          "parent": null,
+          "name": "Selected chronic disease deaths",
+          "group": "Root"
+        },
+        {
+          "id": "cancer",
+          "parent": "ncd",
+          "name": "All cancers",
+          "group": "Cancer"
+        },
+        {
+          "id": "digestive",
+          "parent": "cancer",
+          "name": "Digestive organ cancers",
+          "group": "Cancer",
+          "value": 4.4,
+          "label": "Digestive\ncancers\n4.4%"
+        },
+        {
+          "id": "lungcancer",
+          "parent": "cancer",
+          "name": "Respiratory and lung cancers",
+          "group": "Cancer",
+          "value": 2.2,
+          "label": "Respiratory\nlung\ncancers\n2.2%"
+        },
+        {
+          "id": "breast",
+          "parent": "cancer",
+          "name": "Breast cancer",
+          "group": "Cancer",
+          "value": 1.6,
+          "label": "Breast\ncancer\n1.6%"
+        },
+        {
+          "id": "othercancer",
+          "parent": "cancer",
+          "name": "Other cancers",
+          "group": "Cancer",
+          "value": 6.1,
+          "label": "Other\ncancers\n6.1%"
+        },
+        {
+          "id": "ihd",
+          "parent": "ncd",
+          "name": "Ischaemic heart disease",
+          "group": "Heart disease",
+          "value": 13.0,
+          "label": "Ischaemic heart\ndisease\n13.0%"
+        },
+        {
+          "id": "stroke",
+          "parent": "ncd",
+          "name": "Stroke",
+          "group": "Stroke"
+        },
+        {
+          "id": "nonspecified",
+          "parent": "stroke",
+          "name": "Non-specified stroke",
+          "group": "Stroke",
+          "value": 2.9,
+          "label": "Non-specified\nstroke\n2.9%"
+        },
+        {
+          "id": "haemorrhage",
+          "parent": "stroke",
+          "name": "Intracranial haemorrhage",
+          "group": "Stroke",
+          "value": 2.6,
+          "label": "Intracranial\nhaemorrhage\n2.6%"
+        },
+        {
+          "id": "diabetes",
+          "parent": "ncd",
+          "name": "Diabetes mellitus",
+          "group": "Diabetes",
+          "value": 5.2,
+          "label": "Diabetes\nmellitus\n5.2%"
+        },
+        {
+          "id": "kidney",
+          "parent": "ncd",
+          "name": "Kidney failure",
+          "group": "Kidney failure",
+          "value": 2.1,
+          "label": "Kidney\nfailure\n2.1%"
+        }
       ],
       "transform": [
         {
@@ -52,16 +126,30 @@
         {
           "type": "treemap",
           "field": "value",
-          "sort": { "field": "value", "order": "descending" },
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
           "round": true,
           "method": "squarify",
           "paddingInner": 3,
           "paddingOuter": 4,
           "size": [
-            { "signal": "width" },
-            { "signal": "height" }
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
           ],
-          "as": ["x0", "y0", "x1", "y1", "depth", "children"]
+          "as": [
+            "x0",
+            "y0",
+            "x1",
+            "y1",
+            "depth",
+            "children"
+          ]
         },
         {
           "type": "formula",
@@ -74,28 +162,40 @@
       "name": "groups",
       "source": "tree",
       "transform": [
-        { "type": "filter", "expr": "datum.depth === 1 && datum.children" }
+        {
+          "type": "filter",
+          "expr": "datum.depth === 1 && datum.children"
+        }
       ]
     },
     {
       "name": "leaves",
       "source": "tree",
       "transform": [
-        { "type": "filter", "expr": "!datum.children" }
+        {
+          "type": "filter",
+          "expr": "!datum.children"
+        }
       ]
     },
     {
       "name": "leafLabels",
       "source": "leaves",
       "transform": [
-        { "type": "filter", "expr": "datum.area > 4200" }
+        {
+          "type": "filter",
+          "expr": "datum.area > 4200"
+        }
       ]
     },
     {
       "name": "smallLabels",
       "source": "leaves",
       "transform": [
-        { "type": "filter", "expr": "datum.area <= 4200" }
+        {
+          "type": "filter",
+          "expr": "datum.area <= 4200"
+        }
       ]
     }
   ],
@@ -114,104 +214,215 @@
         "#6f4e37",
         "#9b6a43",
         "#c48642",
-        "#355c61",
-        "#7d9a9e"
+        "#7a5c61",
+        "#b08c95"
       ]
     }
   ],
   "marks": [
     {
       "type": "rect",
-      "from": { "data": "leaves" },
+      "from": {
+        "data": "leaves"
+      },
       "encode": {
         "enter": {
-          "x": { "field": "x0" },
-          "y": { "field": "y0" },
-          "x2": { "field": "x1" },
-          "y2": { "field": "y1" },
-          "fill": { "scale": "color", "field": "group" },
-          "stroke": { "value": "white" },
-          "strokeWidth": { "value": 2 },
-          "cornerRadius": { "value": 4 },
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "group"
+          },
+          "stroke": {
+            "value": "white"
+          },
+          "strokeWidth": {
+            "value": 2
+          },
+          "cornerRadius": {
+            "value": 4
+          },
           "tooltip": {
             "signal": "datum.name + ': ' + format(datum.value, '.1f') + '% of medically certified deaths'"
           }
         },
         "update": {
-          "fillOpacity": { "value": 0.94 }
+          "fillOpacity": {
+            "value": 0.94
+          }
         }
       }
     },
     {
       "type": "rect",
-      "from": { "data": "groups" },
+      "from": {
+        "data": "groups"
+      },
       "encode": {
         "enter": {
-          "x": { "field": "x0" },
-          "y": { "field": "y0" },
-          "x2": { "field": "x1" },
-          "y2": { "field": "y1" },
-          "fill": { "value": null },
-          "stroke": { "value": "#ffffff" },
-          "strokeWidth": { "value": 3 }
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "value": null
+          },
+          "stroke": {
+            "value": "#ffffff"
+          },
+          "strokeWidth": {
+            "value": 3
+          }
         }
       }
     },
     {
       "type": "text",
-      "from": { "data": "groups" },
+      "from": {
+        "data": "groups"
+      },
       "encode": {
         "enter": {
-          "x": { "signal": "datum.x0 + 10" },
-          "y": { "signal": "datum.y0 + 20" },
-          "text": { "field": "name" },
-          "font": { "value": "Source Sans Pro" },
-          "fontSize": { "value": 13 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "value": "#ffffff" },
-          "align": { "value": "left" },
-          "baseline": { "value": "middle" },
-          "limit": { "signal": "datum.x1 - datum.x0 - 16" }
+          "x": {
+            "signal": "datum.x0 + 10"
+          },
+          "y": {
+            "signal": "datum.y0 + 20"
+          },
+          "text": {
+            "field": "name"
+          },
+          "font": {
+            "value": "Source Sans Pro"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 16"
+          }
         }
       }
     },
     {
       "type": "text",
-      "from": { "data": "leafLabels" },
+      "from": {
+        "data": "leafLabels"
+      },
       "encode": {
         "enter": {
-          "x": { "signal": "datum.x0 + 12" },
-          "y": { "signal": "datum.y0 + 48" },
-          "text": { "field": "label" },
-          "font": { "value": "Source Sans Pro" },
-          "fontSize": { "value": 14 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "value": "#ffffff" },
-          "align": { "value": "left" },
-          "baseline": { "value": "top" },
-          "lineBreak": { "value": "\n" },
-          "lineHeight": { "value": 18 },
-          "limit": { "signal": "datum.x1 - datum.x0 - 18" }
+          "x": {
+            "signal": "datum.x0 + 12"
+          },
+          "y": {
+            "signal": "datum.y0 + 48"
+          },
+          "text": {
+            "field": "label"
+          },
+          "font": {
+            "value": "Source Sans Pro"
+          },
+          "fontSize": {
+            "value": 14
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "top"
+          },
+          "lineBreak": {
+            "value": "\n"
+          },
+          "lineHeight": {
+            "value": 18
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 18"
+          }
         }
       }
     },
     {
       "type": "text",
-      "from": { "data": "smallLabels" },
+      "from": {
+        "data": "smallLabels"
+      },
       "encode": {
         "enter": {
-          "x": { "signal": "datum.x0 + 8" },
-          "y": { "signal": "datum.y0 + 32" },
-          "text": { "field": "label" },
-          "font": { "value": "Source Sans Pro" },
-          "fontSize": { "value": 11 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "value": "#ffffff" },
-          "align": { "value": "left" },
-          "baseline": { "value": "top" },
-          "lineBreak": { "value": "\n" },
-          "lineHeight": { "value": 14 },
-          "limit": { "signal": "datum.x1 - datum.x0 - 12" }
+          "x": {
+            "signal": "datum.x0 + 8"
+          },
+          "y": {
+            "signal": "datum.y0 + 32"
+          },
+          "text": {
+            "field": "label"
+          },
+          "font": {
+            "value": "Source Sans Pro"
+          },
+          "fontSize": {
+            "value": 9
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "top"
+          },
+          "lineBreak": {
+            "value": "\n"
+          },
+          "lineHeight": {
+            "value": 11
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 8"
+          }
         }
       }
     },
@@ -219,16 +430,30 @@
       "type": "text",
       "encode": {
         "enter": {
-          "x": { "value": 12 },
-          "y": { "signal": "height - 14" },
+          "x": {
+            "value": 12
+          },
+          "y": {
+            "signal": "height - 14"
+          },
           "text": {
             "value": "Treemap includes selected chronic disease categories; values are not smoking-attributable shares."
           },
-          "font": { "value": "Source Sans Pro" },
-          "fontSize": { "value": 12 },
-          "fill": { "value": "#f7f0ea" },
-          "align": { "value": "left" },
-          "baseline": { "value": "bottom" }
+          "font": {
+            "value": "Source Sans Pro"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "value": "#f7f0ea"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "bottom"
+          }
         }
       }
     }
