@@ -476,12 +476,80 @@
             font-weight: 600;
         }
 
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 44px;
+            align-items: start;
+            margin-top: 4px;
+        }
+
+        .footer-col {
+            min-width: 0;
+        }
+
+        .footer-grid .footer-text {
+            max-width: 60ch;
+            margin-bottom: 18px;
+        }
+
         .metadata {
             font-size: 0.8em;
             color: #999999;
             margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #e8e8e8;
+        }
+
+        
+
+        /* Readable paragraph wrapping: keep each visible row short */
+        .text-narrow {
+            max-width: 60ch;
+            text-align: left;
+        }
+
+        .text-2col {
+            display: block;
+            column-count: 2;
+            column-gap: 52px;
+            column-fill: balance;
+            max-width: calc(120ch + 52px);
+            text-align: left;
+        }
+
+        .text-2col > div {
+            display: contents;
+        }
+
+        .text-2col > p,
+        .text-2col p {
+            min-width: 0;
+            text-align: left;
+            break-inside: auto;
+            margin-bottom: 0.8em;
+        }
+
+        .text-2col p:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-note,
+        .idiom-subtitle,
+        .explain-text,
+        .analysis-text,
+        .footer-text,
+        .intro-col p {
+            overflow-wrap: normal;
+            word-break: normal;
+            hyphens: none;
+        }
+
+        .idiom-subtitle:not(.text-2col),
+        .explain-text:not(.text-2col),
+        .analysis-text,
+        .intro-col p {
+            max-width: 60ch;
         }
 
         @media (max-width: 1200px) {
@@ -516,6 +584,13 @@
         }
 
         @media (max-width: 768px) {
+
+
+            .text-2col {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                max-width: 60ch;
+            }
             .page {
                 padding: 40px 20px 56px 20px;
             }
@@ -577,6 +652,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
             footer {
                 padding: 28px 24px;
             }
@@ -588,6 +668,53 @@
             .idiom-subtitle.two-column-subtitle {
                 column-count: 1;
             }
+        }
+
+        /* Style Vega-Lite range sliders */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            accent-color: #7a4a2a;
+            height: 6px;
+            border-radius: 3px;
+            background: #e1d8cf;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #7a4a2a;
+            cursor: pointer;
+            border: none;
+            box-shadow: none;
+            margin-top: -4px;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #7a4a2a;
+            cursor: pointer;
+            border: none;
+            box-shadow: none;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: #c48642;
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        input[type="range"]::-moz-range-track {
+            background: #c48642;
+            height: 6px;
+            border-radius: 3px;
         }
 
         .idiom-title,
@@ -629,6 +756,50 @@
             display: block;
         }
 
+
+        /* Keep the map year filter at the bottom-right of the map,
+           beside the prevalence scale/legend area. */
+        #vis-map {
+            position: relative;
+        }
+
+        #vis-map .vega-bindings {
+            position: absolute;
+            right: 28px;
+            bottom: 10px;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 8px 10px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid #e1d8cf;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        #vis-map .vega-bind {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #5a3825;
+        }
+
+        #vis-map .vega-bind-name {
+            margin-right: 2px;
+            color: #5a3825;
+        }
+
+        #vis-map input[type="range"] {
+            width: 145px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -636,88 +807,117 @@
 <section class="hero">
 <div class="hero-label">Malaysia tobacco behaviour</div>
 <h1>Smoking Prevalence in Malaysia</h1>
-<p class="subtitle">Where smoking remains common, and how the national picture has changed</p>
+<p class="subtitle">How Malaysia’s smoking patterns differ across places, groups, and health burden</p>
 <div class="intro-columns">
-    <div class="intro-col">
-        <p>Smoking remains a major public health issue in Malaysia. National prevalence has declined, but the pattern is uneven.</p>
-        <p>Some states recorded much higher smoking rates in 2023. Men continued to smoke at far higher rates than women.</p>
-    </div>
-    <div class="intro-col">
-        <p>Smoking was also highest among middle-aged adults, while education and income reveal further social differences.</p>
-        <p>Together, these patterns show gradual progress, but uneven impact across the population.</p>
-    </div>
+<div class="intro-col">
+<p>Smoking remains a major public health issue in Malaysia. National prevalence has declined, but the burden is uneven across states and groups.</p>
+<p>Some states recorded much higher smoking rates in 2023, while men continued to smoke at far higher rates than women.</p>
+</div>
+<div class="intro-col">
+<p>Smoking is also concentrated among working-age adults, while education and income reveal further social differences in tobacco use.</p>
+<p>Together, these patterns show national progress, but also highlight communities where targeted tobacco control remains important.</p>
+</div>
 </div>
 </section>
 <section class="story-block">
 <div class="story-heading">
 <div class="story-kicker">Part 1</div>
 <div class="story-title">Smoking is declining, but not evenly</div>
-<p class="story-note">
-                    The national trend compares survey years over time, while the state map uses 2023 data to show the latest geographic pattern.
+<p class="story-note text-narrow">
+                    The state map shows the 2011 and 2023 geographic patterns, while the ASEAN ranking places Malaysia within the regional tobacco-use context.
                 </p>
 </div>
-
+<div class="stacked-pair">
+<section class="viz-card">
+<div class="year-badge">Data year: 2011 &amp; 2023</div>
+<div class="idiom-heading" data-title-for="vis-map">
+<div class="idiom-title"></div>
+<div class="idiom-subtitle text-2col">
+<div>
+<p style="margin-bottom:0.8em;">Use the year slider to compare smoking prevalence across Malaysian states in 2011 and 2023. The map shows that smoking prevalence is not evenly distributed across Malaysia.</p>
+<p style="margin-bottom:0.8em;">In 2023, higher rates appear in Sarawak, Perlis, Sabah, and Labuan, while lower rates appear in Selangor, Kuala Lumpur, Putrajaya, and Penang.</p>
+</div>
+<div>
+<p style="margin-bottom:0.8em;">Comparing both years suggests that national decline does not happen evenly across states. Some places show lower prevalence by 2023, but others still carry a heavier smoking burden.</p>
+<p style="margin-bottom:0.8em;">This means state-level tobacco control may still be needed, especially in high-prevalence areas.</p>
+<p style="color:#888;font-size:0.9em;">Note: 2011 Sabah includes Labuan in NHMS 2011 Table 2.26.</p>
+</div>
+</div>
+</div>
+<div class="vis-holder" id="vis-map"></div>
+</section>
+<section class="viz-card impact-card">
+<div class="year-badge compare">ASEAN ranking:<br/>2000–2022</div>
+<div class="idiom-heading" data-title-for="vis-asean-bump">
+<div class="idiom-title"></div>
+<div class="idiom-subtitle"></div>
+</div>
+<div class="vis-holder" id="vis-asean-bump"></div>
+<div class="explain-card" style="margin-top:22px;">
+<div class="explain-title">Why Myanmar remains highest</div>
+<div class="explain-text text-2col">
+<div>
+<p style="margin-bottom:0.8em;">Myanmar remains at the top because tobacco control has historically been weaker than in many neighbouring countries. A SEATCA regional study reported that Myanmar ranked last in ASEAN tobacco control, with out-of-date policies, cheap cigarette access, and widespread tobacco use.</p>
+</div>
+<div>
+<p>The article also notes that Myanmar had not regularly updated its tobacco-control policy and strategy, did not spend public money on tobacco control, and still had cheap cigarette access. These factors help explain why tobacco use stayed high, including 43.8% among men in a 2014 survey.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+<section class="story-block">
+<div class="story-heading">
+<div class="story-kicker">Part 2</div>
+<div class="story-title">Prevalence changed as tobacco control expanded</div>
+<p class="story-note text-2col">
+The prevalence timeline shows how smoking changed across survey years, while the policy timeline shows how Malaysia’s tobacco-control framework expanded through regulation, smoke-free areas, repeated amendments, and the 2024 public health act.
+</p>
+</div>
 <div class="stacked-pair">
 <section class="viz-card">
 <div class="year-badge compare">Trend: 2005–2023<br/>Focus: 2011 &amp; 2023</div>
 <div class="idiom-heading" data-title-for="vis-timeseries">
 <div class="idiom-title"></div>
-<div class="idiom-subtitle" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
-  <div>
-    <p style="margin-bottom:0.8em;">The decline after 2016 may be associated with overlapping policy, market, and behavioural changes around 2015–2016. In 2015, excise duties increased sharply, and GST added further price pressure, making legal cigarettes less affordable for many smokers.</p>
-    <p>By 2016, analysts expected tobacco volume to decline because prices had moved beyond the pain threshold.</p>
-  </div>
-  <div>
-    <p style="margin-bottom:0.8em;">At the same time, Malaysia strengthened tobacco control, while vaping, cessation support, and illicit cigarettes changed how some smokers responded.</p>
-    <p>Overall, the later decline should be read as overlapping pressures, rather than one single factor.</p>
-  </div>
+<div class="idiom-subtitle text-2col">
+<div>
+<p style="margin-bottom:0.8em;">The decline after 2016 may be associated with overlapping policy, market, and behavioural changes around 2015–2016. In 2015, excise duties increased sharply, and GST added further price pressure, making legal cigarettes less affordable for many smokers.</p>
+<p>By 2016, analysts expected tobacco volume to decline because prices had moved beyond the pain threshold.</p>
+</div>
+<div>
+<p style="margin-bottom:0.8em;">At the same time, Malaysia strengthened tobacco control, while vaping, cessation support, and illicit cigarettes changed how some smokers responded.</p>
+<p>Overall, the later decline should be read as overlapping pressures, rather than one single factor.</p>
+</div>
 </div>
 </div>
 <div class="vis-holder" id="vis-timeseries"></div>
 </section>
-<section class="viz-card">
-<div class="year-badge compare">Policy: 2004–2024</div>
+<section class="viz-card impact-card">
+<div class="year-badge compare">Policy timeline:<br/>2004–2024</div>
 <div class="idiom-heading" data-title-for="vis-policy-timeline">
 <div class="idiom-title"></div>
 <div class="idiom-subtitle"></div>
 </div>
 <div class="vis-holder" id="vis-policy-timeline"></div>
 </section>
-<section class="viz-card">
-<div class="year-badge">Data year: 2023</div>
-<div class="idiom-heading" data-title-for="vis-map">
-<div class="idiom-title"></div>
-<div class="idiom-subtitle" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
-  <div>
-    <p style="margin-bottom:0.8em;">The 2023 map shows that smoking prevalence is not evenly distributed across Malaysia. Higher rates appear in Sarawak, Perlis, Sabah, and Labuan, while lower rates appear in Selangor, Kuala Lumpur, Putrajaya, and Penang.</p>
-    <p>This suggests that smoking behaviour is shaped by local context, not only national trends.</p>
-  </div>
-  <div>
-    <p style="margin-bottom:0.8em;">States with higher prevalence may require more targeted tobacco control, especially where smoking remains common despite the overall national decline.</p>
-    <p>The map therefore adds a spatial layer to the story: Malaysia is making progress, but some places still carry a heavier smoking burden than others.</p>
-  </div>
 </div>
-</div>
-<div class="vis-holder" id="vis-map"></div>
-</section>
-</div>
-
 </section>
 <section class="story-block">
 <div class="story-heading">
-<div class="story-kicker">Part 2</div>
+<div class="story-kicker">Part 3</div>
 <div class="story-title">Smoking differs strongly across groups</div>
-<div class="story-note" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
-  <div>
-    <p style="margin-bottom:0.8em;">Gender and age show that smoking remains concentrated in specific groups, even after national prevalence has declined. The gender chart shows that men still smoke at far higher rates than women. This gap may reflect gendered social norms and risk behaviour: evidence from Southeast Asian research suggests male smoking is often more socially accepted, while female smoking can be discouraged.</p>
-  </div>
-  <div>
-    <p style="margin-bottom:0.8em;">The age chart adds another layer. Smoking is highest among working-age and middle-aged adults, which matches Malaysian evidence that adults aged 25–44 spend more on cigarettes than younger adults. This may happen because young adults have less financial capacity, while older adults become more health-aware and reduce unhealthy behaviour.</p>
-    <p>Together, these patterns show that tobacco control should not only focus on the national average, but also on adult men and working-age groups.</p>
-  </div>
+<div class="story-note text-2col">
+<div>
+<p style="margin-bottom:0.8em;">Gender and age show that smoking remains concentrated in specific groups. In 2011, male smoking prevalence was 36.4% compared to a much lower female rate. By 2023, the male rate had fallen to 35.7% — a very slow decline — while female prevalence remained at 0.9%.</p>
+<p style="margin-bottom:0.8em;">The gap persists, reflecting gendered social norms where male smoking remains more accepted across Southeast Asia.</p>
+</div>
+<div>
+<p style="margin-bottom:0.8em;">For age, NHMS 2011 found current smoking highest among the 20–59 age groups, while NHMS 2023 identified the 35–44 group specifically as the peak at 25.0%. This shift suggests that smoking is increasingly concentrated in working-age adults rather than spread broadly.</p>
+<p>Together, these patterns show that tobacco control should not only focus on the national average, but also target adult men and working-age groups where burden remains highest.</p>
 </div>
 </div>
-
+</div>
 <div class="visual-grid equal-tiles">
 <section class="viz-card">
 <div class="year-badge compare">Comparison:<br/>2011 &amp; 2023</div>
@@ -736,7 +936,14 @@
 <div class="vis-holder" id="vis-age"></div>
 </section>
 </div>
-<p class="story-note" style="margin-top:20px;">Smoking is highest among adults with primary education, showing that tobacco use follows an education divide. This may reflect lower health literacy, more stressful work environments, and earlier social exposure to smoking through family or peers. Rather than one simple cause, the pattern suggests that smoking is shaped by education, work, stress, and social normalisation.</p>
+<div class="story-note text-2col" style="margin-top:20px;">
+<div>
+<p>Education shapes smoking behaviour across both survey years. In 2011, NHMS found that current smoking was highest among those with secondary education and lowest among those with no formal or primary education — suggesting secondary-educated adults had higher exposure and social normalisation.</p>
+</div>
+<div>
+<p>By 2023, NHMS found that primary education became the highest-prevalence group at 25.4%, while tertiary-educated adults recorded lower rates. This shift may reflect that higher education increasingly protects against tobacco use through greater health literacy and awareness.</p>
+</div>
+</div>
 <div class="visual-grid single">
 <section class="viz-card">
 <div class="year-badge">Data year: 2023</div>
@@ -746,68 +953,56 @@
 </div>
 <div class="vis-holder" id="vis-education"></div>
 </section>
-
 </div>
-
-</section>
-<section class="story-block">
-<div class="story-heading">
-<div class="story-kicker">Part 3</div>
-<div class="story-title">Tobacco product use varies by age and education</div>
-<p class="story-note">
-                    This 2023 heatmap compares cigarette and tobacco product types across age groups and education levels.
-                </p>
-</div>
-
+<p class="story-note text-2col balanced-text" style="margin-top:28px;">
+Tobacco product use also varies by age and education. This 2023 heatmap compares cigarette and tobacco product types across age groups and education levels, adding another layer to the group-based smoking story.
+</p>
 <div class="visual-grid single">
 <section class="viz-card heatmap-card">
 <div class="year-badge">Data year: 2023</div>
 <div class="idiom-heading" data-title-for="vis-tobacco-type-heatmap">
 <div class="idiom-title"></div>
-<div class="idiom-subtitle" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
-  <div>
-    <p style="margin-bottom:0.8em;">The heatmap shows that tobacco product use is uneven across both age and education groups. Darker cells indicate groups where product use is more common, helping the audience see which combinations carry heavier tobacco exposure.</p>
-    <p style="margin-bottom:0.8em;">Instead of showing one national average, the heatmap reveals how smoking behaviour changes across social groups. Working-age adults tend to show stronger tobacco use patterns, while older groups are generally lower.</p>
-  </div>
-  <div>
-    <p style="margin-bottom:0.8em;">This matches Malaysian evidence that adults aged 25–44 spend more on cigarettes than younger adults, while adults aged 65 and above spend less as health awareness becomes more important.</p>
-    <p>Education also matters: lower education groups tend to show heavier cigarette demand than tertiary-educated adults. Together, the heatmap shows that tobacco control should not only target age groups, but also consider education-related differences in tobacco behaviour.</p>
-  </div>
+<div class="idiom-subtitle text-2col">
+<div>
+<p style="margin-bottom:0.8em;">The heatmap shows that tobacco product use is uneven across both age and education groups. Darker cells indicate groups where product use is more common, helping the audience see which combinations carry heavier tobacco exposure.</p>
+<p style="margin-bottom:0.8em;">Instead of showing one national average, the heatmap reveals how smoking behaviour changes across social groups. Working-age adults tend to show stronger tobacco use patterns, while older groups are generally lower.</p>
+</div>
+<div>
+<p style="margin-bottom:0.8em;">This matches Malaysian evidence that adults aged 25–44 spend more on cigarettes than younger adults, while adults aged 65 and above spend less as health awareness becomes more important.</p>
+<p>Education also matters: lower education groups tend to show heavier cigarette demand than tertiary-educated adults. Together, the heatmap shows that tobacco control should not only target age groups, but also consider education-related differences in tobacco behaviour.</p>
+</div>
 </div>
 </div>
 <div class="vis-holder" id="vis-tobacco-type-heatmap"></div>
 </section>
 </div>
-
 </section>
 <section class="story-block">
 <div class="story-heading">
 <div class="story-kicker">Part 4</div>
 <div class="story-title">Smoking and vaping show different income patterns</div>
-<p class="story-note">
-                    Income reveals another social divide in tobacco behaviour. Current smoking is more concentrated among lower-income groups, while vaping follows a different pattern. This suggests that cigarettes and e-cigarettes are shaped by different social and economic conditions.
-                </p>
+<p class="story-note text-2col">
+Income reveals another social divide in tobacco behaviour. Current smoking is more concentrated among lower-income groups, while vaping follows a different pattern. The state-level income scatter keeps the smoking and income relationship together.
+</p>
 </div>
-
 <div class="visual-grid single income-grid">
 <section class="viz-card income-card">
 <div class="year-badge">Data year: 2023</div>
 <div class="idiom-heading" data-title-for="vis-income">
 <div class="idiom-title"></div>
-<div class="idiom-subtitle" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
-  <div>
-    <p style="margin-bottom:0.8em;">Income reveals another social divide in smoking behaviour. The chart suggests that smoking is more concentrated among lower-income groups, showing that tobacco use is not only a personal choice but also linked to socioeconomic conditions.</p>
-    <p>Malaysian evidence supports this pattern: adult men with monthly household income below RM2000 were more likely to smoke than those earning RM3000 and above.</p>
-  </div>
-  <div>
-    <p style="margin-bottom:0.8em;">This relationship may be connected to financial stress, lower access to health information, and higher exposure to work or living environments where smoking is more common. The study also notes that smoking can be used as a coping mechanism for stress, especially among lower socioeconomic groups.</p>
-    <p>This means tobacco control should not only raise awareness, but also consider affordability, stress, education, and targeted support for groups where smoking remains more common.</p>
-  </div>
+<div class="idiom-subtitle text-2col">
+<div>
+<p style="margin-bottom:0.8em;">Income reveals another social divide in smoking behaviour. The chart suggests that smoking is more concentrated among lower-income groups, showing that tobacco use is not only a personal choice but also linked to socioeconomic conditions.</p>
+<p>Malaysian evidence supports this pattern: adult men with monthly household income below RM2000 were more likely to smoke than those earning RM3000 and above.</p>
+</div>
+<div>
+<p style="margin-bottom:0.8em;">This relationship may be connected to financial stress, lower access to health information, and higher exposure to work or living environments where smoking is more common. The study also notes that smoking can be used as a coping mechanism for stress, especially among lower socioeconomic groups.</p>
+<p>This means tobacco control should not only raise awareness, but also consider affordability, stress, education, and targeted support for groups where smoking remains more common.</p>
+</div>
 </div>
 </div>
 <div class="vis-holder" id="vis-income"></div>
 </section>
-
 <section class="viz-card income-card">
 <div class="year-badge compare">Smoking: 2023<br/>Income: 2022</div>
 <div class="idiom-heading" data-title-for="vis-income-state-scatter">
@@ -817,9 +1012,7 @@
 <div class="vis-holder" id="vis-income-state-scatter"></div>
 </section>
 </div>
-
 </section>
-
 <section class="story-block">
 <div class="story-heading">
 <div class="story-kicker">Part 5</div>
@@ -828,72 +1021,64 @@
                     The earlier charts show who smokes more, and where smoking remains higher. This section explains why those patterns matter: smoking is linked to major diseases, and those diseases create treatment costs for both patients and healthcare providers.
                 </p>
 </div>
-
 <div class="stacked-pair">
 <section class="viz-card impact-card">
 <div class="idiom-heading" data-title-for="vis-disease-cost-tree">
 <div class="idiom-title"></div>
-<div class="idiom-subtitle" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
-  <div>
-    <p style="margin-bottom:0.8em;">This pathway diagram shows how smoking moves from behaviour into wider health and economic consequences. The earlier charts identify who smokes more and where smoking remains common. This idiom explains why those patterns matter: smoking is associated with serious chronic diseases, including COPD, lung cancer, and ischaemic heart disease.</p>
-  </div>
-  <div>
-    <p>Once these diseases occur, the burden continues through healthcare costs, including patient costs and provider costs. This makes smoking not only an individual health risk, but also a system-level cost issue.</p>
-  </div>
+<div class="idiom-subtitle text-2col">
+<div>
+<p>This pathway diagram shows how smoking moves from behaviour into wider health and economic consequences. The earlier charts identify who smokes more and where smoking remains common. This idiom explains why those patterns matter: smoking is associated with serious chronic diseases.</p>
+</div>
+<div>
+<p>These include COPD, lung cancer, and ischaemic heart disease. Once these diseases occur, the burden continues through healthcare costs, including patient costs and provider costs. This makes smoking not only an individual health risk, but also a system-level cost issue.</p>
+</div>
 </div>
 </div>
 <div class="vis-holder" id="vis-disease-cost-tree"></div>
 </section>
-
 <section class="viz-card impact-card">
 <div class="idiom-heading" data-title-for="vis-death-treemap">
 <div class="idiom-title"></div>
-<div class="idiom-subtitle" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
-  <div>
-    <p style="margin-bottom:0.8em;">The treemap shows selected chronic disease death burden by group. Cancer has the largest combined share, while heart disease remains the largest single disease category.</p>
-  </div>
-  <div>
-    <p>Smaller nested blocks show which cancer and stroke subtypes contribute to the overall burden.</p>
-  </div>
-</div>
+<div class="idiom-subtitle"></div>
 </div>
 <div class="vis-holder" id="vis-death-treemap"></div>
 </section>
-
 <section class="viz-card impact-card">
 <div class="idiom-heading" data-title-for="vis-cost-burden">
 <div class="idiom-title"></div>
-<div class="idiom-subtitle" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
-  <div>
-    <p style="margin-bottom:0.8em;">The cost burden chart shows that smoking-related healthcare spending is highly concentrated in COPD. Among the three selected diseases, COPD accounts for about RM2.25 billion, making it the largest contributor to the total RM2.92 billion smoking-attributable treatment cost.</p>
-    <p>This finding is important because smoking is often discussed mainly through lung cancer risk, but the cost evidence shows that chronic respiratory disease creates a much heavier treatment burden in this dataset.</p>
-  </div>
-  <div>
-    <p>Ischaemic heart disease and lung cancer still contribute substantial costs, but COPD places the strongest financial pressure on the healthcare system. This reinforces the need for prevention and smoking cessation before long-term disease treatment becomes necessary.</p>
-  </div>
+<div class="idiom-subtitle text-2col">
+<div>
+<p>The cost burden chart shows that smoking-related healthcare spending is highly concentrated in COPD. Among the three selected diseases, COPD accounts for about RM2.25 billion, making it the largest contributor to the total RM2.92 billion smoking-attributable treatment cost. This finding is important because smoking is often discussed mainly through lung cancer risk.</p>
+</div>
+<div>
+<p>However, the cost evidence shows that chronic respiratory disease creates a much heavier treatment burden in this dataset. Ischaemic heart disease and lung cancer still contribute substantial costs, but COPD places the strongest financial pressure on the healthcare system. This reinforces the need for prevention and smoking cessation before long-term disease treatment becomes necessary.</p>
+</div>
 </div>
 </div>
 <div class="vis-holder" id="vis-cost-burden"></div>
 </section>
 </div>
-
 </section>
-
 <footer>
 <div class="footer-title">Data and Sources</div>
+<div class="footer-grid">
+<div class="footer-col">
 <p class="footer-text">
 <strong>Smoking data:</strong> This page uses Malaysian smoking prevalence and e-cigarette or vape use data from national tobacco and health survey materials. The figures describe adults aged 15 years and above.
             </p>
 <p class="footer-text">
 <strong>Map data:</strong> Malaysia state boundary data was adapted from a public GitHub TopoJSON source for educational use. State names were matched with smoking prevalence values to show the geographic pattern.
             </p>
+</div>
+<div class="footer-col">
 <p class="footer-text">
-<strong>Healthcare cost data:</strong> The cost idioms use Malaysian smoking-related
-healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
+<strong>Healthcare cost data:</strong> The cost idioms use Malaysian smoking-related healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
             </p>
 <p class="footer-text">
 <strong>Reading the page:</strong> The results show differences in smoking prevalence across states, gender groups, age groups, education groups, income groups, tobacco product types, and time. They describe population-level patterns and should not be read as proving that one factor alone causes smoking behaviour.
             </p>
+</div>
+</div>
 <div class="metadata">
                 FIT2179 Data Visualisation 2 | Smoking in Malaysia | 2026
             </div>
@@ -902,7 +1087,6 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
 <script type="text/javascript">
         const smokingMap = "smoking_map.vg.json";
         const smokingTimeSeries = "smoking_timeseries.vg.json";
-        const smokingPolicyTimeline = "smoking_policy_timeline.vg.json";
         const smokingGender = "smoking_gender.vg.json";
         const smokingAge = "smoking_age.vg.json";
         const smokingEducation = "smoking_education.vg.json";
@@ -910,6 +1094,8 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
         const smokingIncome = "smoking_income.vg.json";
         const smokingDeathTreemap = "smoking_death_treemap.vg.json";
         const smokingIncomeStateScatter = "smoking_income_state_scatter.vg.json";
+        const smokingPolicyTimeline = "smoking_policy_timeline.vg.json";
+        const smokingAseanBumpChart = "smoking_asean_bump_chart.vg.json";
 
         const smokingDiseaseCostTreeSpec = {
         "$schema": "https://vega.github.io/schema/vega/v5.json",
@@ -1562,50 +1748,16 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
         };
 
         function applyWrap(el, rawText) {
-            var words = rawText.split(/\s+/).filter(Boolean);
-
-            // Estimate lines at ~11 words per line
-            var estimatedLines = Math.ceil(words.length / 11);
-
-            if (estimatedLines <= 2) {
-                // Single column: let browser wrap naturally, no forced line breaks
-                el.style.display = "";
-                el.style.columnCount = "";
-                el.textContent = rawText;
-            } else {
-                // Two columns: split words at midpoint, let browser wrap each naturally
-                var half = Math.ceil(words.length / 2);
-                var col1 = words.slice(0, half).join(" ");
-                var col2 = words.slice(half).join(" ");
-                el.style.display = "grid";
-                el.style.gridTemplateColumns = "1fr 1fr";
-                el.style.gap = "52px";
-                el.style.columnCount = "";
-                el.innerHTML =
-                    '<div>' + col1 + '</div>' +
-                    '<div>' + col2 + '</div>';
-            }
+            // Keep text natural. CSS controls line length using max-width: 60ch.
+            el.textContent = rawText;
+            el.classList.add("text-narrow");
         }
-        function measureAndColumn(el) {
+                function measureAndColumn(el) {
             // No-op
         }
 
         function applyWrapToStoryNotes() {
-            var els = [];
-            document.querySelectorAll(".story-note, .idiom-subtitle").forEach(function(el) {
-                var rawText = el.textContent.replace(/\s+/g, " ").trim();
-                if (!rawText) return;
-                if (el.dataset.wrapped) return;
-                el.dataset.wrapped = "1";
-                applyWrap(el, rawText);
-                els.push(el);
-            });
-            // Measure after browser has laid out the text
-            requestAnimationFrame(function() {
-                requestAnimationFrame(function() {
-                    els.forEach(function(el) { measureAndColumn(el); });
-                });
-            });
+            // Existing paragraph structure is preserved; CSS handles wrapping.
         }
 
         function extractTitleInfo(spec) {
@@ -1634,7 +1786,7 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
                 titleEl.textContent = titleInfo.titleText;
                 titleEl.style.display = titleInfo.titleText ? "block" : "none";
             }
-            if (subtitleEl && chartId !== "vis-timeseries" && chartId !== "vis-map" && chartId !== "vis-tobacco-type-heatmap" && chartId !== "vis-income" && chartId !== "vis-disease-cost-tree" && chartId !== "vis-death-treemap" && chartId !== "vis-cost-burden") {
+            if (subtitleEl && chartId !== "vis-timeseries" && chartId !== "vis-map" && chartId !== "vis-tobacco-type-heatmap" && chartId !== "vis-income" && chartId !== "vis-disease-cost-tree" && chartId !== "vis-cost-burden") {
                 var subtitleText = titleInfo.subtitleLines && titleInfo.subtitleLines.length ? titleInfo.subtitleLines.join(" ") : "";
                 if (subtitleText) {
                     applyWrap(subtitleEl, subtitleText);
@@ -1679,7 +1831,6 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
         }
 
         embedChartWithoutInternalTitle("#vis-timeseries", smokingTimeSeries);
-        embedChartWithoutInternalTitle("#vis-policy-timeline", smokingPolicyTimeline);
         embedChartWithoutInternalTitle("#vis-map", smokingMap);
         embedChartWithoutInternalTitle("#vis-gender", smokingGender);
         embedChartWithoutInternalTitle("#vis-age", smokingAge);
@@ -1687,6 +1838,8 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
         embedChartWithoutInternalTitle("#vis-tobacco-type-heatmap", smokingTobaccoTypeHeatmap);
         embedChartWithoutInternalTitle("#vis-income", smokingIncome);
         embedChartWithoutInternalTitle("#vis-income-state-scatter", smokingIncomeStateScatter);
+        embedChartWithoutInternalTitle("#vis-policy-timeline", smokingPolicyTimeline);
+        embedChartWithoutInternalTitle("#vis-asean-bump", smokingAseanBumpChart);
         embedChartWithoutInternalTitle("#vis-death-treemap", smokingDeathTreemap);
         embedInlineChartWithoutInternalTitle("#vis-disease-cost-tree", smokingDiseaseCostTreeSpec);
         embedInlineChartWithoutInternalTitle("#vis-cost-burden", smokingCostBurdenSpec);

@@ -1,0 +1,411 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart ranking ASEAN countries by current tobacco use prevalence.",
+  "width": 920,
+  "height": 460,
+  "background": "white",
+  "title": {
+    "text": "Malaysia sits mid-ranked among ASEAN smoking rates",
+    "subtitle": [
+      "Countries are ranked by adult current tobacco use prevalence.",
+      "Rank 1 means the highest smoking prevalence in that year.",
+      "Malaysia moved from rank 7 in 2000 to rank 5 in 2022."
+    ],
+    "font": "Crimson Text",
+    "fontSize": 30,
+    "fontWeight": "bold",
+    "color": "#3f2a1d",
+    "subtitleFont": "Source Sans Pro",
+    "subtitleFontSize": 16,
+    "subtitleColor": "#4f5f66",
+    "anchor": "start",
+    "offset": 45,
+    "subtitlePadding": 15
+  },
+  "data": {
+    "values": [
+      { "Country": "Brunei", "Year": 2000, "Prevalence": 17.2, "Rank": 9 },
+      { "Country": "Brunei", "Year": 2005, "Prevalence": 16.8, "Rank": 9 },
+      { "Country": "Brunei", "Year": 2010, "Prevalence": 16.5, "Rank": 10 },
+      { "Country": "Brunei", "Year": 2015, "Prevalence": 16.4, "Rank": 10 },
+      { "Country": "Brunei", "Year": 2020, "Prevalence": 16.4, "Rank": 9 },
+      { "Country": "Brunei", "Year": 2021, "Prevalence": 16.4, "Rank": 9 },
+      { "Country": "Brunei", "Year": 2022, "Prevalence": 16.4, "Rank": 9 },
+
+      { "Country": "Cambodia", "Year": 2000, "Prevalence": 42.0, "Rank": 3 },
+      { "Country": "Cambodia", "Year": 2005, "Prevalence": 34.4, "Rank": 4 },
+      { "Country": "Cambodia", "Year": 2010, "Prevalence": 28.0, "Rank": 4 },
+      { "Country": "Cambodia", "Year": 2015, "Prevalence": 22.7, "Rank": 7 },
+      { "Country": "Cambodia", "Year": 2020, "Prevalence": 18.6, "Rank": 8 },
+      { "Country": "Cambodia", "Year": 2021, "Prevalence": 18.0, "Rank": 8 },
+      { "Country": "Cambodia", "Year": 2022, "Prevalence": 17.2, "Rank": 8 },
+
+      { "Country": "Indonesia", "Year": 2000, "Prevalence": 35.2, "Rank": 5 },
+      { "Country": "Indonesia", "Year": 2005, "Prevalence": 35.5, "Rank": 3 },
+      { "Country": "Indonesia", "Year": 2010, "Prevalence": 36.2, "Rank": 3 },
+      { "Country": "Indonesia", "Year": 2015, "Prevalence": 37.1, "Rank": 2 },
+      { "Country": "Indonesia", "Year": 2020, "Prevalence": 37.8, "Rank": 2 },
+      { "Country": "Indonesia", "Year": 2021, "Prevalence": 37.9, "Rank": 2 },
+      { "Country": "Indonesia", "Year": 2022, "Prevalence": 38.2, "Rank": 2 },
+
+      { "Country": "Laos", "Year": 2000, "Prevalence": 51.8, "Rank": 2 },
+      { "Country": "Laos", "Year": 2005, "Prevalence": 44.2, "Rank": 2 },
+      { "Country": "Laos", "Year": 2010, "Prevalence": 38.0, "Rank": 2 },
+      { "Country": "Laos", "Year": 2015, "Prevalence": 32.8, "Rank": 3 },
+      { "Country": "Laos", "Year": 2020, "Prevalence": 28.7, "Rank": 3 },
+      { "Country": "Laos", "Year": 2021, "Prevalence": 27.8, "Rank": 3 },
+      { "Country": "Laos", "Year": 2022, "Prevalence": 27.2, "Rank": 3 },
+
+      { "Country": "Malaysia", "Year": 2000, "Prevalence": 30.8, "Rank": 7 },
+      { "Country": "Malaysia", "Year": 2005, "Prevalence": 28.2, "Rank": 7 },
+      { "Country": "Malaysia", "Year": 2010, "Prevalence": 26.0, "Rank": 7 },
+      { "Country": "Malaysia", "Year": 2015, "Prevalence": 24.0, "Rank": 6 },
+      { "Country": "Malaysia", "Year": 2020, "Prevalence": 22.6, "Rank": 5 },
+      { "Country": "Malaysia", "Year": 2021, "Prevalence": 22.2, "Rank": 5 },
+      { "Country": "Malaysia", "Year": 2022, "Prevalence": 22.0, "Rank": 5 },
+
+      { "Country": "Myanmar", "Year": 2000, "Prevalence": 65.4, "Rank": 1 },
+      { "Country": "Myanmar", "Year": 2005, "Prevalence": 60.5, "Rank": 1 },
+      { "Country": "Myanmar", "Year": 2010, "Prevalence": 54.8, "Rank": 1 },
+      { "Country": "Myanmar", "Year": 2015, "Prevalence": 50.2, "Rank": 1 },
+      { "Country": "Myanmar", "Year": 2020, "Prevalence": 45.9, "Rank": 1 },
+      { "Country": "Myanmar", "Year": 2021, "Prevalence": 45.1, "Rank": 1 },
+      { "Country": "Myanmar", "Year": 2022, "Prevalence": 44.4, "Rank": 1 },
+
+      { "Country": "Philippines", "Year": 2000, "Prevalence": 36.5, "Rank": 4 },
+      { "Country": "Philippines", "Year": 2005, "Prevalence": 31.7, "Rank": 5 },
+      { "Country": "Philippines", "Year": 2010, "Prevalence": 27.7, "Rank": 5 },
+      { "Country": "Philippines", "Year": 2015, "Prevalence": 24.4, "Rank": 5 },
+      { "Country": "Philippines", "Year": 2020, "Prevalence": 21.6, "Rank": 6 },
+      { "Country": "Philippines", "Year": 2021, "Prevalence": 20.9, "Rank": 6 },
+      { "Country": "Philippines", "Year": 2022, "Prevalence": 20.4, "Rank": 6 },
+
+      { "Country": "Singapore", "Year": 2000, "Prevalence": 16.9, "Rank": 10 },
+      { "Country": "Singapore", "Year": 2005, "Prevalence": 16.8, "Rank": 10 },
+      { "Country": "Singapore", "Year": 2010, "Prevalence": 16.6, "Rank": 9 },
+      { "Country": "Singapore", "Year": 2015, "Prevalence": 16.6, "Rank": 9 },
+      { "Country": "Singapore", "Year": 2020, "Prevalence": 16.3, "Rank": 10 },
+      { "Country": "Singapore", "Year": 2021, "Prevalence": 16.3, "Rank": 10 },
+      { "Country": "Singapore", "Year": 2022, "Prevalence": 16.4, "Rank": 10 },
+
+      { "Country": "Thailand", "Year": 2000, "Prevalence": 26.2, "Rank": 8 },
+      { "Country": "Thailand", "Year": 2005, "Prevalence": 24.4, "Rank": 8 },
+      { "Country": "Thailand", "Year": 2010, "Prevalence": 22.6, "Rank": 8 },
+      { "Country": "Thailand", "Year": 2015, "Prevalence": 21.1, "Rank": 8 },
+      { "Country": "Thailand", "Year": 2020, "Prevalence": 19.7, "Rank": 7 },
+      { "Country": "Thailand", "Year": 2021, "Prevalence": 19.4, "Rank": 7 },
+      { "Country": "Thailand", "Year": 2022, "Prevalence": 19.2, "Rank": 7 },
+
+      { "Country": "Vietnam", "Year": 2000, "Prevalence": 31.1, "Rank": 6 },
+      { "Country": "Vietnam", "Year": 2005, "Prevalence": 28.8, "Rank": 6 },
+      { "Country": "Vietnam", "Year": 2010, "Prevalence": 26.6, "Rank": 6 },
+      { "Country": "Vietnam", "Year": 2015, "Prevalence": 24.9, "Rank": 4 },
+      { "Country": "Vietnam", "Year": 2020, "Prevalence": 23.2, "Rank": 4 },
+      { "Country": "Vietnam", "Year": 2021, "Prevalence": 22.9, "Rank": 4 },
+      { "Country": "Vietnam", "Year": 2022, "Prevalence": 22.5, "Rank": 4 }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "strokeWidth": 3,
+        "opacity": 0.88
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "axis": {
+            "title": "Year",
+            "labelAngle": 0,
+            "labelFont": "Source Sans Pro",
+            "labelFontSize": 13,
+            "labelColor": "#5f6f77",
+            "titleFont": "Source Sans Pro",
+            "titleFontSize": 15,
+            "titleFontWeight": "bold",
+            "titleColor": "#4f5f66",
+            "domain": false,
+            "tickColor": "#ffffff"
+          }
+        },
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [10.5, 0.5]
+          },
+          "axis": {
+            "title": "Rank by smoking prevalence",
+            "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            "labelExpr": "'#' + datum.value",
+            "labelFont": "Source Sans Pro",
+            "labelFontSize": 13,
+            "labelColor": "#5f6f77",
+            "titleFont": "Source Sans Pro",
+            "titleFontSize": 15,
+            "titleFontWeight": "bold",
+            "titleColor": "#4f5f66",
+            "grid": true,
+            "gridColor": "#eeeeee",
+            "domain": false,
+            "tickColor": "#ffffff"
+          }
+        },
+        "color": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Myanmar",
+              "Indonesia",
+              "Laos",
+              "Vietnam",
+              "Malaysia",
+              "Philippines",
+              "Thailand",
+              "Cambodia",
+              "Brunei",
+              "Singapore"
+            ],
+            "range": [
+              "#7A42C8",
+              "#E67E22",
+              "#2AA7A1",
+              "#33B5E5",
+              "#2F9BEF",
+              "#F062B0",
+              "#D4B11A",
+              "#8C564B",
+              "#A06CD5",
+              "#5C7C9C"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 5,
+            "labelFont": "Source Sans Pro",
+            "labelFontSize": 13,
+            "labelColor": "#4f5f66",
+            "symbolSize": 110
+          }
+        },
+        "detail": {
+          "field": "Country"
+        },
+        "tooltip": [
+          { "field": "Country", "type": "nominal", "title": "Country" },
+          { "field": "Year", "type": "ordinal", "title": "Year" },
+          { "field": "Rank", "type": "quantitative", "title": "Rank", "format": "d" },
+          { "field": "Prevalence", "type": "quantitative", "title": "Smoking prevalence (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 80,
+        "stroke": "white",
+        "strokeWidth": 1.8
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [10.5, 0.5]
+          }
+        },
+        "color": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Myanmar",
+              "Indonesia",
+              "Laos",
+              "Vietnam",
+              "Malaysia",
+              "Philippines",
+              "Thailand",
+              "Cambodia",
+              "Brunei",
+              "Singapore"
+            ],
+            "range": [
+              "#7A42C8",
+              "#E67E22",
+              "#2AA7A1",
+              "#33B5E5",
+              "#2F9BEF",
+              "#F062B0",
+              "#D4B11A",
+              "#8C564B",
+              "#A06CD5",
+              "#5C7C9C"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "Country", "type": "nominal", "title": "Country" },
+          { "field": "Year", "type": "ordinal", "title": "Year" },
+          { "field": "Rank", "type": "quantitative", "title": "Rank", "format": "d" },
+          { "field": "Prevalence", "type": "quantitative", "title": "Smoking prevalence (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "transform": [
+        { "filter": "datum.Country === 'Malaysia'" }
+      ],
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "strokeWidth": 6,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [10.5, 0.5]
+          }
+        },
+        "color": {
+          "value": "#005BFF"
+        },
+        "detail": {
+          "field": "Country"
+        }
+      }
+    },
+    {
+      "transform": [
+        { "filter": "datum.Country === 'Malaysia'" }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 150,
+        "color": "#005BFF",
+        "stroke": "white",
+        "strokeWidth": 2.6
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [10.5, 0.5]
+          }
+        },
+        "tooltip": [
+          { "field": "Country", "type": "nominal", "title": "Country" },
+          { "field": "Year", "type": "ordinal", "title": "Year" },
+          { "field": "Rank", "type": "quantitative", "title": "Rank", "format": "d" },
+          { "field": "Prevalence", "type": "quantitative", "title": "Smoking prevalence (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "transform": [
+        { "filter": "datum.Year === 2022" }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 9,
+        "font": "Source Sans Pro",
+        "fontSize": 12.5,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [10.5, 0.5]
+          }
+        },
+        "text": {
+          "field": "Country"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Country === 'Malaysia'",
+            "value": "#005BFF"
+          },
+          "value": "#4f5f66"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          { "Year": 2022, "Rank": 5.5, "Text": "Malaysia ranked #5 in 2022" }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -16,
+        "font": "Crimson Text",
+        "fontSize": 21,
+        "fontWeight": "bold",
+        "lineBreak": "\n",
+        "lineHeight": 22,
+        "color": "#005BFF"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [10.5, 0.5]
+          }
+        },
+        "text": {
+          "field": "Text"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
+    }
+  }
+}
