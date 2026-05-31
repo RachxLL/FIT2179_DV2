@@ -136,6 +136,7 @@
             "titleFontSize": 15,
             "titleFontWeight": "bold",
             "titleColor": "#4f5f66",
+            "titlePadding":20,
             "labelFont": "Source Sans Pro",
             "labelFontSize": 13,
             "labelColor": "#5f6f77",

@@ -121,9 +121,11 @@
             "titleFontSize": 15,
             "titleFontWeight": "bold",
             "titleColor": "#4f5f66",
+            "titlePadding":20,
             "labelFont": "Source Sans Pro",
             "labelFontSize": 13,
             "labelColor": "#5f6f77",
+            "labelPadding":12,
             "format": "d",
             "values": [2004, 2008, 2011, 2014, 2016, 2019, 2021, 2024],
             "grid": false,
@@ -293,8 +295,8 @@
         "values": [
           {
             "Year": 2026,
-            "Y": -1.3,
-            "Text": "2024 broadened control beyond tobacco to smoking products,\nsales, packaging, labelling, and smoke-free rules."
+            "Y": -0.8,
+            "Text": "2024 broadened control \nbeyond tobacco to smoking \nproducts,sales, packaging,\n labelling, and \nsmoke-free rules."
           }
         ]
       },

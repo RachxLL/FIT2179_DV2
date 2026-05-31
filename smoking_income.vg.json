@@ -118,7 +118,7 @@
             "titleFontSize": 15,
             "titleFontWeight": 700,
             "titleColor": "#555555",
-            "titlePadding": 16,
+            "titlePadding": 20,
             "labelFont": "Arial",
             "labelFontSize": 13,
             "labelColor": "#666666",

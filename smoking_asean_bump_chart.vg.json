@@ -127,6 +127,7 @@
             "titleFontSize": 15,
             "titleFontWeight": "bold",
             "titleColor": "#4f5f66",
+            "titlePadding":20,
             "domain": false,
             "tickColor": "#ffffff"
           }
@@ -148,6 +149,7 @@
             "titleFontSize": 15,
             "titleFontWeight": "bold",
             "titleColor": "#4f5f66",
+            "titlePadding":20,            
             "grid": true,
             "gridColor": "#eeeeee",
             "domain": false,
