@@ -35,7 +35,7 @@
       {
         "Year": 2008,
         "Y": 0,
-        "LabelY": -0.90,
+        "LabelY": -0.9,
         "LineEndY": -0.72,
         "Label": "2008\nAmendment\nRegulations",
         "Category": "Amendment"
@@ -59,7 +59,7 @@
       {
         "Year": 2016,
         "Y": 0,
-        "LabelY": -0.60,
+        "LabelY": -0.6,
         "LineEndY": -0.52,
         "Label": "2016\nAmendment No. 2\ntook effect",
         "Category": "Amendment"
@@ -113,7 +113,10 @@
           "field": "Start",
           "type": "quantitative",
           "scale": {
-            "domain": [2003, 2025]
+            "domain": [
+              2003,
+              2025
+            ]
           },
           "axis": {
             "title": "Effective year",
@@ -121,13 +124,22 @@
             "titleFontSize": 15,
             "titleFontWeight": "bold",
             "titleColor": "#4f5f66",
-            "titlePadding":20,
+            "titlePadding": 20,
             "labelFont": "Source Sans Pro",
             "labelFontSize": 13,
             "labelColor": "#5f6f77",
-            "labelPadding":12,
+            "labelPadding": 12,
             "format": "d",
-            "values": [2004, 2008, 2011, 2014, 2016, 2019, 2021, 2024],
+            "values": [
+              2004,
+              2008,
+              2011,
+              2014,
+              2016,
+              2019,
+              2021,
+              2024
+            ],
             "grid": false,
             "domain": false,
             "tickColor": "#ffffff"
@@ -140,7 +152,10 @@
           "field": "Y",
           "type": "quantitative",
           "scale": {
-            "domain": [-1.45, 1.45]
+            "domain": [
+              -1.45,
+              1.45
+            ]
           },
           "axis": null
         }
@@ -159,7 +174,10 @@
           "field": "Year",
           "type": "quantitative",
           "scale": {
-            "domain": [2003, 2025]
+            "domain": [
+              2003,
+              2025
+            ]
           },
           "axis": {
             "title": "Effective year",
@@ -171,17 +189,31 @@
             "labelFontSize": 13,
             "labelColor": "#5f6f77",
             "format": "d",
-            "values": [2004, 2008, 2011, 2014, 2016, 2019, 2021, 2024],
+            "values": [
+              2004,
+              2008,
+              2011,
+              2014,
+              2016,
+              2019,
+              2021,
+              2024
+            ],
             "grid": false,
             "domain": false,
-            "tickColor": "#ffffff"
+            "tickColor": "#ffffff",
+            "labelPadding": 12,
+            "titlePadding": 20
           }
         },
         "y": {
           "field": "Y",
           "type": "quantitative",
           "scale": {
-            "domain": [-1.45, 1.45]
+            "domain": [
+              -1.45,
+              1.45
+            ]
           },
           "axis": null
         },
@@ -243,14 +275,20 @@
           "field": "Year",
           "type": "quantitative",
           "scale": {
-            "domain": [2003, 2025]
+            "domain": [
+              2003,
+              2025
+            ]
           }
         },
         "y": {
           "field": "Y",
           "type": "quantitative",
           "scale": {
-            "domain": [-1.45, 1.45]
+            "domain": [
+              -1.45,
+              1.45
+            ]
           }
         },
         "y2": {
@@ -275,14 +313,20 @@
           "field": "Year",
           "type": "quantitative",
           "scale": {
-            "domain": [2003, 2025]
+            "domain": [
+              2003,
+              2025
+            ]
           }
         },
         "y": {
           "field": "LabelY",
           "type": "quantitative",
           "scale": {
-            "domain": [-1.45, 1.45]
+            "domain": [
+              -1.45,
+              1.45
+            ]
           }
         },
         "text": {
@@ -296,7 +340,7 @@
           {
             "Year": 2026,
             "Y": -0.8,
-            "Text": "2024 broadened control \nbeyond tobacco to smoking \nproducts,sales, packaging,\n labelling, and \nsmoke-free rules."
+            "Text": "2024 broadened control \nbeyond tobacco to smoking \nproducts, sales, packaging,\nlabelling, and \nsmoke-free rules."
           }
         ]
       },
@@ -316,14 +360,20 @@
           "field": "Year",
           "type": "quantitative",
           "scale": {
-            "domain": [2003, 2025]
+            "domain": [
+              2003,
+              2025
+            ]
           }
         },
         "y": {
           "field": "Y",
           "type": "quantitative",
           "scale": {
-            "domain": [-1.45, 1.45]
+            "domain": [
+              -1.45,
+              1.45
+            ]
           }
         },
         "text": {
@@ -338,7 +388,9 @@
     },
     "axis": {
       "labelFont": "Source Sans Pro",
-      "titleFont": "Source Sans Pro"
+      "titleFont": "Source Sans Pro",
+      "labelPadding": 12,
+      "titlePadding": 20
     }
   }
 }

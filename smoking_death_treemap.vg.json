@@ -425,37 +425,6 @@
           }
         }
       }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": {
-            "value": 12
-          },
-          "y": {
-            "signal": "height - 14"
-          },
-          "text": {
-            "value": "Treemap includes selected chronic disease categories; values are not smoking-attributable shares."
-          },
-          "font": {
-            "value": "Source Sans Pro"
-          },
-          "fontSize": {
-            "value": 12
-          },
-          "fill": {
-            "value": "#f7f0ea"
-          },
-          "align": {
-            "value": "left"
-          },
-          "baseline": {
-            "value": "bottom"
-          }
-        }
-      }
     }
   ]
 }
