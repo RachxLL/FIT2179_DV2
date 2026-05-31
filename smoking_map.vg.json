@@ -1,179 +1,228 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "padding": { "left": 20, "right": 20, "top": 4, "bottom": 8 },
+  "description": "Interactive Malaysia state map showing current smoking prevalence in 2011 and 2023.",
+  "width": 900,
+  "height": 500,
+  "background": "white",
   "title": {
-    "text": "Smoking prevalence is highest in Sarawak",
-    "subtitle": "Callouts mark selected high and low state rates.",
-    "font": "Georgia",
-    "fontSize": 37,
-    "fontWeight": 700,
-    "color": "#5a3825",
-    "subtitleFont": "Arial",
-    "subtitleFontSize": 20,
-    "subtitleFontWeight": 400,
-    "subtitlePadding": 15,
-    "subtitleColor": "#666666",
+    "text": "Smoking prevalence varies across Malaysian states",
+    "subtitle": [
+      "Use the year slider to compare current smoking prevalence in 2011 and 2023.",
+      "Darker states show higher prevalence; Labuan has no separate 2011 estimate.",
+      "Note: 2011 Sabah value includes Labuan in NHMS 2011 Table 2.26."
+    ],
+    "font": "Crimson Text",
+    "fontSize": 30,
+    "fontWeight": "bold",
+    "color": "#3f2a1d",
+    "subtitleFont": "Source Sans Pro",
+    "subtitleFontSize": 16,
+    "subtitleColor": "#4f5f66",
     "anchor": "start",
-    "offset": 45
+    "offset": 45,
+    "subtitlePadding": 15
   },
-  "width": 1000,
-  "height": 600,
-  "projection": {
-    "type": "mercator",
-    "center": [108, 4.2],
-    "scale": 2900
-  },
-  "layer": [
+  "params": [
     {
-      "data": { "sphere": true },
-      "mark": { "type": "geoshape", "fill": "#edf5f8", "stroke": null }
-    },
-    {
-      "data": { "graticule": { "step": [5, 5] } },
-      "mark": { "type": "geoshape", "fill": null, "stroke": "#d5e2e7", "strokeWidth": 0.6, "opacity": 0.7 }
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/malaysia-states.topojson",
-        "format": { "type": "topojson", "feature": "states" }
-      },
-      "transform": [
-        {
-          "lookup": "properties.Name",
-          "from": {
-            "data": { "url": "https://raw.githubusercontent.com/RachxLL/FIT2179_DV2/main/smoking_by_state.csv" },
-            "key": "State",
-            "fields": ["Smoking_Rate"]
-          }
-        }
-      ],
-      "mark": { "type": "geoshape", "stroke": "#ffffff", "strokeWidth": 1.5 },
-      "encoding": {
-        "color": {
-          "field": "Smoking_Rate",
-          "type": "quantitative",
-          "title": "Smoking prevalence (%)",
-          "scale": {
-            "domain": [10, 30],
-            "range": ["#fff7ec", "#fdd49e", "#fc8d59", "#d7301f", "#7f0000"]
-          },
-          "legend": {
-            "orient": "bottom",
-            "direction": "horizontal",
-            "gradientLength": 330,
-            "titleFont": "Arial",
-            "titleFontSize": 15,
-            "titleFontWeight": 700,
-            "labelFont": "Arial",
-            "labelFontSize": 14,
-            "offset": 12
-          }
-        },
-        "tooltip": [
-          { "field": "properties.Name", "type": "nominal", "title": "State" },
-          { "field": "Smoking_Rate", "type": "quantitative", "title": "Smoking prevalence (%)", "format": ".1f" }
-        ]
-      }
-    },
-    {
-      "data": {
-        "values": [
-          { "state": "Sarawak",  "rate": "28.5%", "lon": 110.3,  "lat": 2.65 },
-          { "state": "Sabah",    "rate": "24.9%", "lon": 114.25, "lat": 5.25 },
-          { "state": "Perlis",   "rate": "26.4%", "lon": 100.25, "lat": 6.45 },
-          { "state": "Selangor", "rate": "12.5%", "lon": 101.48, "lat": 3.25 }
-        ]
-      },
-      "mark": { "type": "point", "filled": true, "size": 55, "color": "#3a302c", "opacity": 0.95 },
-      "encoding": {
-        "longitude": { "field": "lon", "type": "quantitative" },
-        "latitude":  { "field": "lat", "type": "quantitative" },
-        "tooltip": [
-          { "field": "state", "type": "nominal", "title": "Highlighted state" },
-          { "field": "rate",  "type": "nominal", "title": "Smoking prevalence" }
-        ]
-      }
-    },
-    {
-      "data": {
-        "values": [
-          { "lon": 110.3,  "lat": 2.65, "lon2": 114.6,  "lat2": 1.25 },
-          { "lon": 114.25, "lat": 5.25, "lon2": 110.0,  "lat2": 5.85 },
-          { "lon": 100.25, "lat": 6.45, "lon2": 100.0,  "lat2": 7.05 },
-          { "lon": 101.48, "lat": 3.25, "lon2": 100.75, "lat2": 2.75 }
-        ]
-      },
-      "mark": { "type": "rule", "stroke": "#4f4540", "strokeWidth": 1.3, "opacity": 0.85 },
-      "encoding": {
-        "longitude":  { "field": "lon",  "type": "quantitative" },
-        "latitude":   { "field": "lat",  "type": "quantitative" },
-        "longitude2": { "field": "lon2" },
-        "latitude2":  { "field": "lat2" }
-      }
-    },
-    {
-      "data": {
-        "values": [{ "label": "High northern rate\nPerlis, 26.4%", "lon": 99.0, "lat": 7.5 }]
-      },
-      "mark": {
-        "type": "text", "font": "Arial", "fontSize": 15, "fontWeight": 700,
-        "lineBreak": "\n", "lineHeight": 18,
-        "baseline": "bottom", "align": "left", "color": "#3a302c"
-      },
-      "encoding": {
-        "longitude": { "field": "lon", "type": "quantitative" },
-        "latitude":  { "field": "lat", "type": "quantitative" },
-        "text":      { "field": "label" }
-      }
-    },
-    {
-      "data": {
-        "values": [{ "label": "Lowest state rate\nSelangor, 12.5%", "lon": 100.98, "lat": 2.50 }]
-      },
-      "mark": {
-        "type": "text", "font": "Arial", "fontSize":15, "fontWeight": 700,
-        "lineBreak": "\n", "lineHeight": 18,
-        "baseline": "middle", "align": "right", "color": "#3a302c"
-      },
-      "encoding": {
-        "longitude": { "field": "lon", "type": "quantitative" },
-        "latitude":  { "field": "lat", "type": "quantitative" },
-        "text":      { "field": "label" }
-      }
-    },
-    {
-      "data": {
-        "values": [{ "label": "Highest state rate\nSarawak, 28.5%", "lon": 114.65, "lat": 1.2 }]
-      },
-      "mark": {
-        "type": "text", "font": "Arial", "fontSize": 15, "fontWeight": 700,
-        "lineBreak": "\n", "lineHeight": 18,
-        "baseline": "middle", "align": "left", "color": "#3a302c"
-      },
-      "encoding": {
-        "longitude": { "field": "lon", "type": "quantitative" },
-        "latitude":  { "field": "lat", "type": "quantitative" },
-        "text":      { "field": "label" }
-      }
-    },
-    {
-      "data": {
-        "values": [{ "label": "Above national rate\nSabah, 24.9%", "lon": 108.0, "lat": 6.5 }]
-      },
-      "mark": {
-        "type": "text", "font": "Arial", "fontSize": 15, "fontWeight": 700,
-        "lineBreak": "\n", "lineHeight": 18,
-        "baseline": "middle", "align": "left", "color": "#3a302c"
-      },
-      "encoding": {
-        "longitude": { "field": "lon", "type": "quantitative" },
-        "latitude":  { "field": "lat", "type": "quantitative" },
-        "text":      { "field": "label" }
-      }
+      "name": "selectedYear",
+      "value": 2023
     }
   ],
+  "data": {
+    "url": "https://gist.githubusercontent.com/heiswayi/81a169ab39dcf749c31a/raw/malaysia.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "indexof(datum.properties.name, 'Kuala') >= 0 ? 'Kuala Lumpur' : indexof(datum.properties.name, 'Putrajaya') >= 0 ? 'Putrajaya' : indexof(datum.properties.name, 'Labuan') >= 0 ? 'Labuan' : indexof(datum.properties.name, 'Sabah') >= 0 ? 'Sabah' : indexof(datum.properties.name, 'Sarawak') >= 0 ? 'Sarawak' : indexof(datum.properties.name, 'Pinang') >= 0 ? 'Penang' : indexof(datum.properties.name, 'Malacca') >= 0 ? 'Melaka' : datum.properties.name",
+      "as": "StateKey"
+    },
+    {
+      "lookup": "StateKey",
+      "from": {
+        "data": {
+          "values": [
+            {
+              "State": "Johor",
+              "Rate_2011": 19.9,
+              "Rate_2023": 20.7
+            },
+            {
+              "State": "Kedah",
+              "Rate_2011": 21.7,
+              "Rate_2023": 21.7
+            },
+            {
+              "State": "Kelantan",
+              "Rate_2011": 18.7,
+              "Rate_2023": 21.4
+            },
+            {
+              "State": "Melaka",
+              "Rate_2011": 17.1,
+              "Rate_2023": 17.8
+            },
+            {
+              "State": "Negeri Sembilan",
+              "Rate_2011": 19.4,
+              "Rate_2023": 17.1
+            },
+            {
+              "State": "Pahang",
+              "Rate_2011": 20.6,
+              "Rate_2023": 21.6
+            },
+            {
+              "State": "Penang",
+              "Rate_2011": 16.5,
+              "Rate_2023": 15.2
+            },
+            {
+              "State": "Perak",
+              "Rate_2011": 16.1,
+              "Rate_2023": 21.5
+            },
+            {
+              "State": "Perlis",
+              "Rate_2011": 22.6,
+              "Rate_2023": 26.4
+            },
+            {
+              "State": "Selangor",
+              "Rate_2011": 18.8,
+              "Rate_2023": 12.5
+            },
+            {
+              "State": "Terengganu",
+              "Rate_2011": 20.5,
+              "Rate_2023": 17.9
+            },
+            {
+              "State": "Sabah",
+              "Rate_2011": 23.0,
+              "Rate_2023": 24.9
+            },
+            {
+              "State": "Labuan",
+              "Rate_2011": null,
+              "Rate_2023": 24.6
+            },
+            {
+              "State": "Sarawak",
+              "Rate_2011": 19.1,
+              "Rate_2023": 28.5
+            },
+            {
+              "State": "Kuala Lumpur",
+              "Rate_2011": 17.4,
+              "Rate_2023": 13.3
+            },
+            {
+              "State": "Putrajaya",
+              "Rate_2011": 15.6,
+              "Rate_2023": 13.9
+            }
+          ]
+        },
+        "key": "State",
+        "fields": [
+          "Rate_2011",
+          "Rate_2023"
+        ]
+      }
+    },
+    {
+      "calculate": "datum['Rate_' + selectedYear]",
+      "as": "Smoking_Rate"
+    },
+    {
+      "calculate": "selectedYear == 2011 && datum.StateKey == 'Sabah' ? '2011 Sabah value includes Labuan.' : selectedYear == 2011 && datum.StateKey == 'Labuan' ? 'No separate 2011 estimate; included under Sabah.' : ''",
+      "as": "Map_Note"
+    },
+    {
+      "calculate": "isValid(datum.Smoking_Rate) ? format(datum.Smoking_Rate, '.1f') + '%' : 'Included under Sabah in 2011'",
+      "as": "Smoking_Label"
+    },
+    {
+      "calculate": "selectedYear == 2011 ? '2011' : '2023'",
+      "as": "Selected_Year_Label"
+    }
+  ],
+  "projection": {
+    "type": "mercator"
+  },
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 1.2
+  },
+  "encoding": {
+    "color": {
+      "condition": {
+        "test": "isValid(datum.Smoking_Rate)",
+        "field": "Smoking_Rate",
+        "type": "quantitative",
+        "scale": {
+          "domain": [
+            12,
+            30
+          ],
+          "range": [
+            "#fff4dc",
+            "#ffd08a",
+            "#ff8c4a",
+            "#ef3b2c",
+            "#b30000"
+          ]
+        },
+        "legend": {
+          "title": "Current smoker (%)",
+          "orient": "bottom",
+          "direction": "horizontal",
+          "gradientLength": 360,
+          "gradientThickness": 14,
+          "titleFont": "Source Sans Pro",
+          "titleFontSize": 13,
+          "titleColor": "#4f5f66",
+          "labelFont": "Source Sans Pro",
+          "labelFontSize": 12,
+          "labelColor": "#4f5f66",
+          "format": ".0f"
+        }
+      },
+      "value": "#e6e6e6"
+    },
+    "tooltip": [
+      {
+        "field": "StateKey",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "expr": "selectedYear",
+        "type": "quantitative",
+        "title": "Year",
+        "format": "d"
+      },
+      {
+        "field": "Smoking_Label",
+        "type": "nominal",
+        "title": "Current smoking prevalence"
+      },
+      {
+        "field": "Map_Note",
+        "type": "nominal",
+        "title": "Note"
+      }
+    ]
+  },
   "config": {
-    "background": "#ffffff",
-    "view": { "stroke": null }
+    "view": {
+      "stroke": null
+    },
+    "font": "Source Sans Pro"
   }
 }

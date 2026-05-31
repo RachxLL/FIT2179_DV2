@@ -676,6 +676,14 @@
 <div class="vis-holder" id="vis-timeseries"></div>
 </section>
 <section class="viz-card">
+<div class="year-badge compare">Policy: 2004–2024</div>
+<div class="idiom-heading" data-title-for="vis-policy-timeline">
+<div class="idiom-title"></div>
+<div class="idiom-subtitle"></div>
+</div>
+<div class="vis-holder" id="vis-policy-timeline"></div>
+</section>
+<section class="viz-card">
 <div class="year-badge">Data year: 2023</div>
 <div class="idiom-heading" data-title-for="vis-map">
 <div class="idiom-title"></div>
@@ -799,6 +807,15 @@
 </div>
 <div class="vis-holder" id="vis-income"></div>
 </section>
+
+<section class="viz-card income-card">
+<div class="year-badge compare">Smoking: 2023<br/>Income: 2022</div>
+<div class="idiom-heading" data-title-for="vis-income-state-scatter">
+<div class="idiom-title"></div>
+<div class="idiom-subtitle"></div>
+</div>
+<div class="vis-holder" id="vis-income-state-scatter"></div>
+</section>
 </div>
 
 </section>
@@ -831,7 +848,14 @@
 <section class="viz-card impact-card">
 <div class="idiom-heading" data-title-for="vis-death-treemap">
 <div class="idiom-title"></div>
-<div class="idiom-subtitle"></div>
+<div class="idiom-subtitle" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;">
+  <div>
+    <p style="margin-bottom:0.8em;">The treemap shows selected chronic disease death burden by group. Cancer has the largest combined share, while heart disease remains the largest single disease category.</p>
+  </div>
+  <div>
+    <p>Smaller nested blocks show which cancer and stroke subtypes contribute to the overall burden.</p>
+  </div>
+</div>
 </div>
 <div class="vis-holder" id="vis-death-treemap"></div>
 </section>
@@ -878,12 +902,14 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
 <script type="text/javascript">
         const smokingMap = "smoking_map.vg.json";
         const smokingTimeSeries = "smoking_timeseries.vg.json";
+        const smokingPolicyTimeline = "smoking_policy_timeline.vg.json";
         const smokingGender = "smoking_gender.vg.json";
         const smokingAge = "smoking_age.vg.json";
         const smokingEducation = "smoking_education.vg.json";
         const smokingTobaccoTypeHeatmap = "smoking_tobacco_type_heatmap.vg.json";
         const smokingIncome = "smoking_income.vg.json";
-        const smokingDeathTreemap = "smoking_death_treemap_vg.json";
+        const smokingDeathTreemap = "smoking_death_treemap.vg.json";
+        const smokingIncomeStateScatter = "smoking_income_state_scatter.vg.json";
 
         const smokingDiseaseCostTreeSpec = {
         "$schema": "https://vega.github.io/schema/vega/v5.json",
@@ -1608,7 +1634,7 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
                 titleEl.textContent = titleInfo.titleText;
                 titleEl.style.display = titleInfo.titleText ? "block" : "none";
             }
-            if (subtitleEl && chartId !== "vis-timeseries" && chartId !== "vis-map" && chartId !== "vis-tobacco-type-heatmap" && chartId !== "vis-income" && chartId !== "vis-disease-cost-tree" && chartId !== "vis-cost-burden") {
+            if (subtitleEl && chartId !== "vis-timeseries" && chartId !== "vis-map" && chartId !== "vis-tobacco-type-heatmap" && chartId !== "vis-income" && chartId !== "vis-disease-cost-tree" && chartId !== "vis-death-treemap" && chartId !== "vis-cost-burden") {
                 var subtitleText = titleInfo.subtitleLines && titleInfo.subtitleLines.length ? titleInfo.subtitleLines.join(" ") : "";
                 if (subtitleText) {
                     applyWrap(subtitleEl, subtitleText);
@@ -1653,12 +1679,14 @@ healthcare cost estimates for COPD, lung cancer, and ischaemic heart disease.
         }
 
         embedChartWithoutInternalTitle("#vis-timeseries", smokingTimeSeries);
+        embedChartWithoutInternalTitle("#vis-policy-timeline", smokingPolicyTimeline);
         embedChartWithoutInternalTitle("#vis-map", smokingMap);
         embedChartWithoutInternalTitle("#vis-gender", smokingGender);
         embedChartWithoutInternalTitle("#vis-age", smokingAge);
         embedChartWithoutInternalTitle("#vis-education", smokingEducation);
         embedChartWithoutInternalTitle("#vis-tobacco-type-heatmap", smokingTobaccoTypeHeatmap);
         embedChartWithoutInternalTitle("#vis-income", smokingIncome);
+        embedChartWithoutInternalTitle("#vis-income-state-scatter", smokingIncomeStateScatter);
         embedChartWithoutInternalTitle("#vis-death-treemap", smokingDeathTreemap);
         embedInlineChartWithoutInternalTitle("#vis-disease-cost-tree", smokingDiseaseCostTreeSpec);
         embedInlineChartWithoutInternalTitle("#vis-cost-burden", smokingCostBurdenSpec);

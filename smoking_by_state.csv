@@ -1,17 +1,33 @@
-State,Smoking_Rate
-Johor,20.7
-Kedah,21.7
-Kelantan,21.4
-Melaka,17.8
-Negeri Sembilan,17.1
-Pahang,21.6
-Penang,15.2
-Perak,21.5
-Perlis,26.4
-Selangor,12.5
-Terengganu,17.9
-Sabah,24.9
-Sarawak,28.5
-Kuala Lumpur,13.3
-Labuan,24.6
-Putrajaya,13.9
+State,Year,Smoking_Rate,Note
+Johor,2011,19.9,
+Johor,2023,20.7,
+Kedah,2011,21.7,
+Kedah,2023,21.7,
+Kelantan,2011,18.7,
+Kelantan,2023,21.4,
+Melaka,2011,17.1,
+Melaka,2023,17.8,
+Negeri Sembilan,2011,19.4,
+Negeri Sembilan,2023,17.1,
+Pahang,2011,20.6,
+Pahang,2023,21.6,
+Penang,2011,16.5,
+Penang,2023,15.2,
+Perak,2011,16.1,
+Perak,2023,21.5,
+Perlis,2011,22.6,
+Perlis,2023,26.4,
+Selangor,2011,18.8,
+Selangor,2023,12.5,
+Terengganu,2011,20.5,
+Terengganu,2023,17.9,
+Sabah,2011,23.0,2011 Sabah value includes Labuan in NHMS Table 2.26.
+Sabah,2023,24.9,
+Labuan,2011,,No separate 2011 estimate; included under Sabah in NHMS Table 2.26.
+Labuan,2023,24.6,
+Sarawak,2011,19.1,
+Sarawak,2023,28.5,
+Kuala Lumpur,2011,17.4,
+Kuala Lumpur,2023,13.3,
+Putrajaya,2011,15.6,
+Putrajaya,2023,13.9,

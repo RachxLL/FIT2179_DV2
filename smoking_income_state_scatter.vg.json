@@ -1,0 +1,247 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bubble scatter plot comparing Malaysian state smoking rates in 2023 with median household income in 2022.",
+  "width": 900,
+  "height": 430,
+  "background": "white",
+  "title": {
+    "text": "Smoking burden and income vary across states",
+    "subtitle": [
+      "Each point represents a Malaysian state.",
+      "Smoking rate uses 2023 data, while income uses 2022 data.",
+      "The one-year gap means the relationship should be read cautiously."
+    ],
+    "font": "Crimson Text",
+    "fontSize": 30,
+    "fontWeight": "bold",
+    "color": "#3f2a1d",
+    "subtitleFont": "Source Sans Pro",
+    "subtitleFontSize": 16,
+    "subtitleColor": "#4f5f66",
+    "anchor": "start",
+    "offset": 45,
+    "subtitlePadding": 15
+  },
+  "data": {
+    "values": [
+      {"State":"Johor","Smoking_Rate":20.7,"Median_Income":6879,"Region":"South","LabelType":"Other"},
+      {"State":"Kedah","Smoking_Rate":21.7,"Median_Income":4402,"Region":"North","LabelType":"Other"},
+      {"State":"Kelantan","Smoking_Rate":21.4,"Median_Income":3614,"Region":"East Coast","LabelType":"Key"},
+      {"State":"Melaka","Smoking_Rate":17.8,"Median_Income":6210,"Region":"South","LabelType":"Other"},
+      {"State":"Negeri Sembilan","Smoking_Rate":17.1,"Median_Income":5226,"Region":"Central/South","LabelType":"Other"},
+      {"State":"Pahang","Smoking_Rate":21.6,"Median_Income":4753,"Region":"East Coast","LabelType":"Other"},
+      {"State":"Penang","Smoking_Rate":15.2,"Median_Income":6502,"Region":"North","LabelType":"Key"},
+      {"State":"Perak","Smoking_Rate":21.5,"Median_Income":4494,"Region":"North","LabelType":"Other"},
+      {"State":"Perlis","Smoking_Rate":26.4,"Median_Income":4713,"Region":"North","LabelType":"Key"},
+      {"State":"Selangor","Smoking_Rate":12.5,"Median_Income":9983,"Region":"Central","LabelType":"Key"},
+      {"State":"Terengganu","Smoking_Rate":17.9,"Median_Income":5878,"Region":"East Coast","LabelType":"Other"},
+      {"State":"Sabah","Smoking_Rate":24.9,"Median_Income":4577,"Region":"Borneo","LabelType":"Key"},
+      {"State":"Sarawak","Smoking_Rate":28.5,"Median_Income":4978,"Region":"Borneo","LabelType":"Key"},
+      {"State":"Kuala Lumpur","Smoking_Rate":13.3,"Median_Income":10234,"Region":"Central","LabelType":"Key"},
+      {"State":"Labuan","Smoking_Rate":24.6,"Median_Income":6904,"Region":"Borneo","LabelType":"Key"},
+      {"State":"Putrajaya","Smoking_Rate":13.9,"Median_Income":10056,"Region":"Central","LabelType":"Key"}
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {"x1":3000,"x2":5552,"y1":19.0,"y2":31}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#e3f4d8",
+        "opacity": 0.65
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": {"domain": [3000, 11000]},
+          "axis": {
+            "title": "Median monthly household income, 2022 (RM)",
+            "titleFont": "Source Sans Pro",
+            "titleFontSize": 15,
+            "titleFontWeight": "bold",
+            "titleColor": "#4f5f66",
+            "labelFont": "Source Sans Pro",
+            "labelFontSize": 13,
+            "labelColor": "#5f6f77",
+            "grid": true,
+            "gridColor": "#eeeeee",
+            "domain": false,
+            "tickColor": "#ffffff"
+          }
+        },
+        "x2": {"field": "x2"},
+        "y": {
+          "field": "y1",
+          "type": "quantitative",
+          "scale": {"domain": [10, 31]},
+          "axis": {
+            "title": "Smoking prevalence, 2023 (%)",
+            "titleFont": "Source Sans Pro",
+            "titleFontSize": 15,
+            "titleFontWeight": "bold",
+            "titleColor": "#4f5f66",
+            "labelFont": "Source Sans Pro",
+            "labelFontSize": 13,
+            "labelColor": "#5f6f77",
+            "grid": true,
+            "gridColor": "#eeeeee",
+            "domain": false,
+            "tickColor": "#ffffff"
+          }
+        },
+        "y2": {"field": "y2"}
+      }
+    },
+    {
+      "data": {"values": [{"x":5552}]},
+      "mark": {
+        "type": "rule",
+        "stroke": "#7a5dbb",
+        "strokeWidth": 1.4,
+        "strokeDash": [5, 5],
+        "opacity": 0.8
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"}
+      }
+    },
+    {
+      "data": {"values": [{"y":19.0}]},
+      "mark": {
+        "type": "rule",
+        "stroke": "#7a5dbb",
+        "strokeWidth": 1.4,
+        "strokeDash": [5, 5],
+        "opacity": 0.8
+      },
+      "encoding": {
+        "y": {"field": "y", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 165,
+        "stroke": "white",
+        "strokeWidth": 1.8,
+        "opacity": 0.96
+      },
+      "encoding": {
+        "x": {"field": "Median_Income", "type": "quantitative"},
+        "y": {"field": "Smoking_Rate", "type": "quantitative"},
+        "color": {
+          "field": "Region",
+          "type": "nominal",
+          "scale": {
+            "domain": ["North", "East Coast", "Central", "Central/South", "South", "Borneo"],
+            "range": ["#3d9ed8", "#2fab6a", "#7b61c8", "#40b5ad", "#d88b36", "#a96bc8"]
+          },
+          "legend": {
+            "title": "Region",
+            "orient": "bottom",
+            "labelFont": "Source Sans Pro",
+            "labelFontSize": 13,
+            "titleFont": "Source Sans Pro",
+            "titleFontSize": 14,
+            "titleColor": "#4f5f66",
+            "labelColor": "#4f5f66",
+            "direction": "horizontal"
+          }
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "Smoking_Rate", "type": "quantitative", "title": "Smoking rate 2023 (%)", "format": ".1f"},
+          {"field": "Median_Income", "type": "quantitative", "title": "Median income 2022 (RM)", "format": ",.0f"},
+          {"field": "Region", "type": "nominal", "title": "Region"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.LabelType === 'Key'"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 9,
+        "font": "Source Sans Pro",
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "color": "#3f2a1d"
+      },
+      "encoding": {
+        "x": {"field": "Median_Income", "type": "quantitative"},
+        "y": {"field": "Smoking_Rate", "type": "quantitative"},
+        "text": {"field": "State"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"x":3350,"y":30.1,"Text":"Higher smoking + lower income"},
+          {"x":3350,"y":28.9,"Text":"Potential priority quadrant"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "font": "Source Sans Pro",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "#5a3c91"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "Text"}
+      }
+    },
+    {
+      "data": {"values": [{"x":5702,"y":10.6,"Text":"Median state income reference"}]},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "font": "Source Sans Pro",
+        "fontSize": 12,
+        "color": "#5a3c91",
+        "dy": -2
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "Text"}
+      }
+    },
+    {
+      "data": {"values": [{"x":10850,"y":19.2,"Text":"2023 national smoking rate reference"}]},
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "font": "Source Sans Pro",
+        "fontSize": 12,
+        "color": "#5a3c91",
+        "dy": -3
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "Text"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
+    }
+  }
+}
