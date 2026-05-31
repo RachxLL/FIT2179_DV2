@@ -25,36 +25,12 @@
   "height": 270,
   "data": {
     "values": [
-      {
-        "Income_Group": "Bottom 40%",
-        "Measure": "Current smokers",
-        "Prevalence": 20.3
-      },
-      {
-        "Income_Group": "Middle 40%",
-        "Measure": "Current smokers",
-        "Prevalence": 18.5
-      },
-      {
-        "Income_Group": "Top 20%",
-        "Measure": "Current smokers",
-        "Prevalence": 13.9
-      },
-      {
-        "Income_Group": "Bottom 40%",
-        "Measure": "E-cigarette or vape users",
-        "Prevalence": 4.0
-      },
-      {
-        "Income_Group": "Middle 40%",
-        "Measure": "E-cigarette or vape users",
-        "Prevalence": 6.1
-      },
-      {
-        "Income_Group": "Top 20%",
-        "Measure": "E-cigarette or vape users",
-        "Prevalence": 7.8
-      }
+      { "Income_Group": "Bottom 40%", "Measure": "Current smokers", "Prevalence": 20.3 },
+      { "Income_Group": "Middle 40%", "Measure": "Current smokers", "Prevalence": 18.5 },
+      { "Income_Group": "Top 20%",    "Measure": "Current smokers", "Prevalence": 13.9 },
+      { "Income_Group": "Bottom 40%", "Measure": "E-cigarette or vape users", "Prevalence": 4.0 },
+      { "Income_Group": "Middle 40%", "Measure": "E-cigarette or vape users", "Prevalence": 6.1 },
+      { "Income_Group": "Top 20%",    "Measure": "E-cigarette or vape users", "Prevalence": 7.8 }
     ]
   },
   "layer": [
@@ -74,11 +50,7 @@
           "field": "Income_Group",
           "type": "ordinal",
           "title": "Household income category",
-          "sort": [
-            "Bottom 40%",
-            "Middle 40%",
-            "Top 20%"
-          ],
+          "sort": ["Bottom 40%", "Middle 40%", "Top 20%"],
           "axis": {
             "titleFont": "Source Sans Pro",
             "titleFontSize": 15,
@@ -98,23 +70,9 @@
           "field": "Prevalence",
           "type": "quantitative",
           "title": "Prevalence (%)",
-          "scale": {
-            "domain": [
-              0,
-              30
-            ],
-            "nice": false
-          },
+          "scale": { "domain": [0, 30], "nice": false },
           "axis": {
-            "values": [
-              0,
-              5,
-              10,
-              15,
-              20,
-              25,
-              30
-            ],
+            "values": [0, 5, 10, 15, 20, 25, 30],
             "titleFont": "Source Sans Pro",
             "titleFontSize": 15,
             "titleFontWeight": 700,
@@ -134,14 +92,8 @@
           "field": "Measure",
           "type": "nominal",
           "scale": {
-            "domain": [
-              "Current smokers",
-              "E-cigarette or vape users"
-            ],
-            "range": [
-              "#CD9A63",
-              "#74C365"
-            ]
+            "domain": ["Current smokers", "E-cigarette or vape users"],
+            "range": ["#151B54", "#74C365"]
           },
           "legend": {
             "title": null,
@@ -155,22 +107,9 @@
           }
         },
         "tooltip": [
-          {
-            "field": "Income_Group",
-            "type": "ordinal",
-            "title": "Income group"
-          },
-          {
-            "field": "Measure",
-            "type": "nominal",
-            "title": "Measure"
-          },
-          {
-            "field": "Prevalence",
-            "type": "quantitative",
-            "title": "Prevalence (%)",
-            "format": ".1f"
-          }
+          { "field": "Income_Group", "type": "ordinal",      "title": "Income group" },
+          { "field": "Measure",      "type": "nominal",      "title": "Measure" },
+          { "field": "Prevalence",   "type": "quantitative", "title": "Prevalence (%)", "format": ".1f" }
         ]
       }
     },
@@ -186,40 +125,20 @@
         "x": {
           "field": "Income_Group",
           "type": "ordinal",
-          "sort": [
-            "Bottom 40%",
-            "Middle 40%",
-            "Top 20%"
-          ]
+          "sort": ["Bottom 40%", "Middle 40%", "Top 20%"]
         },
         "y": {
           "field": "Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              25
-            ],
-            "nice": false
-          }
+          "scale": { "domain": [0, 25], "nice": false }
         },
-        "text": {
-          "field": "Prevalence",
-          "type": "quantitative",
-          "format": ".1f"
-        },
+        "text": { "field": "Prevalence", "type": "quantitative", "format": ".1f" },
         "color": {
           "field": "Measure",
           "type": "nominal",
           "scale": {
-            "domain": [
-              "Current smokers",
-              "E-cigarette or vape users"
-            ],
-            "range": [
-              "#151B54",
-              "#0B6623"
-            ]
+            "domain": ["Current smokers", "E-cigarette or vape users"],
+            "range": ["#151B54", "#0B6623"]
           },
           "legend": null
         }
@@ -244,34 +163,22 @@
         "align": "left",
         "baseline": "middle",
         "dx": 8,
-        "lineBreak":"\n",
-        "lineHeight":20,
+        "lineBreak": "\n",
+        "lineHeight": 20,
         "limit": 360
       },
       "encoding": {
         "x": {
           "field": "Income_Group",
           "type": "ordinal",
-          "sort": [
-            "Bottom 40%",
-            "Middle 40%",
-            "Top 20%"
-          ]
+          "sort": ["Bottom 40%", "Middle 40%", "Top 20%"]
         },
         "y": {
           "field": "Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              25
-            ],
-            "nice": false
-          }
+          "scale": { "domain": [0, 25], "nice": false }
         },
-        "text": {
-          "field": "Text"
-        }
+        "text": { "field": "Text" }
       }
     },
     {
@@ -293,42 +200,28 @@
         "align": "left",
         "baseline": "middle",
         "dx": 8,
-        "lineBreak":"\n",
-        "lineHeight":20,
+        "lineBreak": "\n",
+        "lineHeight": 20,
         "limit": 320
       },
       "encoding": {
         "x": {
           "field": "Income_Group",
           "type": "ordinal",
-          "sort": [
-            "Bottom 40%",
-            "Middle 40%",
-            "Top 20%"
-          ]
+          "sort": ["Bottom 40%", "Middle 40%", "Top 20%"]
         },
         "y": {
           "field": "Prevalence",
           "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              25
-            ],
-            "nice": false
-          }
+          "scale": { "domain": [0, 25], "nice": false }
         },
-        "text": {
-          "field": "Text"
-        }
+        "text": { "field": "Text" }
       }
     }
   ],
   "config": {
     "background": "#ffffff",
-    "view": {
-      "stroke": null
-    },
+    "view": { "stroke": null },
     "axis": {
       "labelFont": "Source Sans Pro",
       "titleFont": "Source Sans Pro"
