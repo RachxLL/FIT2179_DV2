@@ -70,22 +70,22 @@
           "from": {
             "data": {
               "values": [
-                { "State": "Johor", "Rate_2011": 19.9, "Rate_2023": 20.7 },
-                { "State": "Kedah", "Rate_2011": 21.7, "Rate_2023": 21.7 },
-                { "State": "Kelantan", "Rate_2011": 18.7, "Rate_2023": 21.4 },
-                { "State": "Melaka", "Rate_2011": 17.1, "Rate_2023": 17.8 },
+                { "State": "Johor",           "Rate_2011": 19.9, "Rate_2023": 20.7 },
+                { "State": "Kedah",           "Rate_2011": 21.7, "Rate_2023": 21.7 },
+                { "State": "Kelantan",        "Rate_2011": 18.7, "Rate_2023": 21.4 },
+                { "State": "Melaka",          "Rate_2011": 17.1, "Rate_2023": 17.8 },
                 { "State": "Negeri Sembilan", "Rate_2011": 19.4, "Rate_2023": 17.1 },
-                { "State": "Pahang", "Rate_2011": 20.6, "Rate_2023": 21.6 },
-                { "State": "Penang", "Rate_2011": 16.5, "Rate_2023": 15.2 },
-                { "State": "Perak", "Rate_2011": 16.1, "Rate_2023": 21.5 },
-                { "State": "Perlis", "Rate_2011": 22.6, "Rate_2023": 26.4 },
-                { "State": "Selangor", "Rate_2011": 18.8, "Rate_2023": 12.5 },
-                { "State": "Terengganu", "Rate_2011": 20.5, "Rate_2023": 17.9 },
-                { "State": "Sabah", "Rate_2011": 23.0, "Rate_2023": 24.9 },
-                { "State": "Labuan", "Rate_2011": null, "Rate_2023": 24.6 },
-                { "State": "Sarawak", "Rate_2011": 19.1, "Rate_2023": 28.5 },
-                { "State": "Kuala Lumpur", "Rate_2011": 17.4, "Rate_2023": 13.3 },
-                { "State": "Putrajaya", "Rate_2011": 15.6, "Rate_2023": 13.9 }
+                { "State": "Pahang",          "Rate_2011": 20.6, "Rate_2023": 21.6 },
+                { "State": "Penang",          "Rate_2011": 16.5, "Rate_2023": 15.2 },
+                { "State": "Perak",           "Rate_2011": 16.1, "Rate_2023": 21.5 },
+                { "State": "Perlis",          "Rate_2011": 22.6, "Rate_2023": 26.4 },
+                { "State": "Selangor",        "Rate_2011": 18.8, "Rate_2023": 12.5 },
+                { "State": "Terengganu",      "Rate_2011": 20.5, "Rate_2023": 17.9 },
+                { "State": "Sabah",           "Rate_2011": 23.0, "Rate_2023": 24.9 },
+                { "State": "Labuan",          "Rate_2011": null, "Rate_2023": 24.6 },
+                { "State": "Sarawak",         "Rate_2011": 19.1, "Rate_2023": 28.5 },
+                { "State": "Kuala Lumpur",    "Rate_2011": 17.4, "Rate_2023": 13.3 },
+                { "State": "Putrajaya",       "Rate_2011": 15.6, "Rate_2023": 13.9 }
               ]
             },
             "key": "State",
@@ -103,6 +103,10 @@
         {
           "calculate": "selectedYear == 2011 && datum.properties.Name == 'Labuan' ? 'No separate 2011 estimate; included under Sabah.' : selectedYear == 2011 && datum.properties.Name == 'Sabah' ? '2011 Sabah value includes Labuan.' : ''",
           "as": "Map_Note"
+        },
+        {
+          "calculate": "selectedYear",
+          "as": "Year"
         }
       ],
       "mark": {
@@ -143,7 +147,7 @@
             "title": "State"
           },
           {
-            "expr": "selectedYear",
+            "field": "Year",
             "type": "quantitative",
             "title": "Year",
             "format": "d"
@@ -164,36 +168,18 @@
     {
       "data": {
         "values": [
-          {
-            "state": "Sarawak",
-            "lon": 110.3,
-            "lat": 2.65,
-            "rate_2011": 19.1,
-            "rate_2023": 28.5
-          },
-          {
-            "state": "Sabah",
-            "lon": 114.25,
-            "lat": 5.25,
-            "rate_2011": 23.0,
-            "rate_2023": 24.9
-          },
-          {
-            "state": "Perlis",
-            "lon": 100.25,
-            "lat": 6.45,
-            "rate_2011": 22.6,
-            "rate_2023": 26.4
-          },
-          {
-            "state": "Selangor",
-            "lon": 101.48,
-            "lat": 3.25,
-            "rate_2011": 18.8,
-            "rate_2023": 12.5
-          }
+          { "state": "Sarawak",  "lon": 110.3,  "lat": 2.65, "rate_2011": 19.1, "rate_2023": 28.5 },
+          { "state": "Sabah",    "lon": 114.25, "lat": 5.25, "rate_2011": 23.0, "rate_2023": 24.9 },
+          { "state": "Perlis",   "lon": 100.25, "lat": 6.45, "rate_2011": 22.6, "rate_2023": 26.4 },
+          { "state": "Selangor", "lon": 101.48, "lat": 3.25, "rate_2011": 18.8, "rate_2023": 12.5 }
         ]
       },
+      "transform": [
+        {
+          "calculate": "selectedYear == 2011 ? format(datum.rate_2011, '.1f') + '%' : format(datum.rate_2023, '.1f') + '%'",
+          "as": "Dot_Rate"
+        }
+      ],
       "mark": {
         "type": "point",
         "filled": true,
@@ -202,14 +188,8 @@
         "opacity": 0.95
       },
       "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude":  { "field": "lat", "type": "quantitative" },
         "tooltip": [
           {
             "field": "state",
@@ -217,7 +197,7 @@
             "title": "Highlighted state"
           },
           {
-            "expr": "selectedYear == 2011 ? format(datum.rate_2011, '.1f') + '%' : format(datum.rate_2023, '.1f') + '%'",
+            "field": "Dot_Rate",
             "type": "nominal",
             "title": "Smoking prevalence"
           }
@@ -227,10 +207,10 @@
     {
       "data": {
         "values": [
-          { "lon": 110.3, "lat": 2.65, "lon2": 114.6, "lat2": 1.25 },
+          { "lon": 110.3,  "lat": 2.65, "lon2": 114.6, "lat2": 1.25 },
           { "lon": 114.25, "lat": 5.25, "lon2": 110.0, "lat2": 5.85 },
           { "lon": 100.25, "lat": 6.45, "lon2": 100.0, "lat2": 7.05 },
-          { "lon": 101.48, "lat": 3.25, "lon2": 100.75, "lat2": 2.75 }
+          { "lon": 101.48, "lat": 3.25, "lon2": 100.75,"lat2": 2.75 }
         ]
       },
       "mark": {
@@ -240,20 +220,10 @@
         "opacity": 0.85
       },
       "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "longitude2": {
-          "field": "lon2"
-        },
-        "latitude2": {
-          "field": "lat2"
-        }
+        "longitude":  { "field": "lon",  "type": "quantitative" },
+        "latitude":   { "field": "lat",  "type": "quantitative" },
+        "longitude2": { "field": "lon2" },
+        "latitude2":  { "field": "lat2" }
       }
     },
     {
@@ -262,8 +232,7 @@
           {
             "label_2011": "High northern rate\nPerlis, 22.6%",
             "label_2023": "High northern rate\nPerlis, 26.4%",
-            "lon": 99.0,
-            "lat": 7.5
+            "lon": 99.0, "lat": 7.5
           }
         ]
       },
@@ -285,17 +254,9 @@
         "color": "#3a302c"
       },
       "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "label"
-        }
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude":  { "field": "lat", "type": "quantitative" },
+        "text":      { "field": "label" }
       }
     },
     {
@@ -304,8 +265,7 @@
           {
             "label_2011": "Lower central rate\nSelangor, 18.8%",
             "label_2023": "Lowest state rate\nSelangor, 12.5%",
-            "lon": 100.98,
-            "lat": 2.5
+            "lon": 100.98, "lat": 2.5
           }
         ]
       },
@@ -327,17 +287,9 @@
         "color": "#3a302c"
       },
       "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "label"
-        }
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude":  { "field": "lat", "type": "quantitative" },
+        "text":      { "field": "label" }
       }
     },
     {
@@ -346,8 +298,7 @@
           {
             "label_2011": "East Malaysia rate\nSarawak, 19.1%",
             "label_2023": "Highest state rate\nSarawak, 28.5%",
-            "lon": 114.65,
-            "lat": 1.2
+            "lon": 114.65, "lat": 1.2
           }
         ]
       },
@@ -369,17 +320,9 @@
         "color": "#3a302c"
       },
       "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "label"
-        }
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude":  { "field": "lat", "type": "quantitative" },
+        "text":      { "field": "label" }
       }
     },
     {
@@ -388,8 +331,7 @@
           {
             "label_2011": "2011 value includes Labuan\nSabah, 23.0%",
             "label_2023": "Above national rate\nSabah, 24.9%",
-            "lon": 108.0,
-            "lat": 6.5
+            "lon": 108.0, "lat": 6.5
           }
         ]
       },
@@ -411,25 +353,15 @@
         "color": "#3a302c"
       },
       "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "label"
-        }
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude":  { "field": "lat", "type": "quantitative" },
+        "text":      { "field": "label" }
       }
     }
   ],
   "config": {
     "background": "#ffffff",
-    "view": {
-      "stroke": null
-    },
+    "view": { "stroke": null },
     "font": "Arial"
   }
 }
