@@ -1,28 +1,28 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "padding": {
-    "left": 42,
-    "right": 42,
+    "left": 50,
+    "right": 50,
     "top": 4,
-    "bottom": 16
+    "bottom": 25
   },
   "title": {
     "text": "Smoking and Vaping Differ by Income",
     "subtitle": "Smoking was higher in the Bottom 40%, while vaping was higher in the Top 20%.",
-    "font": "Georgia",
+    "font": "Crimson Text",
     "fontSize": 28,
     "fontWeight": 700,
     "color": "#5a3825",
-    "subtitleFont": "Arial",
+    "subtitleFont": "Source Sans Pro",
     "subtitleFontSize": 15,
     "subtitleFontWeight": 400,
     "subtitleColor": "#666666",
-    "subtitlePadding": 15,
+    "subtitlePadding": 30,
     "anchor": "start",
-    "offset": 38
+    "offset": 45
   },
   "width": 700,
-  "height": 250,
+  "height": 270,
   "data": {
     "values": [
       {
@@ -80,16 +80,16 @@
             "Top 20%"
           ],
           "axis": {
-            "titleFont": "Arial",
+            "titleFont": "Source Sans Pro",
             "titleFontSize": 15,
             "titleFontWeight": 700,
             "titleColor": "#555555",
-            "titlePadding": 16,
-            "labelFont": "Arial",
+            "titlePadding": 18,
+            "labelFont": "Source Sans Pro",
             "labelFontSize": 13,
             "labelColor": "#555555",
-            "labelAngle": -90,
-            "labelPadding": 10,
+            "labelAngle": 0,
+            "labelPadding": 12,
             "domain": false,
             "ticks": false
           }
@@ -101,7 +101,7 @@
           "scale": {
             "domain": [
               0,
-              25
+              30
             ],
             "nice": false
           },
@@ -112,20 +112,22 @@
               10,
               15,
               20,
-              25
+              25,
+              30
             ],
-            "titleFont": "Arial",
+            "titleFont": "Source Sans Pro",
             "titleFontSize": 15,
             "titleFontWeight": 700,
             "titleColor": "#555555",
-            "titlePadding": 20,
-            "labelFont": "Arial",
+            "titlePadding": 24,
+            "labelFont": "Source Sans Pro",
             "labelFontSize": 13,
             "labelColor": "#666666",
             "grid": true,
             "gridColor": "#eeeeee",
             "domain": false,
-            "ticks": false
+            "ticks": false,
+            "labelPadding": 10
           }
         },
         "color": {
@@ -137,7 +139,7 @@
               "E-cigarette or vape users"
             ],
             "range": [
-              "#568203",
+              "#CD9A63",
               "#74C365"
             ]
           },
@@ -215,7 +217,7 @@
               "E-cigarette or vape users"
             ],
             "range": [
-              "#1A2421",
+              "#D66C83",
               "#0B6623"
             ]
           },
@@ -228,8 +230,8 @@
         "values": [
           {
             "Income_Group": "Bottom 40%",
-            "Prevalence": 23.0,
-            "Text": "Current smoking was highest among the Bottom 40%."
+            "Prevalence": 26.0,
+            "Text": "Current smoking was highest \namong the Bottom 40%."
           }
         ]
       },
@@ -242,6 +244,8 @@
         "align": "left",
         "baseline": "middle",
         "dx": 8,
+        "lineBreak":"\n",
+        "lineHeight":20,
         "limit": 360
       },
       "encoding": {
@@ -275,8 +279,8 @@
         "values": [
           {
             "Income_Group": "Middle 40%",
-            "Prevalence": 10.7,
-            "Text": "Vaping was highest among the Top 20%."
+            "Prevalence": 12.7,
+            "Text": "Vaping was highest \namong the Top 20%."
           }
         ]
       },
@@ -289,6 +293,8 @@
         "align": "left",
         "baseline": "middle",
         "dx": 8,
+        "lineBreak":"\n",
+        "lineHeight":20,
         "limit": 320
       },
       "encoding": {
@@ -322,6 +328,14 @@
     "background": "#ffffff",
     "view": {
       "stroke": null
+    },
+    "axis": {
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
+    },
+    "legend": {
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
     }
   }
 }
